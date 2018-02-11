@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;                ../Drivers/STM32F4xx_HAL_Driver/Inc;                ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;                ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;                ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -386,9 +386,6 @@
               <FilePath>startup_stm32f407xx.s</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
           <GroupName>Drivers/CMSIS</GroupName>
@@ -543,7 +540,30 @@
               <FileType>1</FileType>
               <FilePath>..\Src\xpt2046.c</FilePath>
             </File>
+            <File>
+              <FileName>font_14ptc_italic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_14ptc_italic.c</FilePath>
+            </File>
+            <File>
+              <FileName>font_16pts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_16pts.c</FilePath>
+            </File>
+            <File>
+              <FileName>font_18pts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_18pts.c</FilePath>
+            </File>
+            <File>
+              <FileName>font_36ptc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_36ptc.c</FilePath>
+            </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

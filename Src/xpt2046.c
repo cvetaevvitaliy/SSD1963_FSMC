@@ -35,7 +35,7 @@ uint16_t getRaw(uint8_t address)
 
 uint16_t getX(void)
 { 
-	if (XPT2046_MIRROR)
+	if (XPT2046_MIRROR_X)
 	return map(getRaw(XPT2046_ADDR_X), RAW_MIN_X, RAW_MAX_X, OUT_MAX_X, OUT_MIN_X);
 	else
 	return map(getRaw(XPT2046_ADDR_X), RAW_MIN_X, RAW_MAX_X, OUT_MIN_X, OUT_MAX_X);
@@ -43,7 +43,7 @@ uint16_t getX(void)
 
 uint16_t getY(void)
 { 
-	if (XPT2046_MIRROR)
+	if (XPT2046_MIRROR_Y)
 	return map(getRaw(XPT2046_ADDR_Y), RAW_MIN_Y, RAW_MAX_Y, OUT_MAX_Y, OUT_MIN_Y);
 	else
 	return map(getRaw(XPT2046_ADDR_Y), RAW_MIN_Y, RAW_MAX_Y, OUT_MIN_Y, OUT_MAX_Y);

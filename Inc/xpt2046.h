@@ -11,21 +11,22 @@
 #define	XPT2046_NSS_PORT 	GPIOA
 #define	XPT2046_NSS_PIN 	GPIO_PIN_15
 
-#define	XPT2046_MIRROR 	1
+#define	XPT2046_MIRROR_X 	0
+#define	XPT2046_MIRROR_Y 	1
 
 #define	XPT2046_ADDR_I 	0x80
 #define	XPT2046_ADDR_X 	0xD0
 #define	XPT2046_ADDR_Y 	0x90
 
-#define RAW_MIN_X	300
-#define RAW_MAX_X	3800
+#define RAW_MIN_X	200
+#define RAW_MAX_X	4000
 #define OUT_MIN_X	0
-#define OUT_MAX_X	239
+#define OUT_MAX_X	799
 
-#define RAW_MIN_Y	400
-#define RAW_MAX_Y	3750
+#define RAW_MIN_Y	200
+#define RAW_MAX_Y	3800
 #define OUT_MIN_Y	0
-#define OUT_MAX_Y	319
+#define OUT_MAX_Y	479
 
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 void XPT2046_Init(void);

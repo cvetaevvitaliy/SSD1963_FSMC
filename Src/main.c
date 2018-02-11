@@ -42,6 +42,7 @@
 /* USER CODE BEGIN Includes */
 #include "ssd1963_fsmc.h"
 #include "xpt2046.h"
+//#include "fonts/FreeMono9pt7b.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -63,6 +64,7 @@ SRAM_HandleTypeDef hsram1;
 uint8_t touchIRQ = 0;
 uint16_t touchX = 0, touchY = 0;
 uint64_t millis = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -82,10 +84,7 @@ static void MX_TIM1_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-void SSD1963_Test(void)
-{
-	
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -126,8 +125,11 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start(&htim1);
 	HAL_TIM_Base_Start_IT(&htim1);
-//	SSD1963_Init();
+
 	XPT2046_Init();
+	SSD1963_Init();
+
+	SSD1963_Bright(40);
 
 	uint8_t uartTransmit[] = "UART OK\r\n";
 	HAL_UART_Transmit(&huart1, uartTransmit, sizeof(uartTransmit), 100);
@@ -146,7 +148,8 @@ int main(void)
 		{
 		touchX = getX();	
 		touchY = getY();
-//		SSD1963_Pixel(touchX, touchY, WHITE, 1);
+		LCD_Pixel(touchX, touchY, WHITE);
+
 		touchX = 0;
 		touchY = 0;
 		touchIRQ = 0;
@@ -385,35 +388,35 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_A_Pin|LED_B_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, SD_D0_Pin|SD_D1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(SD_CMD_GPIO_Port, SD_CMD_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : KEY_1_Pin KEY_0_Pin */
-  GPIO_InitStruct.Pin = KEY_1_Pin|KEY_0_Pin;
+  /*Configure GPIO pins : PE3 PE4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED_A_Pin LED_B_Pin */
-  GPIO_InitStruct.Pin = LED_A_Pin|LED_B_Pin;
+  /*Configure GPIO pins : PA6 PA7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : BOOT_1_Pin */
-  GPIO_InitStruct.Pin = BOOT_1_Pin;
+  /*Configure GPIO pin : PB2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(BOOT_1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SD_D0_Pin SD_D1_Pin */
-  GPIO_InitStruct.Pin = SD_D0_Pin|SD_D1_Pin;
+  /*Configure GPIO pins : PC8 PC9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -427,18 +430,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : SD_CMD_Pin */
-  GPIO_InitStruct.Pin = SD_CMD_Pin;
+  /*Configure GPIO pin : PD2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(SD_CMD_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : TOUCH_IRQ_Pin */
-  GPIO_InitStruct.Pin = TOUCH_IRQ_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(TOUCH_IRQ_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin : PD3 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
@@ -450,7 +453,6 @@ static void MX_GPIO_Init(void)
 static void MX_FSMC_Init(void)
 {
   FSMC_NORSRAM_TimingTypeDef Timing;
-  FSMC_NORSRAM_TimingTypeDef ExtTiming;
 
   /** Perform the SRAM1 memory initialization sequence
   */
@@ -467,28 +469,21 @@ static void MX_FSMC_Init(void)
   hsram1.Init.WaitSignalActive = FSMC_WAIT_TIMING_BEFORE_WS;
   hsram1.Init.WriteOperation = FSMC_WRITE_OPERATION_ENABLE;
   hsram1.Init.WaitSignal = FSMC_WAIT_SIGNAL_DISABLE;
-  hsram1.Init.ExtendedMode = FSMC_EXTENDED_MODE_ENABLE;
+  hsram1.Init.ExtendedMode = FSMC_EXTENDED_MODE_DISABLE;
   hsram1.Init.AsynchronousWait = FSMC_ASYNCHRONOUS_WAIT_DISABLE;
   hsram1.Init.WriteBurst = FSMC_WRITE_BURST_DISABLE;
   hsram1.Init.PageSize = FSMC_PAGE_SIZE_NONE;
   /* Timing */
   Timing.AddressSetupTime = 2;
-  Timing.AddressHoldTime = 15;
+  Timing.AddressHoldTime = 1;
   Timing.DataSetupTime = 5;
-  Timing.BusTurnAroundDuration = 0;
+  Timing.BusTurnAroundDuration = 2;
   Timing.CLKDivision = 16;
   Timing.DataLatency = 17;
   Timing.AccessMode = FSMC_ACCESS_MODE_A;
   /* ExtTiming */
-  ExtTiming.AddressSetupTime = 2;
-  ExtTiming.AddressHoldTime = 15;
-  ExtTiming.DataSetupTime = 3;
-  ExtTiming.BusTurnAroundDuration = 3;
-  ExtTiming.CLKDivision = 16;
-  ExtTiming.DataLatency = 17;
-  ExtTiming.AccessMode = FSMC_ACCESS_MODE_A;
 
-  if (HAL_SRAM_Init(&hsram1, &Timing, &ExtTiming) != HAL_OK)
+  if (HAL_SRAM_Init(&hsram1, &Timing, NULL) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
