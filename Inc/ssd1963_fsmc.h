@@ -9,10 +9,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define 	 LCD_PIXEL_WIDTH  800
-#define 	 LCD_PIXEL_HEIGHT 480
+#include "fonts.h"
 
-extern const uint8_t font8x8[][8];
+#define LCD_PIXEL_WIDTH  800
+#define LCD_PIXEL_HEIGHT 480
 
 #define MIRROR_V 0
 #define MIRROR_H 0
@@ -27,8 +27,6 @@ extern const uint8_t font8x8[][8];
 
 #define LCD_WIDTH       480
 #define LCD_HEIGHT      800
-#define MAX_X LCD_HEIGHT - 1
-#define LCD_PIXEL_COUNT	LCD_WIDTH * LCD_HEIGHT
 
 uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 uint16_t RGB565(uint8_t r, uint8_t g, uint8_t b);
@@ -77,11 +75,11 @@ void SSD1963_Test(void);
 
 void LCD_CursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
-void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, char *s);
+void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, const unsigned char *font, char *s, uint8_t width, uint8_t height, uint8_t indent);
 void LCD_Set_XY(uint16_t x, uint16_t y);
 void LCD_Set_Work_Area(uint16_t x, uint16_t y, uint16_t length, uint16_t width);
-void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, uint8_t ascii, uint8_t size);
-void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, char *string, uint8_t size);
+void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height);
+void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, char *string, uint8_t size, uint8_t width, uint8_t height);
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size);
 void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
 void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);

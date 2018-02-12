@@ -541,24 +541,9 @@
               <FilePath>..\Src\xpt2046.c</FilePath>
             </File>
             <File>
-              <FileName>font_14ptc_italic.c</FileName>
+              <FileName>fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\font_14ptc_italic.c</FilePath>
-            </File>
-            <File>
-              <FileName>font_16pts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\font_16pts.c</FilePath>
-            </File>
-            <File>
-              <FileName>font_18pts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\font_18pts.c</FilePath>
-            </File>
-            <File>
-              <FileName>font_36ptc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\font_36ptc.c</FilePath>
+              <FilePath>..\Src\fonts.c</FilePath>
             </File>
           </Files>
         </Group>

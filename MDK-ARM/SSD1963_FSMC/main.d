@@ -40,4 +40,5 @@ ssd1963_fsmc\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ssd1963_fsmc\main.o: ../Inc/ssd1963_fsmc.h
 ssd1963_fsmc\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ssd1963_fsmc\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+ssd1963_fsmc\main.o: ../Inc/fonts.h
 ssd1963_fsmc\main.o: ../Inc/xpt2046.h

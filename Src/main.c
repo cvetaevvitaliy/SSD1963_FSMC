@@ -129,7 +129,7 @@ int main(void)
 	XPT2046_Init();
 	SSD1963_Init();
 
-	SSD1963_Bright(40);
+	SSD1963_Bright(90);
 
 	uint8_t uartTransmit[] = "UART OK\r\n";
 	HAL_UART_Transmit(&huart1, uartTransmit, sizeof(uartTransmit), 100);
@@ -148,7 +148,8 @@ int main(void)
 		{
 		touchX = getX();	
 		touchY = getY();
-		LCD_Pixel(touchX, touchY, WHITE);
+//		LCD_Pixel(touchX, touchY, WHITE);
+			LCD_Rectangle_Fill(touchX, touchY, 3, 3, WHITE);
 
 		touchX = 0;
 		touchY = 0;

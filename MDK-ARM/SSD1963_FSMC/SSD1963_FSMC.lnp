@@ -28,10 +28,7 @@
 "ssd1963_fsmc\stm32f4xx_it.o"
 "ssd1963_fsmc\ssd1963_fsmc.o"
 "ssd1963_fsmc\xpt2046.o"
-"ssd1963_fsmc\font_14ptc_italic.o"
-"ssd1963_fsmc\font_16pts.o"
-"ssd1963_fsmc\font_18pts.o"
-"ssd1963_fsmc\font_36ptc.o"
+"ssd1963_fsmc\fonts.o"
 --library_type=microlib --strict --scatter "SSD1963_FSMC\SSD1963_FSMC.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
