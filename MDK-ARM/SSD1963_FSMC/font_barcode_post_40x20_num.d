@@ -1,1 +1,2 @@
-ssd1963_fsmc\font_barcode_post_40x20_num.o: ..\Src\font_barcode_post_40x20_num.c
+ssd1963_fsmc/font_barcode_post_40x20_num.o: \
+  ../Src/font_barcode_post_40x20_num.c

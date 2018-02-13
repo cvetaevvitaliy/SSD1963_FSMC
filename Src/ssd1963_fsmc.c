@@ -490,13 +490,13 @@ inline void SSD1963_Bright(uint8_t bright)
 	LCD_Rectangle_Fill(0, 0, 800, 480, MAGENTA);
 	LCD_Rectangle_Fill(1, 1, 798, 478, BLACK);
 		
-	sprintf(array, "01234");
-	LCD_String_Font(10, 2, BLACK, RED, segment_sixteen_128x192_num, array);
+	sprintf(array, "0123456789");
+//	LCD_String_Font(10, 2, BLACK, RED, segment_seven_96x144_num, array);
 		
-	sprintf(array, "56789");
-	LCD_String_Font(210, 2, BLACK, RED, segment_sixteen_128x192_num, array);
+//	sprintf(array, "67890");
+//	LCD_String_Font(210, 2, BLACK, RED, segment_seven_96x144_num, array);
 		
-//		sprintf(array, "1234567890 : Just Font Test");
+		sprintf(array, " Just Font Test");
 //	LCD_String_Font(250, 2, BLUE, RED, segment_sixteen_64x96_num, array);
 		
 //	LCD_String(50, 100, GREEN, RED, *tiny_8x8, "Calibration", 3, 8, 8);	
