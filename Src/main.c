@@ -126,10 +126,8 @@ int main(void)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_TIM_Base_Start_IT(&htim1);
 
+	SSD1963_Init(90);
 	XPT2046_Init();
-	SSD1963_Init();
-
-	SSD1963_Bright(90);
 
 	uint8_t uartTransmit[] = "UART OK\r\n";
 	HAL_UART_Transmit(&huart1, uartTransmit, sizeof(uartTransmit), 100);
@@ -476,7 +474,7 @@ static void MX_FSMC_Init(void)
   hsram1.Init.PageSize = FSMC_PAGE_SIZE_NONE;
   /* Timing */
   Timing.AddressSetupTime = 2;
-  Timing.AddressHoldTime = 1;
+  Timing.AddressHoldTime = 2;
   Timing.DataSetupTime = 5;
   Timing.BusTurnAroundDuration = 2;
   Timing.CLKDivision = 16;

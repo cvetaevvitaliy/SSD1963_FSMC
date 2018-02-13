@@ -1,5 +1,5 @@
 #MicroXplorer Configuration settings - do not modify
-FSMC.AddressHoldTime1=1
+FSMC.AddressHoldTime1=2
 FSMC.AddressSetupTime1=2
 FSMC.BusTurnAroundDuration1=2
 FSMC.DataSetupTime1=5

@@ -1,25 +1,14 @@
 #include "ssd1963_fsmc.h"
 #include <stdio.h>
-#include "fonts.h"
 
-char array[100];
+char array[1000];
 
 uint16_t RGB(uint8_t r, uint8_t g, uint8_t b)
 {
 	return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
-uint16_t RGB565(uint8_t r, uint8_t g, uint8_t b)
-{
-	return ((r / 8) << 11) | ((g / 4) << 5) | (b / 8);
-}
-
-uint16_t RGB565_Reversed(uint8_t r, uint8_t g, uint8_t b)
-{
-	return ((b / 8) << 11) | ((g / 4) << 5) | (g / 8);
-}
-
-uint16_t H24_RGB565(uint32_t color24)
+static inline uint16_t H24_RGB565(uint32_t color24)
 {
 	uint8_t b = (color24 >> 16) & 0xFF;
 	uint8_t g = (color24 >> 8) & 0xFF;
@@ -27,7 +16,7 @@ uint16_t H24_RGB565(uint32_t color24)
 	return ((r / 8) << 11) | ((g / 4) << 5) | (b / 8);
 }
 
-uint16_t H24_RGB565_Reversed(uint32_t color24)
+static inline uint16_t H24_RGB565_Reversed(uint32_t color24)
 {
 	uint8_t b = (color24 >> 16) & 0xFF;
 	uint8_t g = (color24 >> 8) & 0xFF;
@@ -35,47 +24,72 @@ uint16_t H24_RGB565_Reversed(uint32_t color24)
 	return ((b / 8) << 11) | ((g / 4) << 5) | (r / 8);
 }
 
-void LCD_Data(uint16_t data)
+static inline void LCD_Data(uint16_t data)
 {
-	LCD->RAM = data;
+	LCD -> RAM = data;
 }
 
-void LCD_Command(uint16_t cmd)
+static inline void LCD_Command(uint16_t cmd)
 {
-	LCD->REG = cmd;
+	LCD -> REG = cmd;
+}
+
+static inline void LCD_Set_X(uint16_t start_x, uint16_t end_x)
+{
+	LCD_Command(LCD_COLUMN_ADDR);
+	LCD_Data(start_x >> 8);
+	LCD_Data(start_x & 0x00FF);
+
+	LCD_Data(end_x >> 8);
+	LCD_Data(end_x & 0x00FF);
+}
+
+static inline void LCD_Set_Y(uint16_t start_y, uint16_t end_y)
+{
+	LCD_Command(LCD_PAGE_ADDR);
+	LCD_Data(start_y >> 8);
+	LCD_Data(start_y & 0x00FF);
+
+	LCD_Data(end_y >> 8);
+	LCD_Data(end_y & 0x00FF);
+}
+
+static inline void LCD_Work_Area(uint16_t x, uint16_t y, uint16_t length, uint16_t width)
+{
+	LCD_Set_X(x, x + length - 1);
+	LCD_Set_Y(y, y + width - 1);
+	LCD_Command(LCD_GRAM);
+}
+
+static inline void LCD_Position(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+{
+	LCD_Set_X(y1, y2);
+	LCD_Set_Y(x1, x2);
+	LCD_Command(LCD_GRAM);
 }
 
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24)
 {
-	LCD_CursorPosition(xsta, ysta, xsta, ysta);
+	LCD_Position(xsta, ysta, xsta, ysta);
 	LCD_Data(H24_RGB565(color24));
 }
 
-void LCD_CursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color24, const unsigned char *font, char *s)
 {
-	LCD_Command(LCD_COLUMN_ADDR);
-	LCD_Data(y1 >> 8);
-	LCD_Data(y1 & 0xFF);
-	LCD_Data(y2 >> 8);
-	LCD_Data(y2 & 0xFF);
-
-	LCD_Command(LCD_PAGE_ADDR);
-	LCD_Data(x1 >> 8);
-	LCD_Data(x1 & 0xFF);
-	LCD_Data(x2 >> 8);
-	LCD_Data(x2 & 0xFF);
-	LCD_Command(LCD_GRAM);
-}
-
-void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color24, const unsigned char *font, char *s, uint8_t width, uint8_t height, uint8_t indent)
-{
+	uint8_t fontinfo  =  3;
+	uint8_t width  		= font[0];
+	uint8_t height 		= font[1];
+	uint8_t startchar = font[2];
+	
+	uint8_t indent = 3;
+	
 	unsigned char z, y, j, q, st1, en1, y2;
 	unsigned int x, i, k;
 	y2 = y0;
 
 	for (z = 0; s[z] != '\0'; z++)
 	{
-		i = (s[z] - 32) * (height * width);
+		i = (s[z] - startchar) * (height * width);
 		x = i;
 		st1 = 0;
 		en1 = 0;
@@ -87,8 +101,8 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 				while (y--)
 				{
 					k++;
-					if (((font[x] & (1 << y)) && (st1 == 0)) || ((font[x] & (1 << y)) && (k < st1))) { st1 = k; }
-					if ((font[x] & (1 << y)) && (en1 < k)) { en1 = k; }
+					if (((font[x + fontinfo] & (1 << y)) && (st1 == 0)) || ((font[x + fontinfo] & (1 << y)) && (k < st1))) { st1 = k; }
+					if ((font[x + fontinfo] & (1 << y)) && (en1 < k)) { en1 = k; }
 				}
 				x++;
 			}
@@ -103,7 +117,7 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 		q = en1;
 
 		if ((y0 + en1) > LCD_HEIGHT) { y0 = y2; x0++; }
-		LCD_CursorPosition(x0, y0, x0 + (height - 1), (y0) + (en1 - 1));
+		LCD_Position(x0, y0, x0 + (height - 1), (y0) + (en1 - 1));
 		y0 = y0 + en1;
 
 		for (x = i; x < k; x++)
@@ -112,7 +126,7 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 			else { y = 8; }
 			while (y--)
 			{
-				if ((font[x] & (1 << y)) != 0)
+				if ((font[x + fontinfo] & (1 << y)) != 0)
 				{
 					LCD_Data(H24_RGB565_Reversed(color24));
 				}
@@ -130,39 +144,6 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 			}
 		}
 	}
-}
-
-void LCD_Set_X(uint16_t start_x, uint16_t end_x)
-{
-	LCD_Command(0x002A);
-	LCD_Data(start_x >> 8);
-	LCD_Data(start_x & 0x00ff);
-
-	LCD_Data(end_x >> 8);
-	LCD_Data(end_x & 0x00ff);
-}
-
-void LCD_Set_Y(uint16_t start_y, uint16_t end_y)
-{
-	LCD_Command(0x002B);
-	LCD_Data(start_y >> 8);
-	LCD_Data(start_y & 0x00ff);
-
-	LCD_Data(end_y >> 8);
-	LCD_Data(end_y & 0x00ff);
-}
-
-void LCD_Set_XY(uint16_t x, uint16_t y)
-{
-	LCD_Set_X(x, x);
-	LCD_Set_Y(y, y);
-}
-
-void LCD_Set_Work_Area(uint16_t x, uint16_t y, uint16_t length, uint16_t width)
-{
-	LCD_Set_X(x, x + length - 1);
-	LCD_Set_Y(y, y + width - 1);
-	LCD_Command(0x2C);
 }
 
 void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *table, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height)
@@ -235,7 +216,7 @@ void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color
 void LCD_HLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
 {
 	uint16_t i = 0;
-	LCD_Set_Work_Area(x, y, length, size);
+	LCD_Work_Area(x, y, length, size);
 	for (i = 0; i < (length*size); i++)
 		LCD_Data(H24_RGB565_Reversed(color24));
 }
@@ -243,7 +224,7 @@ void LCD_HLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t 
 void LCD_VLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
 {
 	uint16_t i = 0;
-	LCD_Set_Work_Area(x, y, size, length);
+	LCD_Work_Area(x, y, size, length);
 	for (i = 0; i < (length*size); i++)
 		LCD_Data(H24_RGB565_Reversed(color24));
 }
@@ -260,8 +241,8 @@ void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width,
 {
 	uint32_t i = 0;
 
-	LCD_Set_Work_Area(x, y, length, width);
-	for (i = 0; i < length*width; i++)
+	LCD_Work_Area(x, y, length, width);
+	for (i = 0; i < length * width; i++)
 	{
 		LCD_Data(H24_RGB565_Reversed(color24));
 	}
@@ -397,7 +378,7 @@ void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width
 	LCD_Fill_Circle_Helper(x + r, y + r, r, 2, width - 2 * r - 1, color24);
 }
 
-	void SSD1963_Init(void)
+	void SSD1963_Init(uint8_t bright)
 	{
 		//1. Power up the system platform and assert the RESET# signal (‘L’ state) for a minimum of 100us to reset the controller. 
 		//		LCD_RST_SET
@@ -487,9 +468,10 @@ void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width
 		LCD_Data(0x03);     // 16 bit interface (565)
 								//10. Turn on the display 						
 		LCD_Command(LCD_DISPLAY_ON);     // display on 
+		SSD1963_Bright(bright);
 	}
 
-	void SSD1963_Bright(uint8_t bright)
+inline void SSD1963_Bright(uint8_t bright)
 	{
 		LCD_Command(0xBE);  // PWM configuration 
 		LCD_Data(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
@@ -499,41 +481,45 @@ void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width
 
 	void SSD1963_Test(void)
 	{
-	LCD_Rectangle_Fill(0, 0, 800, 480, RED);	
-	HAL_Delay(500);
-	LCD_Rectangle_Fill(0, 0, 800, 480, GREEN);
-	HAL_Delay(500);
-	LCD_Rectangle_Fill(0, 0, 800, 480, BLUE);
-	HAL_Delay(500);
+//	LCD_Rectangle_Fill(0, 0, 800, 480, RED);	
+//	HAL_Delay(500);
+//	LCD_Rectangle_Fill(0, 0, 800, 480, GREEN);
+//	HAL_Delay(500);
+//	LCD_Rectangle_Fill(0, 0, 800, 480, BLUE);
+//	HAL_Delay(500);
 	LCD_Rectangle_Fill(0, 0, 800, 480, MAGENTA);
 	LCD_Rectangle_Fill(1, 1, 798, 478, BLACK);
 		
-	sprintf(array, "Test Test Test");
-	LCD_String_Font(240, 10, BLUE, RED, couriernew_5_53, array, 5, 53, 3);
-	sprintf(array, "TEST");
-	LCD_String_Font(150, 550, BLACK, RED, default_16x16, array, 2, 16, 3);
+	sprintf(array, "01234");
+	LCD_String_Font(10, 2, BLACK, RED, segment_sixteen_128x192_num, array);
 		
-	LCD_String(50, 100, GREEN, RED, *tiny_8x8, "Calibration", 3, 8, 8);	
-	LCD_Line(LCD_PIXEL_WIDTH -10-50, 10+25, LCD_PIXEL_WIDTH -10-50+50, 10+25, WHITE, 1);
-	LCD_Line(LCD_PIXEL_WIDTH -10-25, 10, LCD_PIXEL_WIDTH -10-25, 10+50, WHITE, 1);
-	LCD_Char(500, 100, RED, BLACK, *tiny_8x8,'R',3, 8, 8);
-	LCD_Char(500, 200, GREEN, BLACK, *tiny_8x8,'G',3, 8, 8);
-	LCD_Char(200, 300, BLUE, BLACK, *tiny_8x8,'B',3, 8, 8);
-	LCD_String(400, 300, BLUE, BLACK, *tiny_8x8, "TEST", 1, 8, 8);
+	sprintf(array, "56789");
+	LCD_String_Font(210, 2, BLACK, RED, segment_sixteen_128x192_num, array);
 		
-	LCD_String(500, 200, BLUE, BLACK, *tiny_8x8, "TEST", 1, 8, 8);
+//		sprintf(array, "1234567890 : Just Font Test");
+//	LCD_String_Font(250, 2, BLUE, RED, segment_sixteen_64x96_num, array);
 		
-	LCD_Rectangle(600, 300, 100, 100, 4, GREEN);
-	LCD_Line(120, 120, 280, 280, MAGENTA, 3);
-	LCD_Triangle(100, 100, 100, 200, 300, 300, 2, BLUE);
-	LCD_Circle(400, 400, 50, 0, 2, YELLOW);
-	LCD_Circle(400, 400, 50, 1, 2, YELLOW);
-	LCD_Round_Rect(150, 350, 100, 100, 10, 2, WHITE);
-	LCD_Round_Rect_Fill(400, 150, 100, 100, 10, WHITE);
-	LCD_Round_Rect_Fill(150, 50, 170, 50, 10, WHITE);
-	LCD_String(170, 65, BLUE, WHITE, *tiny_8x8, "Start", 3, 8, 8);
+//	LCD_String(50, 100, GREEN, RED, *tiny_8x8, "Calibration", 3, 8, 8);	
+//	LCD_Line(LCD_PIXEL_WIDTH -10-50, 10+25, LCD_PIXEL_WIDTH -10-50+50, 10+25, WHITE, 1);
+//	LCD_Line(LCD_PIXEL_WIDTH -10-25, 10, LCD_PIXEL_WIDTH -10-25, 10+50, WHITE, 1);
+//	LCD_Char(500, 100, RED, BLACK, *tiny_8x8,'R',3, 8, 8);
+//	LCD_Char(500, 200, GREEN, BLACK, *tiny_8x8,'G',3, 8, 8);
+//	LCD_Char(200, 300, BLUE, BLACK, *tiny_8x8,'B',3, 8, 8);
+//	LCD_String(400, 300, BLUE, BLACK, *tiny_8x8, "TEST", 1, 8, 8);
+		
+//	LCD_String(500, 200, BLUE, BLACK, *tiny_8x8, "TEST", 1, 8, 8);
+		
+//	LCD_Rectangle(600, 300, 100, 100, 4, GREEN);
+//	LCD_Line(120, 120, 280, 280, MAGENTA, 3);
+//	LCD_Triangle(100, 100, 100, 200, 300, 300, 2, BLUE);
+//	LCD_Circle(400, 400, 50, 0, 2, YELLOW);
+//	LCD_Circle(400, 400, 50, 1, 2, YELLOW);
+//	LCD_Round_Rect(150, 350, 100, 100, 10, 2, WHITE);
+//	LCD_Round_Rect_Fill(400, 150, 100, 100, 10, WHITE);
+//	LCD_Round_Rect_Fill(150, 50, 170, 50, 10, WHITE);
+//	LCD_String(170, 65, BLUE, WHITE, *tiny_8x8, "Start", 3, 8, 8);
 
 
-	LCD_Char(300, 350, BLUE_D, MAGENTA, *small_8x12, 'A', 1, 8, 12);
-	LCD_String(300, 300, BLUE, BLACK, *small_8x12, "THIS is Just Font TEST", 2, 8, 12);
+//	LCD_Char(300, 350, BLUE_D, MAGENTA, *small_8x12, 'A', 1, 8, 12);
+//	LCD_String(300, 300, BLUE, BLACK, *small_8x12, "THIS is Just Font TEST", 2, 8, 12);
 	}

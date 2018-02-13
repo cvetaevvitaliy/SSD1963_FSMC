@@ -9,7 +9,55 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "fonts.h"
+extern const unsigned char arial_16x16_bold[];
+extern const unsigned char arial_16x16_italic[];
+extern const unsigned char arial_16x16_normal[];
+extern const unsigned char arial_16x24_round[];
+extern const unsigned char arial_32x50_num[];
+extern const unsigned char battery_24x48[];
+extern const unsigned char calibri_32x48_bold_num[];
+extern const unsigned char default_8x12[];
+extern const unsigned char default_16x16[];
+extern const unsigned char dingbats1_32x24[];
+extern const unsigned char franklingothic_16x16[];
+extern const unsigned char hallfetica_16x16[];
+extern const unsigned char inconsola_24x32[];
+extern const unsigned char matrix_16x22[];
+extern const unsigned char matrix_16x22_slash[];
+extern const unsigned char matrix_24x29_num[];
+extern const unsigned char matrix_32x50_num[];
+extern const unsigned char myke_8x9[];
+extern const unsigned char nadianne_16x16[];
+extern const unsigned char ocr_16x24[];
+extern const unsigned char barcode_post_40x20_num[];
+extern const unsigned char retro_8x16[];
+extern const unsigned char retro_16x32[];
+extern const unsigned char barcode_rm4scc_16x16[];
+extern const unsigned char sinclair_8x8[];
+extern const unsigned char sinclair_8x8_inverted[];
+extern const unsigned char sinclair_16x16[];
+extern const unsigned char sinclair_16x16_inverted[];
+extern const unsigned char swiss_16x16[];
+extern const unsigned char symbols_16x16[];
+extern const unsigned char symbols_16x32_1[];
+extern const unsigned char symbols_16x32_2[];
+extern const unsigned char symbols_32x32[];
+extern const unsigned char tiny_8x8[];
+extern const unsigned char ubuntu_24x32[];
+extern const unsigned char ubuntu_24x32_bold[];
+extern const unsigned char segment_eighteen_32x52[];
+extern const unsigned char segment_seven_32x50_num[];
+extern const unsigned char segment_seven_64x100_num[];//
+extern const unsigned char segment_seven_96x144_num[];//
+extern const unsigned char segment_sixteen_16x24[];
+extern const unsigned char segment_sixteen_24x36[];
+extern const unsigned char segment_sixteen_32x48[];
+extern const unsigned char segment_sixteen_32x50[];
+extern const unsigned char segment_sixteen_40x60[];
+extern const unsigned char segment_sixteen_48x72_num[];
+extern const unsigned char segment_sixteen_64x96_num[];
+extern const unsigned char segment_sixteen_96x144_num[];//
+extern const unsigned char segment_sixteen_128x192_num[];//
 
 #define LCD_PIXEL_WIDTH  800
 #define LCD_PIXEL_HEIGHT 480
@@ -29,10 +77,6 @@
 #define LCD_HEIGHT      800
 
 uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
-uint16_t RGB565(uint8_t r, uint8_t g, uint8_t b);
-uint16_t RGB565_Reversed(uint8_t r, uint8_t g, uint8_t b);
-uint16_t H24_RGB565(uint32_t color24);
-uint16_t H24_RGB565_Reversed(uint32_t color24);
 
 #define BLACK 	0x000000 /*   0,   0,   0 */
 #define WHITE 	0xFFFFFF /* 255, 255, 255 */
@@ -65,19 +109,14 @@ typedef struct {
 #define LCD_BASE ((uint32_t)0x6001FFFE)
 #define LCD 		 ((LCD_CONTROLLER_TypeDef *) LCD_BASE)
 
-extern char array [100]; 
+extern char array [1000]; 
 
-void SSD1963_Command(uint16_t com);
-void SSD1963_Data(uint16_t data);
-void SSD1963_Init(void);
+void SSD1963_Init(uint8_t bright);
 void SSD1963_Bright(uint8_t bright);
 void SSD1963_Test(void);
 
-void LCD_CursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
-void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, const unsigned char *font, char *s, uint8_t width, uint8_t height, uint8_t indent);
-void LCD_Set_XY(uint16_t x, uint16_t y);
-void LCD_Set_Work_Area(uint16_t x, uint16_t y, uint16_t length, uint16_t width);
+void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, const unsigned char *font, char *s);
 void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height);
 void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, char *string, uint8_t size, uint8_t width, uint8_t height);
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size);

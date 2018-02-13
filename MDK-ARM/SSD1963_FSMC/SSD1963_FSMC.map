@@ -654,9 +654,8 @@ Section Cross References
     main.o(i.main) refers to main.o(i.MX_TIM1_Init) for MX_TIM1_Init
     main.o(i.main) refers to stm32f4xx_hal_tim.o(i.HAL_TIM_Base_Start) for HAL_TIM_Base_Start
     main.o(i.main) refers to stm32f4xx_hal_tim.o(i.HAL_TIM_Base_Start_IT) for HAL_TIM_Base_Start_IT
-    main.o(i.main) refers to xpt2046.o(i.XPT2046_Init) for XPT2046_Init
     main.o(i.main) refers to ssd1963_fsmc.o(i.SSD1963_Init) for SSD1963_Init
-    main.o(i.main) refers to ssd1963_fsmc.o(i.SSD1963_Bright) for SSD1963_Bright
+    main.o(i.main) refers to xpt2046.o(i.XPT2046_Init) for XPT2046_Init
     main.o(i.main) refers to stm32f4xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
     main.o(i.main) refers to ssd1963_fsmc.o(i.SSD1963_Test) for SSD1963_Test
     main.o(i.main) refers to xpt2046.o(i.getX) for getX
@@ -681,48 +680,36 @@ Section Cross References
     ssd1963_fsmc.o(i.LCD_Circle) refers to ssd1963_fsmc.o(i.LCD_Rectangle_Fill) for LCD_Rectangle_Fill
     ssd1963_fsmc.o(i.LCD_Circle_Helper) refers to ssd1963_fsmc.o(i.LCD_Rectangle_Fill) for LCD_Rectangle_Fill
     ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper) refers to ssd1963_fsmc.o(i.LCD_VLine) for LCD_VLine
-    ssd1963_fsmc.o(i.LCD_HLine) refers to ssd1963_fsmc.o(i.LCD_Set_Work_Area) for LCD_Set_Work_Area
+    ssd1963_fsmc.o(i.LCD_HLine) refers to ssd1963_fsmc.o(i.LCD_Work_Area) for LCD_Work_Area
     ssd1963_fsmc.o(i.LCD_HLine) refers to ssd1963_fsmc.o(i.H24_RGB565_Reversed) for H24_RGB565_Reversed
     ssd1963_fsmc.o(i.LCD_Line) refers to ssd1963_fsmc.o(i.LCD_Rectangle_Fill) for LCD_Rectangle_Fill
-    ssd1963_fsmc.o(i.LCD_Pixel) refers to ssd1963_fsmc.o(i.LCD_CursorPosition) for LCD_CursorPosition
-    ssd1963_fsmc.o(i.LCD_Pixel) refers to ssd1963_fsmc.o(i.H24_RGB565) for H24_RGB565
+    ssd1963_fsmc.o(i.LCD_Pixel) refers to ssd1963_fsmc.o(i.LCD_Position) for LCD_Position
+    ssd1963_fsmc.o(i.LCD_Position) refers to ssd1963_fsmc.o(i.LCD_Set_X) for LCD_Set_X
+    ssd1963_fsmc.o(i.LCD_Position) refers to ssd1963_fsmc.o(i.LCD_Set_Y) for LCD_Set_Y
     ssd1963_fsmc.o(i.LCD_Rectangle) refers to ssd1963_fsmc.o(i.LCD_HLine) for LCD_HLine
     ssd1963_fsmc.o(i.LCD_Rectangle) refers to ssd1963_fsmc.o(i.LCD_VLine) for LCD_VLine
-    ssd1963_fsmc.o(i.LCD_Rectangle_Fill) refers to ssd1963_fsmc.o(i.LCD_Set_Work_Area) for LCD_Set_Work_Area
+    ssd1963_fsmc.o(i.LCD_Rectangle_Fill) refers to ssd1963_fsmc.o(i.LCD_Work_Area) for LCD_Work_Area
     ssd1963_fsmc.o(i.LCD_Rectangle_Fill) refers to ssd1963_fsmc.o(i.H24_RGB565_Reversed) for H24_RGB565_Reversed
     ssd1963_fsmc.o(i.LCD_Round_Rect) refers to ssd1963_fsmc.o(i.LCD_HLine) for LCD_HLine
     ssd1963_fsmc.o(i.LCD_Round_Rect) refers to ssd1963_fsmc.o(i.LCD_VLine) for LCD_VLine
     ssd1963_fsmc.o(i.LCD_Round_Rect) refers to ssd1963_fsmc.o(i.LCD_Circle_Helper) for LCD_Circle_Helper
     ssd1963_fsmc.o(i.LCD_Round_Rect_Fill) refers to ssd1963_fsmc.o(i.LCD_Rectangle_Fill) for LCD_Rectangle_Fill
     ssd1963_fsmc.o(i.LCD_Round_Rect_Fill) refers to ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper) for LCD_Fill_Circle_Helper
-    ssd1963_fsmc.o(i.LCD_Set_Work_Area) refers to ssd1963_fsmc.o(i.LCD_Set_X) for LCD_Set_X
-    ssd1963_fsmc.o(i.LCD_Set_Work_Area) refers to ssd1963_fsmc.o(i.LCD_Set_Y) for LCD_Set_Y
-    ssd1963_fsmc.o(i.LCD_Set_XY) refers to ssd1963_fsmc.o(i.LCD_Set_X) for LCD_Set_X
-    ssd1963_fsmc.o(i.LCD_Set_XY) refers to ssd1963_fsmc.o(i.LCD_Set_Y) for LCD_Set_Y
     ssd1963_fsmc.o(i.LCD_String) refers to ssd1963_fsmc.o(i.LCD_Char) for LCD_Char
-    ssd1963_fsmc.o(i.LCD_String_Font) refers to ssd1963_fsmc.o(i.LCD_CursorPosition) for LCD_CursorPosition
+    ssd1963_fsmc.o(i.LCD_String_Font) refers to ssd1963_fsmc.o(i.LCD_Position) for LCD_Position
     ssd1963_fsmc.o(i.LCD_String_Font) refers to ssd1963_fsmc.o(i.H24_RGB565_Reversed) for H24_RGB565_Reversed
     ssd1963_fsmc.o(i.LCD_Triangle) refers to ssd1963_fsmc.o(i.LCD_Line) for LCD_Line
-    ssd1963_fsmc.o(i.LCD_VLine) refers to ssd1963_fsmc.o(i.LCD_Set_Work_Area) for LCD_Set_Work_Area
+    ssd1963_fsmc.o(i.LCD_VLine) refers to ssd1963_fsmc.o(i.LCD_Work_Area) for LCD_Work_Area
     ssd1963_fsmc.o(i.LCD_VLine) refers to ssd1963_fsmc.o(i.H24_RGB565_Reversed) for H24_RGB565_Reversed
+    ssd1963_fsmc.o(i.LCD_Work_Area) refers to ssd1963_fsmc.o(i.LCD_Set_X) for LCD_Set_X
+    ssd1963_fsmc.o(i.LCD_Work_Area) refers to ssd1963_fsmc.o(i.LCD_Set_Y) for LCD_Set_Y
     ssd1963_fsmc.o(i.SSD1963_Init) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
+    ssd1963_fsmc.o(i.SSD1963_Init) refers to ssd1963_fsmc.o(i.SSD1963_Bright) for SSD1963_Bright
     ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Rectangle_Fill) for LCD_Rectangle_Fill
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
     ssd1963_fsmc.o(i.SSD1963_Test) refers to printfb.o(i.__0sprintf$bare) for __2sprintf
     ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_String_Font) for LCD_String_Font
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_String) for LCD_String
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Line) for LCD_Line
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Char) for LCD_Char
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Rectangle) for LCD_Rectangle
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Triangle) for LCD_Triangle
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Circle) for LCD_Circle
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Round_Rect) for LCD_Round_Rect
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(i.LCD_Round_Rect_Fill) for LCD_Round_Rect_Fill
     ssd1963_fsmc.o(i.SSD1963_Test) refers to ssd1963_fsmc.o(.bss) for .bss
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to fonts.o(.constdata) for couriernew_5_53
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to fonts.o(.constdata) for default_16x16
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to fonts.o(.constdata) for tiny_8x8
-    ssd1963_fsmc.o(i.SSD1963_Test) refers to fonts.o(.constdata) for small_8x12
+    ssd1963_fsmc.o(i.SSD1963_Test) refers to font_segment_sixteen_128x192_num.o(.constdata) for segment_sixteen_128x192_num
     xpt2046.o(i.XPT2046_Init) refers to stm32f4xx_hal_spi.o(i.HAL_SPI_Transmit) for HAL_SPI_Transmit
     xpt2046.o(i.XPT2046_Init) refers to main.o(.bss) for hspi3
     xpt2046.o(i.getRaw) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
@@ -1576,24 +1563,71 @@ Removing Unused input sections from the image.
     Removing ssd1963_fsmc.o(.rev16_text), (4 bytes).
     Removing ssd1963_fsmc.o(.revsh_text), (4 bytes).
     Removing ssd1963_fsmc.o(.rrx_text), (6 bytes).
-    Removing ssd1963_fsmc.o(i.H24_RGB565), (26 bytes).
-    Removing ssd1963_fsmc.o(i.LCD_Command), (12 bytes).
-    Removing ssd1963_fsmc.o(i.LCD_Data), (12 bytes).
-    Removing ssd1963_fsmc.o(i.LCD_Pixel), (32 bytes).
-    Removing ssd1963_fsmc.o(i.LCD_Set_XY), (22 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Char), (100 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Circle), (302 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Circle_Helper), (280 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper), (212 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_HLine), (48 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Line), (122 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Pixel), (48 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Rectangle), (78 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Round_Rect), (216 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Round_Rect_Fill), (100 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_String), (96 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_Triangle), (64 bytes).
+    Removing ssd1963_fsmc.o(i.LCD_VLine), (52 bytes).
     Removing ssd1963_fsmc.o(i.RGB), (20 bytes).
-    Removing ssd1963_fsmc.o(i.RGB565), (16 bytes).
-    Removing ssd1963_fsmc.o(i.RGB565_Reversed), (16 bytes).
     Removing xpt2046.o(.rev16_text), (4 bytes).
     Removing xpt2046.o(.revsh_text), (4 bytes).
     Removing xpt2046.o(.rrx_text), (6 bytes).
-    Removing fonts.o(.constdata), (760 bytes).
-    Removing fonts.o(.constdata), (760 bytes).
-    Removing fonts.o(.constdata), (855 bytes).
-    Removing fonts.o(.constdata), (1520 bytes).
-    Removing fonts.o(.constdata), (5700 bytes).
-    Removing fonts.o(.constdata), (6270 bytes).
-    Removing fonts.o(.constdata), (7410 bytes).
+    Removing font_arial_16x16_bold.o(.constdata), (3043 bytes).
+    Removing font_arial_16x16_italic.o(.constdata), (3043 bytes).
+    Removing font_arial_16x16_normal.o(.constdata), (3043 bytes).
+    Removing font_arial_16x24_round.o(.constdata), (4563 bytes).
+    Removing font_arial_32x50_num.o(.constdata), (2003 bytes).
+    Removing font_barcode_post_40x20_num.o(.constdata), (1003 bytes).
+    Removing font_battery_24x48.o(.constdata), (1443 bytes).
+    Removing font_calibri_32x48_bold_num.o(.constdata), (1923 bytes).
+    Removing font_default_8x12.o(.constdata), (1143 bytes).
+    Removing font_default_16x16.o(.constdata), (3043 bytes).
+    Removing font_dingbats1_32x24.o(.constdata), (9123 bytes).
+    Removing font_franklingothic_16x16.o(.constdata), (3043 bytes).
+    Removing font_hallfetica_16x16.o(.constdata), (3043 bytes).
+    Removing font_inconsola_24x32.o(.constdata), (9123 bytes).
+    Removing font_matrix_16x22.o(.constdata), (4183 bytes).
+    Removing font_matrix_16x22_slash.o(.constdata), (4183 bytes).
+    Removing font_matrix_24x29_num.o(.constdata), (873 bytes).
+    Removing font_matrix_32x50_num.o(.constdata), (2003 bytes).
+    Removing font_myke_8x9.o(.constdata), (858 bytes).
+    Removing font_nadianne_16x16.o(.constdata), (3043 bytes).
+    Removing font_ocr_16x24.o(.constdata), (4563 bytes).
+    Removing font_retro_8x16.o(.constdata), (1523 bytes).
+    Removing font_retro_16x32.o(.constdata), (6083 bytes).
+    Removing font_barcode_rm4scc_16x16.o(.constdata), (1379 bytes).
+    Removing font_segment_eighteen_32x52.o(.constdata), (19763 bytes).
+    Removing font_segment_seven_32x50_num.o(.constdata), (2003 bytes).
+    Removing font_segment_seven_64x100_num.o(.constdata), (8003 bytes).
+    Removing font_segment_seven_96x144_num.o(.constdata), (17283 bytes).
+    Removing font_segment_sixteen_16x24.o(.constdata), (4563 bytes).
+    Removing font_segment_sixteen_24x36.o(.constdata), (10263 bytes).
+    Removing font_segment_sixteen_32x48.o(.constdata), (18243 bytes).
+    Removing font_segment_sixteen_32x50.o(.constdata), (19003 bytes).
+    Removing font_segment_sixteen_40x60.o(.constdata), (28503 bytes).
+    Removing font_segment_sixteen_48x72_num.o(.constdata), (4323 bytes).
+    Removing font_segment_sixteen_64x96_num.o(.constdata), (7683 bytes).
+    Removing font_segment_sixteen_96x144_num.o(.constdata), (17283 bytes).
+    Removing font_sinclair_8x8.o(.constdata), (763 bytes).
+    Removing font_sinclair_8x8_inverted.o(.constdata), (764 bytes).
+    Removing font_sinclair_16x16.o(.constdata), (3043 bytes).
+    Removing font_sinclair_16x16_inverted.o(.constdata), (3044 bytes).
+    Removing font_swiss_16x16.o(.constdata), (3043 bytes).
+    Removing font_symbols_16x16.o(.constdata), (3043 bytes).
+    Removing font_symbols_16x32_1.o(.constdata), (6084 bytes).
+    Removing font_symbols_16x32_2.o(.constdata), (6083 bytes).
+    Removing font_symbols_32x32.o(.constdata), (12163 bytes).
+    Removing font_tiny_8x8.o(.constdata), (763 bytes).
+    Removing font_ubuntu_24x32.o(.constdata), (9123 bytes).
+    Removing font_ubuntu_24x32_bold.o(.constdata), (9123 bytes).
     Removing dadd.o(.text), (334 bytes).
     Removing dmul.o(.text), (228 bytes).
     Removing ddiv.o(.text), (222 bytes).
@@ -1601,7 +1635,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-597 unused section(s) (total 67109 bytes) removed from the image.
+644 unused section(s) (total 336644 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1637,40 +1671,40 @@ Image Symbol Table
     ../Src/stm32f4xx_hal_msp.c               0x00000000   Number         0  stm32f4xx_hal_msp.o ABSOLUTE
     ../Src/stm32f4xx_it.c                    0x00000000   Number         0  stm32f4xx_it.o ABSOLUTE
     ../Src/system_stm32f4xx.c                0x00000000   Number         0  system_stm32f4xx.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/stdio/fputc.c           0x00000000   Number         0  fputc.o ABSOLUTE
     ../clib/microlib/stdio/semi.s            0x00000000   Number         0  semi.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
-    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemip.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
@@ -1698,7 +1732,55 @@ Image Symbol Table
     ..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c 0x00000000   Number         0  stm32f4xx_hal_tim_ex.o ABSOLUTE
     ..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c 0x00000000   Number         0  stm32f4xx_hal_uart.o ABSOLUTE
     ..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_fsmc.c 0x00000000   Number         0  stm32f4xx_ll_fsmc.o ABSOLUTE
-    ..\Src\fonts.c                           0x00000000   Number         0  fonts.o ABSOLUTE
+    ..\Src\font_arial_16x16_bold.c           0x00000000   Number         0  font_arial_16x16_bold.o ABSOLUTE
+    ..\Src\font_arial_16x16_italic.c         0x00000000   Number         0  font_arial_16x16_italic.o ABSOLUTE
+    ..\Src\font_arial_16x16_normal.c         0x00000000   Number         0  font_arial_16x16_normal.o ABSOLUTE
+    ..\Src\font_arial_16x24_round.c          0x00000000   Number         0  font_arial_16x24_round.o ABSOLUTE
+    ..\Src\font_arial_32x50_num.c            0x00000000   Number         0  font_arial_32x50_num.o ABSOLUTE
+    ..\Src\font_barcode_post_40x20_num.c     0x00000000   Number         0  font_barcode_post_40x20_num.o ABSOLUTE
+    ..\Src\font_barcode_rm4scc_16x16.c       0x00000000   Number         0  font_barcode_rm4scc_16x16.o ABSOLUTE
+    ..\Src\font_battery_24x48.c              0x00000000   Number         0  font_battery_24x48.o ABSOLUTE
+    ..\Src\font_calibri_32x48_bold_num.c     0x00000000   Number         0  font_calibri_32x48_bold_num.o ABSOLUTE
+    ..\Src\font_default_16x16.c              0x00000000   Number         0  font_default_16x16.o ABSOLUTE
+    ..\Src\font_default_8x12.c               0x00000000   Number         0  font_default_8x12.o ABSOLUTE
+    ..\Src\font_dingbats1_32x24.c            0x00000000   Number         0  font_dingbats1_32x24.o ABSOLUTE
+    ..\Src\font_franklingothic_16x16.c       0x00000000   Number         0  font_franklingothic_16x16.o ABSOLUTE
+    ..\Src\font_hallfetica_16x16.c           0x00000000   Number         0  font_hallfetica_16x16.o ABSOLUTE
+    ..\Src\font_inconsola_24x32.c            0x00000000   Number         0  font_inconsola_24x32.o ABSOLUTE
+    ..\Src\font_matrix_16x22.c               0x00000000   Number         0  font_matrix_16x22.o ABSOLUTE
+    ..\Src\font_matrix_16x22_slash.c         0x00000000   Number         0  font_matrix_16x22_slash.o ABSOLUTE
+    ..\Src\font_matrix_24x29_num.c           0x00000000   Number         0  font_matrix_24x29_num.o ABSOLUTE
+    ..\Src\font_matrix_32x50_num.c           0x00000000   Number         0  font_matrix_32x50_num.o ABSOLUTE
+    ..\Src\font_myke_8x9.c                   0x00000000   Number         0  font_myke_8x9.o ABSOLUTE
+    ..\Src\font_nadianne_16x16.c             0x00000000   Number         0  font_nadianne_16x16.o ABSOLUTE
+    ..\Src\font_ocr_16x24.c                  0x00000000   Number         0  font_ocr_16x24.o ABSOLUTE
+    ..\Src\font_retro_16x32.c                0x00000000   Number         0  font_retro_16x32.o ABSOLUTE
+    ..\Src\font_retro_8x16.c                 0x00000000   Number         0  font_retro_8x16.o ABSOLUTE
+    ..\Src\font_segment_eighteen_32x52.c     0x00000000   Number         0  font_segment_eighteen_32x52.o ABSOLUTE
+    ..\Src\font_segment_seven_32x50_num.c    0x00000000   Number         0  font_segment_seven_32x50_num.o ABSOLUTE
+    ..\Src\font_segment_seven_64x100_num.c   0x00000000   Number         0  font_segment_seven_64x100_num.o ABSOLUTE
+    ..\Src\font_segment_seven_96x144_num.c   0x00000000   Number         0  font_segment_seven_96x144_num.o ABSOLUTE
+    ..\Src\font_segment_sixteen_128x192_num.c 0x00000000   Number         0  font_segment_sixteen_128x192_num.o ABSOLUTE
+    ..\Src\font_segment_sixteen_16x24.c      0x00000000   Number         0  font_segment_sixteen_16x24.o ABSOLUTE
+    ..\Src\font_segment_sixteen_24x36.c      0x00000000   Number         0  font_segment_sixteen_24x36.o ABSOLUTE
+    ..\Src\font_segment_sixteen_32x48.c      0x00000000   Number         0  font_segment_sixteen_32x48.o ABSOLUTE
+    ..\Src\font_segment_sixteen_32x50.c      0x00000000   Number         0  font_segment_sixteen_32x50.o ABSOLUTE
+    ..\Src\font_segment_sixteen_40x60.c      0x00000000   Number         0  font_segment_sixteen_40x60.o ABSOLUTE
+    ..\Src\font_segment_sixteen_48x72_num.c  0x00000000   Number         0  font_segment_sixteen_48x72_num.o ABSOLUTE
+    ..\Src\font_segment_sixteen_64x96_num.c  0x00000000   Number         0  font_segment_sixteen_64x96_num.o ABSOLUTE
+    ..\Src\font_segment_sixteen_96x144_num.c 0x00000000   Number         0  font_segment_sixteen_96x144_num.o ABSOLUTE
+    ..\Src\font_sinclair_16x16.c             0x00000000   Number         0  font_sinclair_16x16.o ABSOLUTE
+    ..\Src\font_sinclair_16x16_inverted.c    0x00000000   Number         0  font_sinclair_16x16_inverted.o ABSOLUTE
+    ..\Src\font_sinclair_8x8.c               0x00000000   Number         0  font_sinclair_8x8.o ABSOLUTE
+    ..\Src\font_sinclair_8x8_inverted.c      0x00000000   Number         0  font_sinclair_8x8_inverted.o ABSOLUTE
+    ..\Src\font_swiss_16x16.c                0x00000000   Number         0  font_swiss_16x16.o ABSOLUTE
+    ..\Src\font_symbols_16x16.c              0x00000000   Number         0  font_symbols_16x16.o ABSOLUTE
+    ..\Src\font_symbols_16x32_1.c            0x00000000   Number         0  font_symbols_16x32_1.o ABSOLUTE
+    ..\Src\font_symbols_16x32_2.c            0x00000000   Number         0  font_symbols_16x32_2.o ABSOLUTE
+    ..\Src\font_symbols_32x32.c              0x00000000   Number         0  font_symbols_32x32.o ABSOLUTE
+    ..\Src\font_tiny_8x8.c                   0x00000000   Number         0  font_tiny_8x8.o ABSOLUTE
+    ..\Src\font_ubuntu_24x32.c               0x00000000   Number         0  font_ubuntu_24x32.o ABSOLUTE
+    ..\Src\font_ubuntu_24x32_bold.c          0x00000000   Number         0  font_ubuntu_24x32_bold.o ABSOLUTE
     ..\Src\main.c                            0x00000000   Number         0  main.o ABSOLUTE
     ..\Src\ssd1963_fsmc.c                    0x00000000   Number         0  ssd1963_fsmc.o ABSOLUTE
     ..\Src\stm32f4xx_hal_msp.c               0x00000000   Number         0  stm32f4xx_hal_msp.o ABSOLUTE
@@ -1736,6 +1818,7 @@ Image Symbol Table
     i.FSMC_NORSRAM_Init                      0x080002d0   Section        0  stm32f4xx_ll_fsmc.o(i.FSMC_NORSRAM_Init)
     i.FSMC_NORSRAM_Timing_Init               0x08000324   Section        0  stm32f4xx_ll_fsmc.o(i.FSMC_NORSRAM_Timing_Init)
     i.H24_RGB565_Reversed                    0x08000368   Section        0  ssd1963_fsmc.o(i.H24_RGB565_Reversed)
+    H24_RGB565_Reversed                      0x08000369   Thumb Code    26  ssd1963_fsmc.o(i.H24_RGB565_Reversed)
     i.HAL_DMA_Abort_IT                       0x08000382   Section        0  stm32f4xx_hal_dma.o(i.HAL_DMA_Abort_IT)
     i.HAL_Delay                              0x080003a8   Section        0  stm32f4xx_hal.o(i.HAL_Delay)
     i.HAL_FSMC_MspInit                       0x080003cc   Section        0  stm32f4xx_hal_msp.o(i.HAL_FSMC_MspInit)
@@ -1795,92 +1878,81 @@ Image Symbol Table
     i.HAL_UART_MspInit                       0x08001a34   Section        0  stm32f4xx_hal_msp.o(i.HAL_UART_MspInit)
     i.HAL_UART_Transmit                      0x08001a80   Section        0  stm32f4xx_hal_uart.o(i.HAL_UART_Transmit)
     i.HardFault_Handler                      0x08001b3a   Section        0  stm32f4xx_it.o(i.HardFault_Handler)
-    i.LCD_Char                               0x08001b3c   Section        0  ssd1963_fsmc.o(i.LCD_Char)
-    i.LCD_Circle                             0x08001ba0   Section        0  ssd1963_fsmc.o(i.LCD_Circle)
-    i.LCD_Circle_Helper                      0x08001cd0   Section        0  ssd1963_fsmc.o(i.LCD_Circle_Helper)
-    i.LCD_CursorPosition                     0x08001de8   Section        0  ssd1963_fsmc.o(i.LCD_CursorPosition)
-    i.LCD_Fill_Circle_Helper                 0x08001e20   Section        0  ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper)
-    i.LCD_HLine                              0x08001ef4   Section        0  ssd1963_fsmc.o(i.LCD_HLine)
-    i.LCD_Line                               0x08001f20   Section        0  ssd1963_fsmc.o(i.LCD_Line)
-    i.LCD_Rectangle                          0x08001f9a   Section        0  ssd1963_fsmc.o(i.LCD_Rectangle)
-    i.LCD_Rectangle_Fill                     0x08001fe8   Section        0  ssd1963_fsmc.o(i.LCD_Rectangle_Fill)
-    i.LCD_Round_Rect                         0x08002010   Section        0  ssd1963_fsmc.o(i.LCD_Round_Rect)
-    i.LCD_Round_Rect_Fill                    0x080020e8   Section        0  ssd1963_fsmc.o(i.LCD_Round_Rect_Fill)
-    i.LCD_Set_Work_Area                      0x0800214c   Section        0  ssd1963_fsmc.o(i.LCD_Set_Work_Area)
-    i.LCD_Set_X                              0x08002174   Section        0  ssd1963_fsmc.o(i.LCD_Set_X)
-    i.LCD_Set_Y                              0x08002194   Section        0  ssd1963_fsmc.o(i.LCD_Set_Y)
-    i.LCD_String                             0x080021b4   Section        0  ssd1963_fsmc.o(i.LCD_String)
-    i.LCD_String_Font                        0x08002214   Section        0  ssd1963_fsmc.o(i.LCD_String_Font)
-    i.LCD_Triangle                           0x08002370   Section        0  ssd1963_fsmc.o(i.LCD_Triangle)
-    i.LCD_VLine                              0x080023b0   Section        0  ssd1963_fsmc.o(i.LCD_VLine)
-    i.MX_FSMC_Init                           0x080023e0   Section        0  main.o(i.MX_FSMC_Init)
-    MX_FSMC_Init                             0x080023e1   Thumb Code    92  main.o(i.MX_FSMC_Init)
-    i.MX_GPIO_Init                           0x08002444   Section        0  main.o(i.MX_GPIO_Init)
-    MX_GPIO_Init                             0x08002445   Thumb Code   298  main.o(i.MX_GPIO_Init)
-    i.MX_I2C1_Init                           0x0800258c   Section        0  main.o(i.MX_I2C1_Init)
-    MX_I2C1_Init                             0x0800258d   Thumb Code    44  main.o(i.MX_I2C1_Init)
-    i.MX_I2C2_Init                           0x080025c4   Section        0  main.o(i.MX_I2C2_Init)
-    MX_I2C2_Init                             0x080025c5   Thumb Code    44  main.o(i.MX_I2C2_Init)
-    i.MX_SPI3_Init                           0x080025fc   Section        0  main.o(i.MX_SPI3_Init)
-    MX_SPI3_Init                             0x080025fd   Thumb Code    56  main.o(i.MX_SPI3_Init)
-    i.MX_TIM1_Init                           0x0800263c   Section        0  main.o(i.MX_TIM1_Init)
-    MX_TIM1_Init                             0x0800263d   Thumb Code    78  main.o(i.MX_TIM1_Init)
-    i.MemManage_Handler                      0x08002694   Section        0  stm32f4xx_it.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x08002696   Section        0  stm32f4xx_it.o(i.NMI_Handler)
-    i.NVIC_SetPriority                       0x08002698   Section        0  stm32f4xx_hal_cortex.o(i.NVIC_SetPriority)
-    NVIC_SetPriority                         0x08002699   Thumb Code    32  stm32f4xx_hal_cortex.o(i.NVIC_SetPriority)
-    i.PendSV_Handler                         0x080026b8   Section        0  stm32f4xx_it.o(i.PendSV_Handler)
-    i.RTC_EnterInitMode                      0x080026bc   Section        0  stm32f4xx_hal_rtc.o(i.RTC_EnterInitMode)
-    i.SPI3_IRQHandler                        0x080026f8   Section        0  stm32f4xx_it.o(i.SPI3_IRQHandler)
-    i.SPI_CheckFlag_BSY                      0x08002704   Section        0  stm32f4xx_hal_spi.o(i.SPI_CheckFlag_BSY)
-    SPI_CheckFlag_BSY                        0x08002705   Thumb Code    32  stm32f4xx_hal_spi.o(i.SPI_CheckFlag_BSY)
-    i.SPI_DMAAbortOnError                    0x08002724   Section        0  stm32f4xx_hal_spi.o(i.SPI_DMAAbortOnError)
-    SPI_DMAAbortOnError                      0x08002725   Thumb Code    16  stm32f4xx_hal_spi.o(i.SPI_DMAAbortOnError)
-    i.SPI_WaitFlagStateUntilTimeout          0x08002734   Section        0  stm32f4xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout)
-    SPI_WaitFlagStateUntilTimeout            0x08002735   Thumb Code   150  stm32f4xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout)
-    i.SSD1963_Bright                         0x080027cc   Section        0  ssd1963_fsmc.o(i.SSD1963_Bright)
-    i.SSD1963_Init                           0x080027e8   Section        0  ssd1963_fsmc.o(i.SSD1963_Init)
-    i.SSD1963_Test                           0x080028cc   Section        0  ssd1963_fsmc.o(i.SSD1963_Test)
-    i.SVC_Handler                            0x08002bc4   Section        0  stm32f4xx_it.o(i.SVC_Handler)
-    i.SysTick_Handler                        0x08002bc6   Section        0  stm32f4xx_it.o(i.SysTick_Handler)
-    i.SystemClock_Config                     0x08002bd4   Section        0  main.o(i.SystemClock_Config)
-    i.SystemInit                             0x08002c94   Section        0  system_stm32f4xx.o(i.SystemInit)
-    i.TIM1_BRK_TIM9_IRQHandler               0x08002ce8   Section        0  stm32f4xx_it.o(i.TIM1_BRK_TIM9_IRQHandler)
-    i.TIM1_UP_TIM10_IRQHandler               0x08002d08   Section        0  stm32f4xx_it.o(i.TIM1_UP_TIM10_IRQHandler)
-    i.TIM_Base_SetConfig                     0x08002d28   Section        0  stm32f4xx_hal_tim.o(i.TIM_Base_SetConfig)
-    i.TIM_ETR_SetConfig                      0x08002de8   Section        0  stm32f4xx_hal_tim.o(i.TIM_ETR_SetConfig)
-    TIM_ETR_SetConfig                        0x08002de9   Thumb Code    20  stm32f4xx_hal_tim.o(i.TIM_ETR_SetConfig)
-    i.TIM_ITRx_SetConfig                     0x08002dfc   Section        0  stm32f4xx_hal_tim.o(i.TIM_ITRx_SetConfig)
-    TIM_ITRx_SetConfig                       0x08002dfd   Thumb Code    16  stm32f4xx_hal_tim.o(i.TIM_ITRx_SetConfig)
-    i.TIM_TI1_ConfigInputStage               0x08002e0c   Section        0  stm32f4xx_hal_tim.o(i.TIM_TI1_ConfigInputStage)
-    TIM_TI1_ConfigInputStage                 0x08002e0d   Thumb Code    34  stm32f4xx_hal_tim.o(i.TIM_TI1_ConfigInputStage)
-    i.TIM_TI2_ConfigInputStage               0x08002e2e   Section        0  stm32f4xx_hal_tim.o(i.TIM_TI2_ConfigInputStage)
-    TIM_TI2_ConfigInputStage                 0x08002e2f   Thumb Code    36  stm32f4xx_hal_tim.o(i.TIM_TI2_ConfigInputStage)
-    i.UART_SetConfig                         0x08002e54   Section        0  stm32f4xx_hal_uart.o(i.UART_SetConfig)
-    UART_SetConfig                           0x08002e55   Thumb Code   676  stm32f4xx_hal_uart.o(i.UART_SetConfig)
-    i.UART_WaitOnFlagUntilTimeout            0x08003100   Section        0  stm32f4xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
-    UART_WaitOnFlagUntilTimeout              0x08003101   Thumb Code   100  stm32f4xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
-    i.UsageFault_Handler                     0x08003164   Section        0  stm32f4xx_it.o(i.UsageFault_Handler)
-    i.XPT2046_Init                           0x08003168   Section        0  xpt2046.o(i.XPT2046_Init)
-    i.__0sprintf$bare                        0x0800319c   Section        0  printfb.o(i.__0sprintf$bare)
-    i.__scatterload_copy                     0x080031c0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080031ce   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080031d0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x080031de   Section        0  printfb.o(i._printf_core)
-    _printf_core                             0x080031df   Thumb Code    34  printfb.o(i._printf_core)
-    i._sputc                                 0x08003200   Section        0  printfb.o(i._sputc)
-    _sputc                                   0x08003201   Thumb Code    10  printfb.o(i._sputc)
-    i.getRaw                                 0x0800320c   Section        0  xpt2046.o(i.getRaw)
-    i.getX                                   0x08003264   Section        0  xpt2046.o(i.getX)
-    i.getY                                   0x08003280   Section        0  xpt2046.o(i.getY)
-    i.main                                   0x0800329c   Section        0  main.o(i.main)
-    i.map                                    0x080033b0   Section        0  xpt2046.o(i.map)
-    .constdata                               0x080033c6   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x080033d6   Section        8  system_stm32f4xx.o(.constdata)
-    .constdata                               0x080033de   Section      768  fonts.o(.constdata)
-    .constdata                               0x080036de   Section     1140  fonts.o(.constdata)
-    .constdata                               0x08003b52   Section     3040  fonts.o(.constdata)
-    .constdata                               0x08004732   Section    25175  fonts.o(.constdata)
+    i.LCD_Position                           0x08001b3c   Section        0  ssd1963_fsmc.o(i.LCD_Position)
+    LCD_Position                             0x08001b3d   Thumb Code    32  ssd1963_fsmc.o(i.LCD_Position)
+    i.LCD_Rectangle_Fill                     0x08001b60   Section        0  ssd1963_fsmc.o(i.LCD_Rectangle_Fill)
+    i.LCD_Set_X                              0x08001b90   Section        0  ssd1963_fsmc.o(i.LCD_Set_X)
+    LCD_Set_X                                0x08001b91   Thumb Code    28  ssd1963_fsmc.o(i.LCD_Set_X)
+    i.LCD_Set_Y                              0x08001bb0   Section        0  ssd1963_fsmc.o(i.LCD_Set_Y)
+    LCD_Set_Y                                0x08001bb1   Thumb Code    28  ssd1963_fsmc.o(i.LCD_Set_Y)
+    i.LCD_String_Font                        0x08001bd0   Section        0  ssd1963_fsmc.o(i.LCD_String_Font)
+    i.LCD_Work_Area                          0x08001d54   Section        0  ssd1963_fsmc.o(i.LCD_Work_Area)
+    LCD_Work_Area                            0x08001d55   Thumb Code    36  ssd1963_fsmc.o(i.LCD_Work_Area)
+    i.MX_FSMC_Init                           0x08001d7c   Section        0  main.o(i.MX_FSMC_Init)
+    MX_FSMC_Init                             0x08001d7d   Thumb Code    90  main.o(i.MX_FSMC_Init)
+    i.MX_GPIO_Init                           0x08001de0   Section        0  main.o(i.MX_GPIO_Init)
+    MX_GPIO_Init                             0x08001de1   Thumb Code   298  main.o(i.MX_GPIO_Init)
+    i.MX_I2C1_Init                           0x08001f28   Section        0  main.o(i.MX_I2C1_Init)
+    MX_I2C1_Init                             0x08001f29   Thumb Code    44  main.o(i.MX_I2C1_Init)
+    i.MX_I2C2_Init                           0x08001f60   Section        0  main.o(i.MX_I2C2_Init)
+    MX_I2C2_Init                             0x08001f61   Thumb Code    44  main.o(i.MX_I2C2_Init)
+    i.MX_SPI3_Init                           0x08001f98   Section        0  main.o(i.MX_SPI3_Init)
+    MX_SPI3_Init                             0x08001f99   Thumb Code    56  main.o(i.MX_SPI3_Init)
+    i.MX_TIM1_Init                           0x08001fd8   Section        0  main.o(i.MX_TIM1_Init)
+    MX_TIM1_Init                             0x08001fd9   Thumb Code    78  main.o(i.MX_TIM1_Init)
+    i.MemManage_Handler                      0x08002030   Section        0  stm32f4xx_it.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x08002032   Section        0  stm32f4xx_it.o(i.NMI_Handler)
+    i.NVIC_SetPriority                       0x08002034   Section        0  stm32f4xx_hal_cortex.o(i.NVIC_SetPriority)
+    NVIC_SetPriority                         0x08002035   Thumb Code    32  stm32f4xx_hal_cortex.o(i.NVIC_SetPriority)
+    i.PendSV_Handler                         0x08002054   Section        0  stm32f4xx_it.o(i.PendSV_Handler)
+    i.RTC_EnterInitMode                      0x08002058   Section        0  stm32f4xx_hal_rtc.o(i.RTC_EnterInitMode)
+    i.SPI3_IRQHandler                        0x08002094   Section        0  stm32f4xx_it.o(i.SPI3_IRQHandler)
+    i.SPI_CheckFlag_BSY                      0x080020a0   Section        0  stm32f4xx_hal_spi.o(i.SPI_CheckFlag_BSY)
+    SPI_CheckFlag_BSY                        0x080020a1   Thumb Code    32  stm32f4xx_hal_spi.o(i.SPI_CheckFlag_BSY)
+    i.SPI_DMAAbortOnError                    0x080020c0   Section        0  stm32f4xx_hal_spi.o(i.SPI_DMAAbortOnError)
+    SPI_DMAAbortOnError                      0x080020c1   Thumb Code    16  stm32f4xx_hal_spi.o(i.SPI_DMAAbortOnError)
+    i.SPI_WaitFlagStateUntilTimeout          0x080020d0   Section        0  stm32f4xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout)
+    SPI_WaitFlagStateUntilTimeout            0x080020d1   Thumb Code   150  stm32f4xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout)
+    i.SSD1963_Bright                         0x08002168   Section        0  ssd1963_fsmc.o(i.SSD1963_Bright)
+    i.SSD1963_Init                           0x08002184   Section        0  ssd1963_fsmc.o(i.SSD1963_Init)
+    i.SSD1963_Test                           0x08002270   Section        0  ssd1963_fsmc.o(i.SSD1963_Test)
+    i.SVC_Handler                            0x080022f0   Section        0  stm32f4xx_it.o(i.SVC_Handler)
+    i.SysTick_Handler                        0x080022f2   Section        0  stm32f4xx_it.o(i.SysTick_Handler)
+    i.SystemClock_Config                     0x08002300   Section        0  main.o(i.SystemClock_Config)
+    i.SystemInit                             0x080023c0   Section        0  system_stm32f4xx.o(i.SystemInit)
+    i.TIM1_BRK_TIM9_IRQHandler               0x08002414   Section        0  stm32f4xx_it.o(i.TIM1_BRK_TIM9_IRQHandler)
+    i.TIM1_UP_TIM10_IRQHandler               0x08002434   Section        0  stm32f4xx_it.o(i.TIM1_UP_TIM10_IRQHandler)
+    i.TIM_Base_SetConfig                     0x08002454   Section        0  stm32f4xx_hal_tim.o(i.TIM_Base_SetConfig)
+    i.TIM_ETR_SetConfig                      0x08002514   Section        0  stm32f4xx_hal_tim.o(i.TIM_ETR_SetConfig)
+    TIM_ETR_SetConfig                        0x08002515   Thumb Code    20  stm32f4xx_hal_tim.o(i.TIM_ETR_SetConfig)
+    i.TIM_ITRx_SetConfig                     0x08002528   Section        0  stm32f4xx_hal_tim.o(i.TIM_ITRx_SetConfig)
+    TIM_ITRx_SetConfig                       0x08002529   Thumb Code    16  stm32f4xx_hal_tim.o(i.TIM_ITRx_SetConfig)
+    i.TIM_TI1_ConfigInputStage               0x08002538   Section        0  stm32f4xx_hal_tim.o(i.TIM_TI1_ConfigInputStage)
+    TIM_TI1_ConfigInputStage                 0x08002539   Thumb Code    34  stm32f4xx_hal_tim.o(i.TIM_TI1_ConfigInputStage)
+    i.TIM_TI2_ConfigInputStage               0x0800255a   Section        0  stm32f4xx_hal_tim.o(i.TIM_TI2_ConfigInputStage)
+    TIM_TI2_ConfigInputStage                 0x0800255b   Thumb Code    36  stm32f4xx_hal_tim.o(i.TIM_TI2_ConfigInputStage)
+    i.UART_SetConfig                         0x08002580   Section        0  stm32f4xx_hal_uart.o(i.UART_SetConfig)
+    UART_SetConfig                           0x08002581   Thumb Code   676  stm32f4xx_hal_uart.o(i.UART_SetConfig)
+    i.UART_WaitOnFlagUntilTimeout            0x0800282c   Section        0  stm32f4xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
+    UART_WaitOnFlagUntilTimeout              0x0800282d   Thumb Code   100  stm32f4xx_hal_uart.o(i.UART_WaitOnFlagUntilTimeout)
+    i.UsageFault_Handler                     0x08002890   Section        0  stm32f4xx_it.o(i.UsageFault_Handler)
+    i.XPT2046_Init                           0x08002894   Section        0  xpt2046.o(i.XPT2046_Init)
+    i.__0sprintf$bare                        0x080028c8   Section        0  printfb.o(i.__0sprintf$bare)
+    i.__scatterload_copy                     0x080028ec   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080028fa   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080028fc   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x0800290a   Section        0  printfb.o(i._printf_core)
+    _printf_core                             0x0800290b   Thumb Code    34  printfb.o(i._printf_core)
+    i._sputc                                 0x0800292c   Section        0  printfb.o(i._sputc)
+    _sputc                                   0x0800292d   Thumb Code    10  printfb.o(i._sputc)
+    i.getRaw                                 0x08002938   Section        0  xpt2046.o(i.getRaw)
+    i.getX                                   0x08002990   Section        0  xpt2046.o(i.getX)
+    i.getY                                   0x080029ac   Section        0  xpt2046.o(i.getY)
+    i.main                                   0x080029c8   Section        0  main.o(i.main)
+    i.map                                    0x08002ad8   Section        0  xpt2046.o(i.map)
+    .constdata                               0x08002aee   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x08002afe   Section        8  system_stm32f4xx.o(.constdata)
+    .constdata                               0x08002b06   Section    30723  font_segment_sixteen_128x192_num.o(.constdata)
     .data                                    0x20000000   Section        4  system_stm32f4xx.o(.data)
     .data                                    0x20000004   Section       12  stm32f4xx_hal.o(.data)
     .data                                    0x20000010   Section        8  stm32f4xx_hal_msp.o(.data)
@@ -1888,8 +1960,8 @@ Image Symbol Table
     FSMC_DeInitialized                       0x20000014   Data           4  stm32f4xx_hal_msp.o(.data)
     .data                                    0x20000018   Section       16  main.o(.data)
     .bss                                     0x20000028   Section      492  main.o(.bss)
-    .bss                                     0x20000214   Section      100  ssd1963_fsmc.o(.bss)
-    STACK                                    0x20000278   Section     1024  startup_stm32f407xx.o(STACK)
+    .bss                                     0x20000214   Section     1000  ssd1963_fsmc.o(.bss)
+    STACK                                    0x20000600   Section     1024  startup_stm32f407xx.o(STACK)
 
     Global Symbols
 
@@ -2005,7 +2077,6 @@ Image Symbol Table
     FSMC_NORSRAM_Extended_Timing_Init        0x08000291   Thumb Code    60  stm32f4xx_ll_fsmc.o(i.FSMC_NORSRAM_Extended_Timing_Init)
     FSMC_NORSRAM_Init                        0x080002d1   Thumb Code    80  stm32f4xx_ll_fsmc.o(i.FSMC_NORSRAM_Init)
     FSMC_NORSRAM_Timing_Init                 0x08000325   Thumb Code    64  stm32f4xx_ll_fsmc.o(i.FSMC_NORSRAM_Timing_Init)
-    H24_RGB565_Reversed                      0x08000369   Thumb Code    26  ssd1963_fsmc.o(i.H24_RGB565_Reversed)
     HAL_DMA_Abort_IT                         0x08000383   Thumb Code    36  stm32f4xx_hal_dma.o(i.HAL_DMA_Abort_IT)
     HAL_Delay                                0x080003a9   Thumb Code    32  stm32f4xx_hal.o(i.HAL_Delay)
     HAL_GPIO_EXTI_Callback                   0x08000439   Thumb Code    16  main.o(i.HAL_GPIO_EXTI_Callback)
@@ -2063,60 +2134,41 @@ Image Symbol Table
     HAL_UART_MspInit                         0x08001a35   Thumb Code    64  stm32f4xx_hal_msp.o(i.HAL_UART_MspInit)
     HAL_UART_Transmit                        0x08001a81   Thumb Code   186  stm32f4xx_hal_uart.o(i.HAL_UART_Transmit)
     HardFault_Handler                        0x08001b3b   Thumb Code     2  stm32f4xx_it.o(i.HardFault_Handler)
-    LCD_Char                                 0x08001b3d   Thumb Code   100  ssd1963_fsmc.o(i.LCD_Char)
-    LCD_Circle                               0x08001ba1   Thumb Code   302  ssd1963_fsmc.o(i.LCD_Circle)
-    LCD_Circle_Helper                        0x08001cd1   Thumb Code   280  ssd1963_fsmc.o(i.LCD_Circle_Helper)
-    LCD_CursorPosition                       0x08001de9   Thumb Code    52  ssd1963_fsmc.o(i.LCD_CursorPosition)
-    LCD_Fill_Circle_Helper                   0x08001e21   Thumb Code   212  ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper)
-    LCD_HLine                                0x08001ef5   Thumb Code    38  ssd1963_fsmc.o(i.LCD_HLine)
-    LCD_Line                                 0x08001f21   Thumb Code   122  ssd1963_fsmc.o(i.LCD_Line)
-    LCD_Rectangle                            0x08001f9b   Thumb Code    78  ssd1963_fsmc.o(i.LCD_Rectangle)
-    LCD_Rectangle_Fill                       0x08001fe9   Thumb Code    36  ssd1963_fsmc.o(i.LCD_Rectangle_Fill)
-    LCD_Round_Rect                           0x08002011   Thumb Code   216  ssd1963_fsmc.o(i.LCD_Round_Rect)
-    LCD_Round_Rect_Fill                      0x080020e9   Thumb Code   100  ssd1963_fsmc.o(i.LCD_Round_Rect_Fill)
-    LCD_Set_Work_Area                        0x0800214d   Thumb Code    36  ssd1963_fsmc.o(i.LCD_Set_Work_Area)
-    LCD_Set_X                                0x08002175   Thumb Code    28  ssd1963_fsmc.o(i.LCD_Set_X)
-    LCD_Set_Y                                0x08002195   Thumb Code    28  ssd1963_fsmc.o(i.LCD_Set_Y)
-    LCD_String                               0x080021b5   Thumb Code    96  ssd1963_fsmc.o(i.LCD_String)
-    LCD_String_Font                          0x08002215   Thumb Code   342  ssd1963_fsmc.o(i.LCD_String_Font)
-    LCD_Triangle                             0x08002371   Thumb Code    64  ssd1963_fsmc.o(i.LCD_Triangle)
-    LCD_VLine                                0x080023b1   Thumb Code    42  ssd1963_fsmc.o(i.LCD_VLine)
-    MemManage_Handler                        0x08002695   Thumb Code     2  stm32f4xx_it.o(i.MemManage_Handler)
-    NMI_Handler                              0x08002697   Thumb Code     2  stm32f4xx_it.o(i.NMI_Handler)
-    PendSV_Handler                           0x080026b9   Thumb Code     2  stm32f4xx_it.o(i.PendSV_Handler)
-    RTC_EnterInitMode                        0x080026bd   Thumb Code    58  stm32f4xx_hal_rtc.o(i.RTC_EnterInitMode)
-    SPI3_IRQHandler                          0x080026f9   Thumb Code     6  stm32f4xx_it.o(i.SPI3_IRQHandler)
-    SSD1963_Bright                           0x080027cd   Thumb Code    22  ssd1963_fsmc.o(i.SSD1963_Bright)
-    SSD1963_Init                             0x080027e9   Thumb Code   222  ssd1963_fsmc.o(i.SSD1963_Init)
-    SSD1963_Test                             0x080028cd   Thumb Code   668  ssd1963_fsmc.o(i.SSD1963_Test)
-    SVC_Handler                              0x08002bc5   Thumb Code     2  stm32f4xx_it.o(i.SVC_Handler)
-    SysTick_Handler                          0x08002bc7   Thumb Code    14  stm32f4xx_it.o(i.SysTick_Handler)
-    SystemClock_Config                       0x08002bd5   Thumb Code   178  main.o(i.SystemClock_Config)
-    SystemInit                               0x08002c95   Thumb Code    66  system_stm32f4xx.o(i.SystemInit)
-    TIM1_BRK_TIM9_IRQHandler                 0x08002ce9   Thumb Code    22  stm32f4xx_it.o(i.TIM1_BRK_TIM9_IRQHandler)
-    TIM1_UP_TIM10_IRQHandler                 0x08002d09   Thumb Code    22  stm32f4xx_it.o(i.TIM1_UP_TIM10_IRQHandler)
-    TIM_Base_SetConfig                       0x08002d29   Thumb Code   148  stm32f4xx_hal_tim.o(i.TIM_Base_SetConfig)
-    UsageFault_Handler                       0x08003165   Thumb Code     2  stm32f4xx_it.o(i.UsageFault_Handler)
-    XPT2046_Init                             0x08003169   Thumb Code    46  xpt2046.o(i.XPT2046_Init)
-    __0sprintf$bare                          0x0800319d   Thumb Code    32  printfb.o(i.__0sprintf$bare)
-    __1sprintf$bare                          0x0800319d   Thumb Code     0  printfb.o(i.__0sprintf$bare)
-    __2sprintf                               0x0800319d   Thumb Code     0  printfb.o(i.__0sprintf$bare)
-    __scatterload_copy                       0x080031c1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080031cf   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080031d1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    getRaw                                   0x0800320d   Thumb Code    82  xpt2046.o(i.getRaw)
-    getX                                     0x08003265   Thumb Code    28  xpt2046.o(i.getX)
-    getY                                     0x08003281   Thumb Code    28  xpt2046.o(i.getY)
-    main                                     0x0800329d   Thumb Code   242  main.o(i.main)
-    map                                      0x080033b1   Thumb Code    22  xpt2046.o(i.map)
-    AHBPrescTable                            0x080033c6   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x080033d6   Data           8  system_stm32f4xx.o(.constdata)
-    tiny_8x8                                 0x080033de   Data         768  fonts.o(.constdata)
-    small_8x12                               0x080036de   Data        1140  fonts.o(.constdata)
-    default_16x16                            0x08003b52   Data        3040  fonts.o(.constdata)
-    couriernew_5_53                          0x08004732   Data       25175  fonts.o(.constdata)
-    Region$$Table$$Base                      0x0800a98c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800a9ac   Number         0  anon$$obj.o(Region$$Table)
+    LCD_Rectangle_Fill                       0x08001b61   Thumb Code    42  ssd1963_fsmc.o(i.LCD_Rectangle_Fill)
+    LCD_String_Font                          0x08001bd1   Thumb Code   384  ssd1963_fsmc.o(i.LCD_String_Font)
+    MemManage_Handler                        0x08002031   Thumb Code     2  stm32f4xx_it.o(i.MemManage_Handler)
+    NMI_Handler                              0x08002033   Thumb Code     2  stm32f4xx_it.o(i.NMI_Handler)
+    PendSV_Handler                           0x08002055   Thumb Code     2  stm32f4xx_it.o(i.PendSV_Handler)
+    RTC_EnterInitMode                        0x08002059   Thumb Code    58  stm32f4xx_hal_rtc.o(i.RTC_EnterInitMode)
+    SPI3_IRQHandler                          0x08002095   Thumb Code     6  stm32f4xx_it.o(i.SPI3_IRQHandler)
+    SSD1963_Bright                           0x08002169   Thumb Code    22  ssd1963_fsmc.o(i.SSD1963_Bright)
+    SSD1963_Init                             0x08002185   Thumb Code   232  ssd1963_fsmc.o(i.SSD1963_Init)
+    SSD1963_Test                             0x08002271   Thumb Code   102  ssd1963_fsmc.o(i.SSD1963_Test)
+    SVC_Handler                              0x080022f1   Thumb Code     2  stm32f4xx_it.o(i.SVC_Handler)
+    SysTick_Handler                          0x080022f3   Thumb Code    14  stm32f4xx_it.o(i.SysTick_Handler)
+    SystemClock_Config                       0x08002301   Thumb Code   178  main.o(i.SystemClock_Config)
+    SystemInit                               0x080023c1   Thumb Code    66  system_stm32f4xx.o(i.SystemInit)
+    TIM1_BRK_TIM9_IRQHandler                 0x08002415   Thumb Code    22  stm32f4xx_it.o(i.TIM1_BRK_TIM9_IRQHandler)
+    TIM1_UP_TIM10_IRQHandler                 0x08002435   Thumb Code    22  stm32f4xx_it.o(i.TIM1_UP_TIM10_IRQHandler)
+    TIM_Base_SetConfig                       0x08002455   Thumb Code   148  stm32f4xx_hal_tim.o(i.TIM_Base_SetConfig)
+    UsageFault_Handler                       0x08002891   Thumb Code     2  stm32f4xx_it.o(i.UsageFault_Handler)
+    XPT2046_Init                             0x08002895   Thumb Code    46  xpt2046.o(i.XPT2046_Init)
+    __0sprintf$bare                          0x080028c9   Thumb Code    32  printfb.o(i.__0sprintf$bare)
+    __1sprintf$bare                          0x080028c9   Thumb Code     0  printfb.o(i.__0sprintf$bare)
+    __2sprintf                               0x080028c9   Thumb Code     0  printfb.o(i.__0sprintf$bare)
+    __scatterload_copy                       0x080028ed   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080028fb   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080028fd   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    getRaw                                   0x08002939   Thumb Code    82  xpt2046.o(i.getRaw)
+    getX                                     0x08002991   Thumb Code    28  xpt2046.o(i.getX)
+    getY                                     0x080029ad   Thumb Code    28  xpt2046.o(i.getY)
+    main                                     0x080029c9   Thumb Code   238  main.o(i.main)
+    map                                      0x08002ad9   Thumb Code    22  xpt2046.o(i.map)
+    AHBPrescTable                            0x08002aee   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x08002afe   Data           8  system_stm32f4xx.o(.constdata)
+    segment_sixteen_128x192_num              0x08002b06   Data       30723  font_segment_sixteen_128x192_num.o(.constdata)
+    Region$$Table$$Base                      0x0800a30c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800a32c   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f4xx.o(.data)
     uwTickFreq                               0x20000004   Data           1  stm32f4xx_hal.o(.data)
     uwTickPrio                               0x20000008   Data           4  stm32f4xx_hal.o(.data)
@@ -2132,8 +2184,8 @@ Image Symbol Table
     htim1                                    0x20000148   Data          60  main.o(.bss)
     huart1                                   0x20000184   Data          64  main.o(.bss)
     hsram1                                   0x200001c4   Data          80  main.o(.bss)
-    array                                    0x20000214   Data         100  ssd1963_fsmc.o(.bss)
-    __initial_sp                             0x20000678   Data           0  startup_stm32f407xx.o(STACK)
+    array                                    0x20000214   Data        1000  ssd1963_fsmc.o(.bss)
+    __initial_sp                             0x20000a00   Data           0  startup_stm32f407xx.o(STACK)
 
 
 
@@ -2143,35 +2195,35 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000a9d4, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000a354, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000a9ac, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000a32c, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000188   Data   RO            3    RESET               startup_stm32f407xx.o
-    0x08000188   0x08000188   0x00000000   Code   RO         4312  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000188   0x08000188   0x00000004   Code   RO         4577    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0800018c   0x0800018c   0x00000004   Code   RO         4580    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000190   0x08000190   0x00000000   Code   RO         4582    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000190   0x08000190   0x00000000   Code   RO         4584    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000190   0x08000190   0x00000008   Code   RO         4585    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000198   0x08000198   0x00000000   Code   RO         4587    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000198   0x08000198   0x00000000   Code   RO         4589    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         4578    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000188   0x08000188   0x00000000   Code   RO         4597  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000188   0x08000188   0x00000004   Code   RO         4862    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0800018c   0x0800018c   0x00000004   Code   RO         4865    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000190   0x08000190   0x00000000   Code   RO         4867    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000190   0x08000190   0x00000000   Code   RO         4869    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000190   0x08000190   0x00000008   Code   RO         4870    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         4872    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         4874    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         4863    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x0800019c   0x0800019c   0x00000024   Code   RO            4    .text               startup_stm32f407xx.o
-    0x080001c0   0x080001c0   0x00000062   Code   RO         4315    .text               mc_w.l(uldiv.o)
-    0x08000222   0x08000222   0x0000001e   Code   RO         4596    .text               mc_w.l(llshl.o)
-    0x08000240   0x08000240   0x00000020   Code   RO         4598    .text               mc_w.l(llushr.o)
-    0x08000260   0x08000260   0x00000024   Code   RO         4611    .text               mc_w.l(init.o)
-    0x08000284   0x08000284   0x00000002   Code   RO         3947    i.BusFault_Handler  stm32f4xx_it.o
-    0x08000286   0x08000286   0x00000002   Code   RO         3948    i.DebugMon_Handler  stm32f4xx_it.o
-    0x08000288   0x08000288   0x00000006   Code   RO         3949    i.EXTI3_IRQHandler  stm32f4xx_it.o
+    0x080001c0   0x080001c0   0x00000062   Code   RO         4600    .text               mc_w.l(uldiv.o)
+    0x08000222   0x08000222   0x0000001e   Code   RO         4881    .text               mc_w.l(llshl.o)
+    0x08000240   0x08000240   0x00000020   Code   RO         4883    .text               mc_w.l(llushr.o)
+    0x08000260   0x08000260   0x00000024   Code   RO         4896    .text               mc_w.l(init.o)
+    0x08000284   0x08000284   0x00000002   Code   RO         3943    i.BusFault_Handler  stm32f4xx_it.o
+    0x08000286   0x08000286   0x00000002   Code   RO         3944    i.DebugMon_Handler  stm32f4xx_it.o
+    0x08000288   0x08000288   0x00000006   Code   RO         3945    i.EXTI3_IRQHandler  stm32f4xx_it.o
     0x0800028e   0x0800028e   0x00000002   PAD
     0x08000290   0x08000290   0x00000040   Code   RO         1862    i.FSMC_NORSRAM_Extended_Timing_Init  stm32f4xx_ll_fsmc.o
     0x080002d0   0x080002d0   0x00000054   Code   RO         1863    i.FSMC_NORSRAM_Init  stm32f4xx_ll_fsmc.o
     0x08000324   0x08000324   0x00000044   Code   RO         1864    i.FSMC_NORSRAM_Timing_Init  stm32f4xx_ll_fsmc.o
-    0x08000368   0x08000368   0x0000001a   Code   RO         4048    i.H24_RGB565_Reversed  ssd1963_fsmc.o
+    0x08000368   0x08000368   0x0000001a   Code   RO         4043    i.H24_RGB565_Reversed  ssd1963_fsmc.o
     0x08000382   0x08000382   0x00000024   Code   RO         3133    i.HAL_DMA_Abort_IT  stm32f4xx_hal_dma.o
     0x080003a6   0x080003a6   0x00000002   PAD
     0x080003a8   0x080003a8   0x00000024   Code   RO         2122    i.HAL_Delay         stm32f4xx_hal.o
@@ -2234,97 +2286,82 @@ Memory Map of the image
     0x08001a32   0x08001a32   0x00000002   PAD
     0x08001a34   0x08001a34   0x0000004c   Code   RO         3764    i.HAL_UART_MspInit  stm32f4xx_hal_msp.o
     0x08001a80   0x08001a80   0x000000ba   Code   RO         1087    i.HAL_UART_Transmit  stm32f4xx_hal_uart.o
-    0x08001b3a   0x08001b3a   0x00000002   Code   RO         3950    i.HardFault_Handler  stm32f4xx_it.o
-    0x08001b3c   0x08001b3c   0x00000064   Code   RO         4049    i.LCD_Char          ssd1963_fsmc.o
-    0x08001ba0   0x08001ba0   0x0000012e   Code   RO         4050    i.LCD_Circle        ssd1963_fsmc.o
-    0x08001cce   0x08001cce   0x00000002   PAD
-    0x08001cd0   0x08001cd0   0x00000118   Code   RO         4051    i.LCD_Circle_Helper  ssd1963_fsmc.o
-    0x08001de8   0x08001de8   0x00000038   Code   RO         4053    i.LCD_CursorPosition  ssd1963_fsmc.o
-    0x08001e20   0x08001e20   0x000000d4   Code   RO         4055    i.LCD_Fill_Circle_Helper  ssd1963_fsmc.o
-    0x08001ef4   0x08001ef4   0x0000002c   Code   RO         4056    i.LCD_HLine         ssd1963_fsmc.o
-    0x08001f20   0x08001f20   0x0000007a   Code   RO         4057    i.LCD_Line          ssd1963_fsmc.o
-    0x08001f9a   0x08001f9a   0x0000004e   Code   RO         4059    i.LCD_Rectangle     ssd1963_fsmc.o
-    0x08001fe8   0x08001fe8   0x00000028   Code   RO         4060    i.LCD_Rectangle_Fill  ssd1963_fsmc.o
-    0x08002010   0x08002010   0x000000d8   Code   RO         4061    i.LCD_Round_Rect    ssd1963_fsmc.o
-    0x080020e8   0x080020e8   0x00000064   Code   RO         4062    i.LCD_Round_Rect_Fill  ssd1963_fsmc.o
-    0x0800214c   0x0800214c   0x00000028   Code   RO         4063    i.LCD_Set_Work_Area  ssd1963_fsmc.o
-    0x08002174   0x08002174   0x00000020   Code   RO         4064    i.LCD_Set_X         ssd1963_fsmc.o
-    0x08002194   0x08002194   0x00000020   Code   RO         4066    i.LCD_Set_Y         ssd1963_fsmc.o
-    0x080021b4   0x080021b4   0x00000060   Code   RO         4067    i.LCD_String        ssd1963_fsmc.o
-    0x08002214   0x08002214   0x0000015c   Code   RO         4068    i.LCD_String_Font   ssd1963_fsmc.o
-    0x08002370   0x08002370   0x00000040   Code   RO         4069    i.LCD_Triangle      ssd1963_fsmc.o
-    0x080023b0   0x080023b0   0x00000030   Code   RO         4070    i.LCD_VLine         ssd1963_fsmc.o
-    0x080023e0   0x080023e0   0x00000064   Code   RO         3855    i.MX_FSMC_Init      main.o
-    0x08002444   0x08002444   0x00000148   Code   RO         3856    i.MX_GPIO_Init      main.o
-    0x0800258c   0x0800258c   0x00000038   Code   RO         3857    i.MX_I2C1_Init      main.o
-    0x080025c4   0x080025c4   0x00000038   Code   RO         3858    i.MX_I2C2_Init      main.o
-    0x080025fc   0x080025fc   0x00000040   Code   RO         3859    i.MX_SPI3_Init      main.o
-    0x0800263c   0x0800263c   0x00000058   Code   RO         3860    i.MX_TIM1_Init      main.o
-    0x08002694   0x08002694   0x00000002   Code   RO         3951    i.MemManage_Handler  stm32f4xx_it.o
-    0x08002696   0x08002696   0x00000002   Code   RO         3952    i.NMI_Handler       stm32f4xx_it.o
-    0x08002698   0x08002698   0x00000020   Code   RO         1998    i.NVIC_SetPriority  stm32f4xx_hal_cortex.o
-    0x080026b8   0x080026b8   0x00000002   Code   RO         3953    i.PendSV_Handler    stm32f4xx_it.o
-    0x080026ba   0x080026ba   0x00000002   PAD
-    0x080026bc   0x080026bc   0x0000003a   Code   RO         2305    i.RTC_EnterInitMode  stm32f4xx_hal_rtc.o
-    0x080026f6   0x080026f6   0x00000002   PAD
-    0x080026f8   0x080026f8   0x0000000c   Code   RO         3954    i.SPI3_IRQHandler   stm32f4xx_it.o
-    0x08002704   0x08002704   0x00000020   Code   RO         2727    i.SPI_CheckFlag_BSY  stm32f4xx_hal_spi.o
-    0x08002724   0x08002724   0x00000010   Code   RO         2731    i.SPI_DMAAbortOnError  stm32f4xx_hal_spi.o
-    0x08002734   0x08002734   0x00000096   Code   RO         2745    i.SPI_WaitFlagStateUntilTimeout  stm32f4xx_hal_spi.o
-    0x080027ca   0x080027ca   0x00000002   PAD
-    0x080027cc   0x080027cc   0x0000001c   Code   RO         4074    i.SSD1963_Bright    ssd1963_fsmc.o
-    0x080027e8   0x080027e8   0x000000e4   Code   RO         4075    i.SSD1963_Init      ssd1963_fsmc.o
-    0x080028cc   0x080028cc   0x000002f8   Code   RO         4076    i.SSD1963_Test      ssd1963_fsmc.o
-    0x08002bc4   0x08002bc4   0x00000002   Code   RO         3955    i.SVC_Handler       stm32f4xx_it.o
-    0x08002bc6   0x08002bc6   0x0000000e   Code   RO         3956    i.SysTick_Handler   stm32f4xx_it.o
-    0x08002bd4   0x08002bd4   0x000000c0   Code   RO         3861    i.SystemClock_Config  main.o
-    0x08002c94   0x08002c94   0x00000054   Code   RO           14    i.SystemInit        system_stm32f4xx.o
-    0x08002ce8   0x08002ce8   0x00000020   Code   RO         3957    i.TIM1_BRK_TIM9_IRQHandler  stm32f4xx_it.o
-    0x08002d08   0x08002d08   0x00000020   Code   RO         3958    i.TIM1_UP_TIM10_IRQHandler  stm32f4xx_it.o
-    0x08002d28   0x08002d28   0x000000c0   Code   RO          509    i.TIM_Base_SetConfig  stm32f4xx_hal_tim.o
-    0x08002de8   0x08002de8   0x00000014   Code   RO          516    i.TIM_ETR_SetConfig  stm32f4xx_hal_tim.o
-    0x08002dfc   0x08002dfc   0x00000010   Code   RO          517    i.TIM_ITRx_SetConfig  stm32f4xx_hal_tim.o
-    0x08002e0c   0x08002e0c   0x00000022   Code   RO          523    i.TIM_TI1_ConfigInputStage  stm32f4xx_hal_tim.o
-    0x08002e2e   0x08002e2e   0x00000024   Code   RO          525    i.TIM_TI2_ConfigInputStage  stm32f4xx_hal_tim.o
-    0x08002e52   0x08002e52   0x00000002   PAD
-    0x08002e54   0x08002e54   0x000002ac   Code   RO         1105    i.UART_SetConfig    stm32f4xx_hal_uart.o
-    0x08003100   0x08003100   0x00000064   Code   RO         1107    i.UART_WaitOnFlagUntilTimeout  stm32f4xx_hal_uart.o
-    0x08003164   0x08003164   0x00000002   Code   RO         3959    i.UsageFault_Handler  stm32f4xx_it.o
-    0x08003166   0x08003166   0x00000002   PAD
-    0x08003168   0x08003168   0x00000034   Code   RO         4245    i.XPT2046_Init      xpt2046.o
-    0x0800319c   0x0800319c   0x00000024   Code   RO         4320    i.__0sprintf$bare   mc_w.l(printfb.o)
-    0x080031c0   0x080031c0   0x0000000e   Code   RO         4621    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080031ce   0x080031ce   0x00000002   Code   RO         4622    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080031d0   0x080031d0   0x0000000e   Code   RO         4623    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080031de   0x080031de   0x00000022   Code   RO         4325    i._printf_core      mc_w.l(printfb.o)
-    0x08003200   0x08003200   0x0000000a   Code   RO         4327    i._sputc            mc_w.l(printfb.o)
-    0x0800320a   0x0800320a   0x00000002   PAD
-    0x0800320c   0x0800320c   0x00000058   Code   RO         4246    i.getRaw            xpt2046.o
-    0x08003264   0x08003264   0x0000001c   Code   RO         4247    i.getX              xpt2046.o
-    0x08003280   0x08003280   0x0000001c   Code   RO         4248    i.getY              xpt2046.o
-    0x0800329c   0x0800329c   0x00000114   Code   RO         3863    i.main              main.o
-    0x080033b0   0x080033b0   0x00000016   Code   RO         4249    i.map               xpt2046.o
-    0x080033c6   0x080033c6   0x00000010   Data   RO           15    .constdata          system_stm32f4xx.o
-    0x080033d6   0x080033d6   0x00000008   Data   RO           16    .constdata          system_stm32f4xx.o
-    0x080033de   0x080033de   0x00000300   Data   RO         4290    .constdata          fonts.o
-    0x080036de   0x080036de   0x00000474   Data   RO         4294    .constdata          fonts.o
-    0x08003b52   0x08003b52   0x00000be0   Data   RO         4296    .constdata          fonts.o
-    0x08004732   0x08004732   0x00006257   Data   RO         4300    .constdata          fonts.o
-    0x0800a989   0x0800a989   0x00000003   PAD
-    0x0800a98c   0x0800a98c   0x00000020   Data   RO         4619    Region$$Table       anon$$obj.o
+    0x08001b3a   0x08001b3a   0x00000002   Code   RO         3946    i.HardFault_Handler  stm32f4xx_it.o
+    0x08001b3c   0x08001b3c   0x00000024   Code   RO         4051    i.LCD_Position      ssd1963_fsmc.o
+    0x08001b60   0x08001b60   0x00000030   Code   RO         4053    i.LCD_Rectangle_Fill  ssd1963_fsmc.o
+    0x08001b90   0x08001b90   0x00000020   Code   RO         4056    i.LCD_Set_X         ssd1963_fsmc.o
+    0x08001bb0   0x08001bb0   0x00000020   Code   RO         4057    i.LCD_Set_Y         ssd1963_fsmc.o
+    0x08001bd0   0x08001bd0   0x00000184   Code   RO         4059    i.LCD_String_Font   ssd1963_fsmc.o
+    0x08001d54   0x08001d54   0x00000028   Code   RO         4062    i.LCD_Work_Area     ssd1963_fsmc.o
+    0x08001d7c   0x08001d7c   0x00000064   Code   RO         3855    i.MX_FSMC_Init      main.o
+    0x08001de0   0x08001de0   0x00000148   Code   RO         3856    i.MX_GPIO_Init      main.o
+    0x08001f28   0x08001f28   0x00000038   Code   RO         3857    i.MX_I2C1_Init      main.o
+    0x08001f60   0x08001f60   0x00000038   Code   RO         3858    i.MX_I2C2_Init      main.o
+    0x08001f98   0x08001f98   0x00000040   Code   RO         3859    i.MX_SPI3_Init      main.o
+    0x08001fd8   0x08001fd8   0x00000058   Code   RO         3860    i.MX_TIM1_Init      main.o
+    0x08002030   0x08002030   0x00000002   Code   RO         3947    i.MemManage_Handler  stm32f4xx_it.o
+    0x08002032   0x08002032   0x00000002   Code   RO         3948    i.NMI_Handler       stm32f4xx_it.o
+    0x08002034   0x08002034   0x00000020   Code   RO         1998    i.NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x08002054   0x08002054   0x00000002   Code   RO         3949    i.PendSV_Handler    stm32f4xx_it.o
+    0x08002056   0x08002056   0x00000002   PAD
+    0x08002058   0x08002058   0x0000003a   Code   RO         2305    i.RTC_EnterInitMode  stm32f4xx_hal_rtc.o
+    0x08002092   0x08002092   0x00000002   PAD
+    0x08002094   0x08002094   0x0000000c   Code   RO         3950    i.SPI3_IRQHandler   stm32f4xx_it.o
+    0x080020a0   0x080020a0   0x00000020   Code   RO         2727    i.SPI_CheckFlag_BSY  stm32f4xx_hal_spi.o
+    0x080020c0   0x080020c0   0x00000010   Code   RO         2731    i.SPI_DMAAbortOnError  stm32f4xx_hal_spi.o
+    0x080020d0   0x080020d0   0x00000096   Code   RO         2745    i.SPI_WaitFlagStateUntilTimeout  stm32f4xx_hal_spi.o
+    0x08002166   0x08002166   0x00000002   PAD
+    0x08002168   0x08002168   0x0000001c   Code   RO         4191    i.SSD1963_Bright    ssd1963_fsmc.o
+    0x08002184   0x08002184   0x000000ec   Code   RO         4064    i.SSD1963_Init      ssd1963_fsmc.o
+    0x08002270   0x08002270   0x00000080   Code   RO         4065    i.SSD1963_Test      ssd1963_fsmc.o
+    0x080022f0   0x080022f0   0x00000002   Code   RO         3951    i.SVC_Handler       stm32f4xx_it.o
+    0x080022f2   0x080022f2   0x0000000e   Code   RO         3952    i.SysTick_Handler   stm32f4xx_it.o
+    0x08002300   0x08002300   0x000000c0   Code   RO         3861    i.SystemClock_Config  main.o
+    0x080023c0   0x080023c0   0x00000054   Code   RO           14    i.SystemInit        system_stm32f4xx.o
+    0x08002414   0x08002414   0x00000020   Code   RO         3953    i.TIM1_BRK_TIM9_IRQHandler  stm32f4xx_it.o
+    0x08002434   0x08002434   0x00000020   Code   RO         3954    i.TIM1_UP_TIM10_IRQHandler  stm32f4xx_it.o
+    0x08002454   0x08002454   0x000000c0   Code   RO          509    i.TIM_Base_SetConfig  stm32f4xx_hal_tim.o
+    0x08002514   0x08002514   0x00000014   Code   RO          516    i.TIM_ETR_SetConfig  stm32f4xx_hal_tim.o
+    0x08002528   0x08002528   0x00000010   Code   RO          517    i.TIM_ITRx_SetConfig  stm32f4xx_hal_tim.o
+    0x08002538   0x08002538   0x00000022   Code   RO          523    i.TIM_TI1_ConfigInputStage  stm32f4xx_hal_tim.o
+    0x0800255a   0x0800255a   0x00000024   Code   RO          525    i.TIM_TI2_ConfigInputStage  stm32f4xx_hal_tim.o
+    0x0800257e   0x0800257e   0x00000002   PAD
+    0x08002580   0x08002580   0x000002ac   Code   RO         1105    i.UART_SetConfig    stm32f4xx_hal_uart.o
+    0x0800282c   0x0800282c   0x00000064   Code   RO         1107    i.UART_WaitOnFlagUntilTimeout  stm32f4xx_hal_uart.o
+    0x08002890   0x08002890   0x00000002   Code   RO         3955    i.UsageFault_Handler  stm32f4xx_it.o
+    0x08002892   0x08002892   0x00000002   PAD
+    0x08002894   0x08002894   0x00000034   Code   RO         4209    i.XPT2046_Init      xpt2046.o
+    0x080028c8   0x080028c8   0x00000024   Code   RO         4605    i.__0sprintf$bare   mc_w.l(printfb.o)
+    0x080028ec   0x080028ec   0x0000000e   Code   RO         4906    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080028fa   0x080028fa   0x00000002   Code   RO         4907    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080028fc   0x080028fc   0x0000000e   Code   RO         4908    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800290a   0x0800290a   0x00000022   Code   RO         4610    i._printf_core      mc_w.l(printfb.o)
+    0x0800292c   0x0800292c   0x0000000a   Code   RO         4612    i._sputc            mc_w.l(printfb.o)
+    0x08002936   0x08002936   0x00000002   PAD
+    0x08002938   0x08002938   0x00000058   Code   RO         4210    i.getRaw            xpt2046.o
+    0x08002990   0x08002990   0x0000001c   Code   RO         4211    i.getX              xpt2046.o
+    0x080029ac   0x080029ac   0x0000001c   Code   RO         4212    i.getY              xpt2046.o
+    0x080029c8   0x080029c8   0x00000110   Code   RO         3863    i.main              main.o
+    0x08002ad8   0x08002ad8   0x00000016   Code   RO         4213    i.map               xpt2046.o
+    0x08002aee   0x08002aee   0x00000010   Data   RO           15    .constdata          system_stm32f4xx.o
+    0x08002afe   0x08002afe   0x00000008   Data   RO           16    .constdata          system_stm32f4xx.o
+    0x08002b06   0x08002b06   0x00007803   Data   RO         4506    .constdata          font_segment_sixteen_128x192_num.o
+    0x0800a309   0x0800a309   0x00000003   PAD
+    0x0800a30c   0x0800a30c   0x00000020   Data   RO         4904    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800a9ac, Size: 0x00000678, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800a32c, Size: 0x00000a00, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x0800a9ac   0x00000004   Data   RW           17    .data               system_stm32f4xx.o
-    0x20000004   0x0800a9b0   0x0000000c   Data   RW         2140    .data               stm32f4xx_hal.o
-    0x20000010   0x0800a9bc   0x00000008   Data   RW         3765    .data               stm32f4xx_hal_msp.o
-    0x20000018   0x0800a9c4   0x00000010   Data   RW         3865    .data               main.o
+    0x20000000   0x0800a32c   0x00000004   Data   RW           17    .data               system_stm32f4xx.o
+    0x20000004   0x0800a330   0x0000000c   Data   RW         2140    .data               stm32f4xx_hal.o
+    0x20000010   0x0800a33c   0x00000008   Data   RW         3765    .data               stm32f4xx_hal_msp.o
+    0x20000018   0x0800a344   0x00000010   Data   RW         3865    .data               main.o
     0x20000028        -       0x000001ec   Zero   RW         3864    .bss                main.o
-    0x20000214        -       0x00000064   Zero   RW         4077    .bss                ssd1963_fsmc.o
-    0x20000278        -       0x00000400   Zero   RW            1    STACK               startup_stm32f407xx.o
+    0x20000214        -       0x000003e8   Zero   RW         4066    .bss                ssd1963_fsmc.o
+    0x200005fc   0x0800a354   0x00000004   PAD
+    0x20000600        -       0x00000400   Zero   RW            1    STACK               startup_stm32f407xx.o
 
 
 ==============================================================================
@@ -2334,9 +2371,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-         0          0      30123          0          0       1042   fonts.o
-      1180        132          0         16        492       6577   main.o
-      3252        142          0          0        100      20510   ssd1963_fsmc.o
+         0          0      30723          0          0        446   font_segment_sixteen_128x192_num.o
+      1176        134          0         16        492       6569   main.o
+       994         62          0          0       1000      10170   ssd1963_fsmc.o
         36          8        392          0       1024        820   startup_stm32f407xx.o
        180         28          0         12          0       4477   stm32f4xx_hal.o
        228         14          0          0          0      32017   stm32f4xx_hal_cortex.o
@@ -2358,9 +2395,9 @@ Image component sizes
        218         12          0          0          0       2906   xpt2046.o
 
     ----------------------------------------------------------------------
-     12534        712      30574         40       1616     842853   Object Totals
+     10270        634      31174         40       2520     831909   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        24          0          3          0          0          0   (incl. Padding)
+        22          0          3          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2401,15 +2438,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     12862        732      30574         40       1616     831981   Grand Totals
-     12862        732      30574         40       1616     831981   ELF Image Totals
-     12862        732      30574         40          0          0   ROM Totals
+     10598        654      31174         40       2520     822237   Grand Totals
+     10598        654      31174         40       2520     822237   ELF Image Totals
+     10598        654      31174         40          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                43436 (  42.42kB)
-    Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
-    Total ROM Size (Code + RO Data + RW Data)      43476 (  42.46kB)
+    Total RO  Size (Code + RO Data)                41772 (  40.79kB)
+    Total RW  Size (RW Data + ZI Data)              2560 (   2.50kB)
+    Total ROM Size (Code + RO Data + RW Data)      41812 (  40.83kB)
 
 ==============================================================================
 
