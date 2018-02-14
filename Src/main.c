@@ -146,8 +146,8 @@ int main(void)
 		{
 		touchX = getX();	
 		touchY = getY();
-//		LCD_Pixel(touchX, touchY, WHITE);
-			LCD_Rectangle_Fill(touchX, touchY, 3, 3, WHITE);
+		LCD_Pixel(touchX, touchY, WHITE);
+		LCD_Rectangle_Fill(touchX, touchY, 3, 3, WHITE);
 
 		touchX = 0;
 		touchY = 0;

@@ -1,6 +1,10 @@
 #ifndef _SSD1289_H_
 #define _SSD1289_H_
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx_hal_gpio.h"
 #include "stm32f4xx_hal_rcc.h"
@@ -9,55 +13,78 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* 8x8 */
+extern const unsigned char tiny_8x8[];
+extern const unsigned char sinclair_8x8[];
+extern const unsigned char sinclair_8x8_inverted[];
+
+/* 8x9 */
+extern const unsigned char myke_8x9[];
+
+/* 8x12 */
+extern const unsigned char default_8x12[];
+
+/* 8x16 */
+extern const unsigned char retro_8x16[];
+
+/* 16x16 */
+extern const unsigned char default_16x16[];
 extern const unsigned char arial_16x16_bold[];
 extern const unsigned char arial_16x16_italic[];
 extern const unsigned char arial_16x16_normal[];
-extern const unsigned char arial_16x24_round[];
-extern const unsigned char arial_32x50_num[];
-extern const unsigned char battery_24x48[];
-extern const unsigned char calibri_32x48_bold_num[];
-extern const unsigned char default_8x12[];
-extern const unsigned char default_16x16[];
-extern const unsigned char dingbats1_32x24[];
 extern const unsigned char franklingothic_16x16[];
 extern const unsigned char hallfetica_16x16[];
-extern const unsigned char inconsola_24x32[];
-extern const unsigned char matrix_16x22[];
-extern const unsigned char matrix_16x22_slash[];
-extern const unsigned char matrix_24x29_num[];
-extern const unsigned char matrix_32x50_num[];
-extern const unsigned char myke_8x9[];
 extern const unsigned char nadianne_16x16[];
-extern const unsigned char ocr_16x24[];
-extern const unsigned char barcode_post_40x20_num[];
-extern const unsigned char retro_8x16[];
-extern const unsigned char retro_16x32[];
-extern const unsigned char barcode_rm4scc_16x16[];
-extern const unsigned char sinclair_8x8[];
-extern const unsigned char sinclair_8x8_inverted[];
 extern const unsigned char sinclair_16x16[];
 extern const unsigned char sinclair_16x16_inverted[];
 extern const unsigned char swiss_16x16[];
-extern const unsigned char symbols_16x16[];
-extern const unsigned char symbols_16x32_1[];
-extern const unsigned char symbols_16x32_2[];
-extern const unsigned char symbols_32x32[];
-extern const unsigned char tiny_8x8[];
+
+/* 16x22 */
+extern const unsigned char matrix_16x22[];
+extern const unsigned char matrix_16x22_slash[];
+
+/* 16x24 */
+extern const unsigned char arial_16x24_round[];
+extern const unsigned char ocr_16x24[];
+
+/* 16x32 */
+extern const unsigned char retro_16x32[];
+
+/* 24x32 */
+extern const unsigned char inconsola_24x32[];
 extern const unsigned char ubuntu_24x32[];
 extern const unsigned char ubuntu_24x32_bold[];
-extern const unsigned char segment_eighteen_32x52[];
+
+/* NUMERIC */
+extern const unsigned char arial_32x50_num[];
+extern const unsigned char calibri_32x48_bold_num[];
+extern const unsigned char matrix_24x29_num[];
+extern const unsigned char matrix_32x50_num[];
 extern const unsigned char segment_seven_32x50_num[];
-extern const unsigned char segment_seven_64x100_num[];//
-extern const unsigned char segment_seven_96x144_num[];//
+extern const unsigned char segment_seven_64x100_num[];
+extern const unsigned char segment_seven_96x144_num[];
+extern const unsigned char segment_sixteen_48x72_num[];
+extern const unsigned char segment_sixteen_64x96_num[];
+extern const unsigned char segment_sixteen_96x144_num[];
+extern const unsigned char segment_sixteen_128x192_num[];
+
+/* SEGMENTED */
+extern const unsigned char segment_eighteen_32x52[];
 extern const unsigned char segment_sixteen_16x24[];
 extern const unsigned char segment_sixteen_24x36[];
 extern const unsigned char segment_sixteen_32x48[];
 extern const unsigned char segment_sixteen_32x50[];
 extern const unsigned char segment_sixteen_40x60[];
-extern const unsigned char segment_sixteen_48x72_num[];
-extern const unsigned char segment_sixteen_64x96_num[];
-extern const unsigned char segment_sixteen_96x144_num[];//
-extern const unsigned char segment_sixteen_128x192_num[];//
+
+/* SYMBOLS */
+extern const unsigned char battery_24x48[];
+extern const unsigned char barcode_rm4scc_16x16[];
+extern const unsigned char barcode_post_40x20_num[];
+extern const unsigned char dingbats1_32x24[];
+extern const unsigned char symbols_16x16[];
+extern const unsigned char symbols_16x32_1[];
+extern const unsigned char symbols_16x32_2[];
+extern const unsigned char symbols_32x32[];
 
 #define LCD_PIXEL_WIDTH  800
 #define LCD_PIXEL_HEIGHT 480
@@ -109,7 +136,7 @@ typedef struct {
 #define LCD_BASE ((uint32_t)0x6001FFFE)
 #define LCD 		 ((LCD_CONTROLLER_TypeDef *) LCD_BASE)
 
-extern char array [1000]; 
+extern char array [1]; 
 
 void SSD1963_Init(uint8_t bright);
 void SSD1963_Bright(uint8_t bright);
@@ -158,5 +185,9 @@ void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t si
 #define LCD_INTERFACE				0x00F6
 #define LCD_PRC				   	  0x00F7
 #define LCD_VERTICAL_SCROLL 0x0033 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _SSD1289_H_ */
