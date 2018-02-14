@@ -74,10 +74,11 @@ void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24)
 
 void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color24, const unsigned char *font, char *s)
 {
-	uint8_t fontinfo  =  3;
-	uint8_t width  		= font[0];
-	uint8_t height 		= font[1];
-	uint8_t startchar = font[2];
+	uint8_t infoblock =  4;
+	uint8_t lineblock = font[0];
+//	uint8_t width 		= font[1];
+	uint8_t height 		= font[2];
+	uint8_t startchar = font[3];
 	
 	uint8_t indent = 3;
 	
@@ -88,31 +89,31 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 
 	for (z = 0; s[z] != '\0'; z++)
 	{
-		i = (s[z] - startchar) * (height * width);
+		i = (s[z] - startchar) * (height * lineblock);
 		x = i;
 		st1 = 0;
 		en1 = 0;
 		for (q = 0; q < height; q++)
 		{
-			for (j = 0, k = 0; j < width; j++)
+			for (j = 0, k = 0; j < lineblock; j++)
 			{
 				y = 8;
 				while (y--)
 				{
 					k++;
-					if (((font[x + fontinfo] & (1 << y)) && (st1 == 0)) || ((font[x + fontinfo] & (1 << y)) && (k < st1))) { st1 = k; }
-					if ((font[x + fontinfo] & (1 << y)) && (en1 < k)) { en1 = k; }
+					if (((font[x + infoblock] & (1 << y)) && (st1 == 0)) || ((font[x + infoblock] & (1 << y)) && (k < st1))) { st1 = k; }
+					if ((font[x + infoblock] & (1 << y)) && (en1 < k)) { en1 = k; }
 				}
 				x++;
 			}
 		}
 
 		if (st1 > 0) { st1--; }
-		if (en1 < 2) { en1 =  (width * 8) / 3; }
-		else if (en1 < (width * 8)) { en1 = (en1 - st1 + indent); }
+		if (en1 < 2) { en1 =  (lineblock * 8) / 3; }
+		else if (en1 < (lineblock * 8)) { en1 = (en1 - st1 + indent); }
 
 		j = 0;
-		k = (height * width) + i;
+		k = (height * lineblock) + i;
 		q = en1;
 
 		if ((y0 + en1) > LCD_HEIGHT) { y0 = y2; x0++; }
@@ -125,7 +126,7 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 			else { y = 8; }
 			while (y--)
 			{
-				if ((font[x + fontinfo] & (1 << y)) != 0)
+				if ((font[x + infoblock] & (1 << y)) != 0)
 				{
 					LCD_Data(H24_RGB565_Reversed(color24));
 				}
@@ -137,7 +138,7 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 
 				if (!--q)
 				{
-					if (j != width) { x = x + (width - j); }
+					if (j != lineblock) { x = x + (lineblock - j); }
 					y = 0; j = 0; q = en1;
 				}
 			}
@@ -145,44 +146,46 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 	}
 }
 
-void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height)
+void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size)
 {
 	uint8_t fontinfo  =  3;
-//	uint8_t width  		= font[0];
-//	uint8_t height 		= font[1];
-//	uint8_t startchar = font[2];
+	
+//	uint8_t lineblock = font[0];	
+	uint8_t width  		= font[1];
+	uint8_t height 		= font[2];
+//	uint8_t startchar = font[3];
 	
 	uint8_t i, f = 0;
 	
-		for (i = 0; i < height; i++)
+	for (i = 0; i < height; i++)
+	{
+		for (f = 0; f < width; f++)
 		{
-			for (f = 0; f < width; f++)
+			if ((*(font + fontinfo + height * (ascii - 0x20) + i) >> (7 - f)) & 0x01)
 			{
-				if ((*(font + fontinfo + height * (ascii - 0x20) + i) >> (7 - f)) & 0x01)
-				{
-					LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, color24);
-				}
-				else
-				{
-					LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, ground24);
-				}
+				LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, color24);
+			}
+			else
+			{
+				LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, ground24);
 			}
 		}
+	}
 }
 
-void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size, uint8_t width, uint8_t height)
+void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size)
 {
-		while (*string)
+	while (*string)
+	{
+		if ((x + 8) > LCD_HEIGHT - 1)
 		{
-			if ((x + 8) > LCD_HEIGHT - 1)
-			{
-				x = 1;
-				y = y + 8 * size;
-			}
-			LCD_Char(x, y, color24, ground24, font, *string, size, width, height);
-			x += 8 * size;
-			string++;
+			x = 1;
+			y = y + 8 * size;
 		}
+		LCD_Char(x, y, color24, ground24, font, *string, size);
+		x += 8 * size;
+		string++;
+	}
 }
 
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size)
@@ -269,19 +272,19 @@ void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t si
 	{
 		if (fill == 1)
 		{
-			LCD_Rectangle_Fill(x - a_, y - b_, 2 * a_ + 1, 2 * b_ + 1, color24);
-			LCD_Rectangle_Fill(x - b_, y - a_, 2 * b_ + 1, 2 * a_ + 1, color24);
+		LCD_Rectangle_Fill(x - a_, y - b_, 2 * a_ + 1, 2 * b_ + 1, color24);
+		LCD_Rectangle_Fill(x - b_, y - a_, 2 * b_ + 1, 2 * a_ + 1, color24);
 		}
 		else
 		{
-			LCD_Rectangle_Fill(a_ + x, b_ + y, size, size, color24);
-			LCD_Rectangle_Fill(b_ + x, a_ + y, size, size, color24);
-			LCD_Rectangle_Fill(x - a_, b_ + y, size, size, color24);
-			LCD_Rectangle_Fill(x - b_, a_ + y, size, size, color24);
-			LCD_Rectangle_Fill(b_ + x, y - a_, size, size, color24);
-			LCD_Rectangle_Fill(a_ + x, y - b_, size, size, color24);
-			LCD_Rectangle_Fill(x - a_, y - b_, size, size, color24);
-			LCD_Rectangle_Fill(x - b_, y - a_, size, size, color24);
+		LCD_Rectangle_Fill(a_ + x, b_ + y, size, size, color24);
+		LCD_Rectangle_Fill(b_ + x, a_ + y, size, size, color24);
+		LCD_Rectangle_Fill(x - a_, b_ + y, size, size, color24);
+		LCD_Rectangle_Fill(x - b_, a_ + y, size, size, color24);
+		LCD_Rectangle_Fill(b_ + x, y - a_, size, size, color24);
+		LCD_Rectangle_Fill(a_ + x, y - b_, size, size, color24);
+		LCD_Rectangle_Fill(x - a_, y - b_, size, size, color24);
+		LCD_Rectangle_Fill(x - b_, y - a_, size, size, color24);
 		}
 		if (P < 0)
 		{
@@ -290,9 +293,9 @@ void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t si
 		}
 		else
 		{
-			P = (P + 5) + (2 * (a_ - b_));
-			a_++;
-			b_--;
+		P = (P + 5) + (2 * (a_ - b_));
+		a_++;
+		b_--;
 		}
 	}
 }
@@ -382,109 +385,109 @@ void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width
 	LCD_Fill_Circle_Helper(x + r, y + r, r, 2, width - 2 * r - 1, color24);
 }
 
-	void SSD1963_Init(uint8_t bright)
-	{
-		//1. Power up the system platform and assert the RESET# signal (‘L’ state) for a minimum of 100us to reset the controller. 
-		//		LCD_RST_SET
-		//    HAL_Delay (100);
-		//    LCD_RST_RESET
-		//    HAL_Delay (120);
-		//    LCD_RST_SET
-		HAL_Delay(150);
-		/*	2. Configure SSD1961’s PLL frequency
-		VCO = Input clock x (M + 1)
-		PLL frequency  = VCO / (N + 1)
-		* Note :
-		1.  250MHz < VCO < 800MHz
-		PLL frequency < 110MHz
-		2.  For a 10MHz input clock to obtain 100MHz PLL frequency, user cannot program M = 19 and N = 1.  The
-		closet setting in this situation is setting M=29 and N=2, where 10 x 30 / 3 = 100MHz.
-		3.  Before PLL is locked, SSD1961/2/3 is operating at input clock frequency (e.g. 10MHz), registers
-		programming cannot be set faster than half of the input clock frequency (5M words/s in this example).
-		Example to program SSD1961 with M = 29, N = 2, VCO = 10M x 30 = 300 MHz, PLL frequency = 300M / 3 = 100
-		MHz
-		******************************/
+void SSD1963_Init(uint8_t bright)
+{
+	//1. Power up the system platform and assert the RESET# signal (‘L’ state) for a minimum of 100us to reset the controller. 
+	//		LCD_RST_SET
+	//    HAL_Delay (100);
+	//    LCD_RST_RESET
+	//    HAL_Delay (120);
+	//    LCD_RST_SET
+	HAL_Delay(150);
+	/*	2. Configure SSD1961’s PLL frequency
+	VCO = Input clock x (M + 1)
+	PLL frequency  = VCO / (N + 1)
+	* Note :
+	1.  250MHz < VCO < 800MHz
+	PLL frequency < 110MHz
+	2.  For a 10MHz input clock to obtain 100MHz PLL frequency, user cannot program M = 19 and N = 1.  The
+	closet setting in this situation is setting M=29 and N=2, where 10 x 30 / 3 = 100MHz.
+	3.  Before PLL is locked, SSD1961/2/3 is operating at input clock frequency (e.g. 10MHz), registers
+	programming cannot be set faster than half of the input clock frequency (5M words/s in this example).
+	Example to program SSD1961 with M = 29, N = 2, VCO = 10M x 30 = 300 MHz, PLL frequency = 300M / 3 = 100
+	MHz
+	******************************/
 
-		LCD_Command(LCD_RESET);
-		LCD_Command(LCD_DISPLAY_ON); 		
-		LCD_Command(0xE2);//set frequency
-		LCD_Data(0x1D);  // presceller(M=29) 
-		LCD_Data(0x02);  //multiplier(N=2) 
-		LCD_Data(0xFF);  //on-off multiplier and presceller
-		//3. Turn on the PLL 
-		LCD_Command(0xE0);
-		LCD_Data(0x01);
-		HAL_Delay(120); // Wait for 100us to let the PLL stable and read the PLL lock status bit. 
-		LCD_Command(0xE0);
-		//READ COMMAND “0xE4);   (Bit 2 = 1 if PLL locked) 
-		LCD_Data(0x03); // 5. Switch the clock source to PLL 
-		HAL_Delay(120);
-		LCD_Command(0x01); //6. Software Reset
-		HAL_Delay(120);
-		/*************
-		Dot clock Freq = PLL Freq x (LCDC_FPR + 1) / 2^20
-		For example,  22MHz = 100MHz * (LCDC_FPR+1) / 2^20
-		LCDC_FPR = 230685 = 0x3851D
-		********************/
-		LCD_Command(0xE6);  // 7. Configure the dot clock frequency
-		LCD_Data(0x03);
-		LCD_Data(0x85);
-		LCD_Data(0x1D);
-		//8. Configure the LCD panel  
-		//a. Set the panel size to 480 x 800 and polarity of LSHIFT, LLINE and LFRAME to active low 
-		LCD_Command(0xB0);
-		if (LSHIFT) LCD_Data(0x0C); /* 0x08 0x0C 0xAE(5') */else LCD_Data(0xAE); //18bit panel, disable dithering, LSHIFT: Data latch in rising edge, LLINE and LFRAME: active low 
-		LCD_Data(0x20);  /* 0x00 0x80 0x20(5') */    // TFT type 
-		LCD_Data(0x03);     // Horizontal Width:  480 - 1 = 0x031F 
-		LCD_Data(0x1F);
-		LCD_Data(0x01);     // Vertical Width :  800 -1 = 0x01DF
-		LCD_Data(0xDF);
-		LCD_Data(0x2D);  /* 0x00 0x2d */   // 000 = режим RGB
-											   //b. Set the horizontal period 
-		LCD_Command(0xB4); // Horizontal Display Period  
-		LCD_Data(0x03);    // HT: horizontal total period (display + non-display) – 1 = 520-1 =  519 =0x0207
-		LCD_Data(0xA0);
-		LCD_Data(0x00);    // HPS: Horizontal Sync Pulse Start Position = Horizontal Pulse Width + Horizontal Back Porch = 16 = 0x10 
-		LCD_Data(0x2E);
-		LCD_Data(0x30);     // HPW: Horizontal Sync Pulse Width - 1=8-1=7 
-		LCD_Data(0x00);    // LPS: Horizontal Display Period Start Position = 0x0000 
-		LCD_Data(0x0F);
-		LCD_Data(0x00);    // LPSPP: Horizontal Sync Pulse Subpixel Start Position(for serial TFT interface).  Dummy value for TFT interface. 
-							   //c. Set the vertical period 
-		LCD_Command(0xB6);    // Vertical Display Period  
-		LCD_Data(0x02);     // VT: Vertical Total (display + non-display) Period – 1  =647=0x287 
-		LCD_Data(0x0D);
-		LCD_Data(0x00);     // VPS: Vertical Sync Pulse Start Position  =     Vertical Pulse Width + Vertical Back Porch = 2+2=4  
-		LCD_Data(0x10);
-		LCD_Data(0x10);     //VPW: Vertical Sync Pulse Width – 1 =1 
-		LCD_Data(0x08);     //FPS: Vertical Display Period Start Position = 0 
-		LCD_Data(0x00);
-		//9. Set the back light control PWM clock frequency
-		//PWM signal frequency = PLL clock / (256 * (PWMF[7:0] + 1)) / 256
-		LCD_Command(0xBE);    // PWM configuration 
-		LCD_Data(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
-		LCD_Data(0xFF);     // PWM duty cycle  (50%) 
-		LCD_Data(0x01);     // 0x09 = enable DBC, 0x01 = disable DBC  //on
-		LCD_Command(0x36);     // set address_mode
-		if (MIRROR_H) LCD_Data(0x02); else if (MIRROR_V) LCD_Data(0x03);
-		//13. Setup the MCU interface for 16-bit data write (565 RGB)
-		LCD_Command(0xF0);     // mcu interface config 
-		LCD_Data(0x03);     // 16 bit interface (565)
-								//10. Turn on the display 						
-		LCD_Command(LCD_DISPLAY_ON);     // display on 
-		SSD1963_Bright(bright);
-	}
+	LCD_Command(LCD_RESET);
+	LCD_Command(LCD_DISPLAY_ON); 		
+	LCD_Command(0xE2);//set frequency
+	LCD_Data(0x1D);  // presceller(M=29) 
+	LCD_Data(0x02);  //multiplier(N=2) 
+	LCD_Data(0xFF);  //on-off multiplier and presceller
+	//3. Turn on the PLL 
+	LCD_Command(0xE0);
+	LCD_Data(0x01);
+	HAL_Delay(120); // Wait for 100us to let the PLL stable and read the PLL lock status bit. 
+	LCD_Command(0xE0);
+	//READ COMMAND “0xE4);   (Bit 2 = 1 if PLL locked) 
+	LCD_Data(0x03); // 5. Switch the clock source to PLL 
+	HAL_Delay(120);
+	LCD_Command(0x01); //6. Software Reset
+	HAL_Delay(120);
+	/*************
+	Dot clock Freq = PLL Freq x (LCDC_FPR + 1) / 2^20
+	For example,  22MHz = 100MHz * (LCDC_FPR+1) / 2^20
+	LCDC_FPR = 230685 = 0x3851D
+	********************/
+	LCD_Command(0xE6);  // 7. Configure the dot clock frequency
+	LCD_Data(0x03);
+	LCD_Data(0x85);
+	LCD_Data(0x1D);
+	//8. Configure the LCD panel  
+	//a. Set the panel size to 480 x 800 and polarity of LSHIFT, LLINE and LFRAME to active low 
+	LCD_Command(0xB0);
+	if (LSHIFT) LCD_Data(0x0C); /* 0x08 0x0C 0xAE(5') */else LCD_Data(0xAE); //18bit panel, disable dithering, LSHIFT: Data latch in rising edge, LLINE and LFRAME: active low 
+	LCD_Data(0x20);  /* 0x00 0x80 0x20(5') */    // TFT type 
+	LCD_Data(0x03);     // Horizontal Width:  480 - 1 = 0x031F 
+	LCD_Data(0x1F);
+	LCD_Data(0x01);     // Vertical Width :  800 -1 = 0x01DF
+	LCD_Data(0xDF);
+	LCD_Data(0x2D);  /* 0x00 0x2d */   // 000 = режим RGB
+											 //b. Set the horizontal period 
+	LCD_Command(0xB4); // Horizontal Display Period  
+	LCD_Data(0x03);    // HT: horizontal total period (display + non-display) – 1 = 520-1 =  519 =0x0207
+	LCD_Data(0xA0);
+	LCD_Data(0x00);    // HPS: Horizontal Sync Pulse Start Position = Horizontal Pulse Width + Horizontal Back Porch = 16 = 0x10 
+	LCD_Data(0x2E);
+	LCD_Data(0x30);     // HPW: Horizontal Sync Pulse Width - 1=8-1=7 
+	LCD_Data(0x00);    // LPS: Horizontal Display Period Start Position = 0x0000 
+	LCD_Data(0x0F);
+	LCD_Data(0x00);    // LPSPP: Horizontal Sync Pulse Subpixel Start Position(for serial TFT interface).  Dummy value for TFT interface. 
+							 //c. Set the vertical period 
+	LCD_Command(0xB6);    // Vertical Display Period  
+	LCD_Data(0x02);     // VT: Vertical Total (display + non-display) Period – 1  =647=0x287 
+	LCD_Data(0x0D);
+	LCD_Data(0x00);     // VPS: Vertical Sync Pulse Start Position  =     Vertical Pulse Width + Vertical Back Porch = 2+2=4  
+	LCD_Data(0x10);
+	LCD_Data(0x10);     //VPW: Vertical Sync Pulse Width – 1 =1 
+	LCD_Data(0x08);     //FPS: Vertical Display Period Start Position = 0 
+	LCD_Data(0x00);
+	//9. Set the back light control PWM clock frequency
+	//PWM signal frequency = PLL clock / (256 * (PWMF[7:0] + 1)) / 256
+	LCD_Command(0xBE);    // PWM configuration 
+	LCD_Data(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
+	LCD_Data(0xFF);     // PWM duty cycle  (50%) 
+	LCD_Data(0x01);     // 0x09 = enable DBC, 0x01 = disable DBC  //on
+	LCD_Command(0x36);     // set address_mode
+	if (MIRROR_H) LCD_Data(0x02); else if (MIRROR_V) LCD_Data(0x03);
+	//13. Setup the MCU interface for 16-bit data write (565 RGB)
+	LCD_Command(0xF0);     // mcu interface config 
+	LCD_Data(0x03);     // 16 bit interface (565)
+							//10. Turn on the display 						
+	LCD_Command(LCD_DISPLAY_ON);     // display on 
+	SSD1963_Bright(bright);
+}
 
 inline void SSD1963_Bright(uint8_t bright)
-	{
-		LCD_Command(0xBE);  // PWM configuration 
-		LCD_Data(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
-		LCD_Data(bright);   // PWM duty cycle  
-		LCD_Data(0x01);
-	}
+{
+	LCD_Command(0xBE);  // PWM configuration 
+	LCD_Data(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
+	LCD_Data(bright);   // PWM duty cycle  
+	LCD_Data(0x01);
+}
 	
 	void SSD1963_Test(void)
-	{
+{
 //	LCD_Rectangle_Fill(0, 0, 800, 480, RED);	
 //	HAL_Delay(500);
 //	LCD_Rectangle_Fill(0, 0, 800, 480, GREEN);
@@ -494,14 +497,14 @@ inline void SSD1963_Bright(uint8_t bright)
 	LCD_Rectangle_Fill(0, 0, 800, 480, MAGENTA);
 	LCD_Rectangle_Fill(1, 1, 798, 478, BLACK);
 		
-		char array[255];
+	char array[255];
 		
 	sprintf(array, "0123456789");
 	LCD_String_Font(10, 2, BLACK, RED, segment_sixteen_64x96_num, /*"9876543210"*/ array);
 		
 //	sprintf(array, "0123456789");
 //	const uint8_t string_1 [] = "012345";
-		LCD_String(10, 300, BLUE, BLACK, tiny_8x8, array/*"1234567890: TEST"*/, 1, 8, 8);
+	LCD_String(10, 300, BLUE, BLACK, sinclair_8x8, array/*"1234567890: TEST"*/, 7);
 		
 	sprintf(array, "0123456789 : Just Font TEST!");
 	LCD_String_Font(400, 2, BLUE, RED, ubuntu_24x32_bold, array);
@@ -529,4 +532,4 @@ inline void SSD1963_Bright(uint8_t bright)
 
 //	LCD_Char(300, 350, BLUE_D, MAGENTA, *small_8x12, 'A', 1, 8, 12);
 //	LCD_String(300, 300, BLUE, BLACK, *small_8x12, "THIS is Just Font TEST", 2, 8, 12);
-	}
+}
