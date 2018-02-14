@@ -3,9 +3,9 @@
 <title>Static Call Graph - [SSD1963_FSMC\SSD1963_FSMC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image SSD1963_FSMC\SSD1963_FSMC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 14 08:01:44 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 14 13:45:24 2018
 <BR><P>
-<H3>Maximum Stack Usage =        232 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        496 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; SSD1963_Test &rArr; LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
 <P>
@@ -385,8 +385,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[64]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))
@@ -477,8 +477,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b7]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<BR><BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[68]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_GetTick))
@@ -559,11 +559,11 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_GetPriorityGrouping
 </UL>
 <BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[70]"></a>HAL_NVIC_SetPriorityGrouping</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f4xx_hal_cortex.o(i.HAL_NVIC_SetPriorityGrouping))
@@ -590,9 +590,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7a]"></a>HAL_RCC_GetHCLKFreq</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK2Freq
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK2Freq
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK1Freq
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[6e]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 22 bytes, Stack size 4 bytes, stm32f4xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
@@ -868,8 +868,8 @@ Global Symbols
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[a8]"></a>LCD_Char</STRONG> (Thumb, 124 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Char))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
+<P><STRONG><a name="[a8]"></a>LCD_Char</STRONG> (Thumb, 132 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_Char))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
 </UL>
@@ -898,14 +898,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b2]"></a>LCD_String</STRONG> (Thumb, 90 bytes, Stack size 72 bytes, ssd1963_fsmc.o(i.LCD_String))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Char
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
-<P><STRONG><a name="[b3]"></a>LCD_String_Font</STRONG> (Thumb, 468 bytes, Stack size 88 bytes, ssd1963_fsmc.o(i.LCD_String_Font))
+<P><STRONG><a name="[b3]"></a>LCD_String_Font</STRONG> (Thumb, 472 bytes, Stack size 88 bytes, ssd1963_fsmc.o(i.LCD_String_Font))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = LCD_String_Font &rArr; LCD_Position &rArr; LCD_Set_Y
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
@@ -959,8 +959,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c1]"></a>SSD1963_Test</STRONG> (Thumb, 144 bytes, Stack size 24 bytes, ssd1963_fsmc.o(i.SSD1963_Test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = SSD1963_Test &rArr; LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
+<P><STRONG><a name="[c1]"></a>SSD1963_Test</STRONG> (Thumb, 144 bytes, Stack size 280 bytes, ssd1963_fsmc.o(i.SSD1963_Test))
+<BR><BR>[Stack]<UL><LI>Max Depth = 472<LI>Call Chain = SSD1963_Test &rArr; LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String_Font
@@ -987,12 +987,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_CLKSourceConfig
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_MCOConfig
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1030,14 +1030,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b5]"></a>_Error_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i._Error_Handler))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART1_UART_Init
+<BR><BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART1_UART_Init
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI3_Init
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_RTC_Init
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C1_Init
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[c7]"></a>__0sprintf$bare</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, printfb.o(i.__0sprintf$bare), UNUSED)
@@ -1089,19 +1089,10 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 228 bytes, Stack size 24 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = main &rArr; SSD1963_Test &rArr; LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
+<BR><BR>[Stack]<UL><LI>Max Depth = 496<LI>Call Chain = main &rArr; SSD1963_Test &rArr; LCD_String &rArr; LCD_Char &rArr; LCD_Rectangle_Fill &rArr; LCD_Work_Area &rArr; LCD_Set_Y
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getY
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getX
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XPT2046_Init
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Pixel
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
@@ -1113,6 +1104,15 @@ Global Symbols
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C1_Init
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getY
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getX
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XPT2046_Init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Pixel
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -1213,8 +1213,8 @@ Local Symbols
 <P><STRONG><a name="[b4]"></a>MX_FSMC_Init</STRONG> (Thumb, 112 bytes, Stack size 32 bytes, main.o(i.MX_FSMC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MX_FSMC_Init &rArr; HAL_SRAM_Init &rArr; HAL_SRAM_MspInit &rArr; HAL_FSMC_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SRAM_Init
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SRAM_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1233,8 +1233,8 @@ Local Symbols
 <P><STRONG><a name="[b8]"></a>MX_I2C1_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main.o(i.MX_I2C1_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = MX_I2C1_Init &rArr; HAL_I2C_Init &rArr; HAL_I2C_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1242,8 +1242,8 @@ Local Symbols
 <P><STRONG><a name="[b9]"></a>MX_I2C2_Init</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, main.o(i.MX_I2C2_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = MX_I2C2_Init &rArr; HAL_I2C_Init &rArr; HAL_I2C_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1251,8 +1251,8 @@ Local Symbols
 <P><STRONG><a name="[ba]"></a>MX_RTC_Init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, main.o(i.MX_RTC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = MX_RTC_Init &rArr; HAL_RTC_Init &rArr; RTC_EnterInitMode
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RTC_Init
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RTC_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1260,8 +1260,8 @@ Local Symbols
 <P><STRONG><a name="[bb]"></a>MX_SPI3_Init</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, main.o(i.MX_SPI3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = MX_SPI3_Init &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_NVIC_SetPriority &rArr; NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Init
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1270,9 +1270,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = MX_TIM1_Init &rArr; HAL_TIM_Base_Init &rArr; HAL_TIM_Base_MspInit &rArr; HAL_NVIC_SetPriority &rArr; NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_MasterConfigSynchronization
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_ConfigClockSource
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1280,8 +1280,8 @@ Local Symbols
 <P><STRONG><a name="[be]"></a>MX_USART1_UART_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main.o(i.MX_USART1_UART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = MX_USART1_UART_Init &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

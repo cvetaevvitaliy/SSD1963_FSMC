@@ -136,16 +136,14 @@ typedef struct {
 #define LCD_BASE ((uint32_t)0x6001FFFE)
 #define LCD 		 ((LCD_CONTROLLER_TypeDef *) LCD_BASE)
 
-extern char array [1]; 
-
 void SSD1963_Init(uint8_t bright);
 void SSD1963_Bright(uint8_t bright);
 void SSD1963_Test(void);
 
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
 void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, const unsigned char *font, char *s);
-void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height);
-void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *table, char *string, uint8_t size, uint8_t width, uint8_t height);
+void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *font, uint8_t ascii, uint8_t size, uint8_t width, uint8_t height);
+void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *font, char *string, uint8_t size, uint8_t width, uint8_t height);
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size);
 void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
 void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);
