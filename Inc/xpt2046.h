@@ -32,11 +32,9 @@
 #define OUT_MIN_Y	0
 #define OUT_MAX_Y	479
 
-uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
-void XPT2046_Init(void);
-uint16_t getRaw(uint8_t address);
 uint16_t getX(void);
 uint16_t getY(void);
+void XPT2046_Init(void);
 
 #ifdef __cplusplus
 }
