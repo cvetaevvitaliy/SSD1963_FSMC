@@ -72,13 +72,13 @@ void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24)
 	LCD_Data(H24_RGB565(color24));
 }
 
-void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color24, const unsigned char *font, char *s)
+void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, const unsigned char *font, char *s)
 {
-	uint8_t infoblock =  4;
-	uint8_t lineblock = font[0];
-//	uint8_t width 		= font[1];
-	uint8_t height 		= font[2];
-	uint8_t startchar = font[3];
+	unsigned char infoblock =  4;
+	unsigned char lineblock = font[0];
+//	unsigned char width 		= font[1];
+	unsigned char height 		= font[2];
+	unsigned char startchar = font[3];
 	
 	uint8_t indent = 3;
 	
@@ -146,14 +146,14 @@ void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color
 	}
 }
 
-void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size)
+void LCD_Char_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size)
 {
 	uint8_t fontinfo  =  3;
 	
-//	uint8_t lineblock = font[0];	
-	uint8_t width  		= font[1];
-	uint8_t height 		= font[2];
-//	uint8_t startchar = font[3];
+//	unsigned char lineblock = font[0];	
+	unsigned char width  		= font[1];
+	unsigned char height 		= font[2];
+	unsigned char startchar = font[3];
 	
 	uint8_t i, f = 0;
 	
@@ -161,7 +161,7 @@ void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const
 	{
 		for (f = 0; f < width; f++)
 		{
-			if ((*(font + fontinfo + height * (ascii - 0x20) + i) >> (7 - f)) & 0x01)
+			if ((*(font + fontinfo + height * (ascii - startchar) + i) >> (7 - f)) & 0x01)
 			{
 				LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, color24);
 			}
@@ -173,7 +173,7 @@ void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const
 	}
 }
 
-void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size)
+void LCD_String_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size)
 {
 	while (*string)
 	{
@@ -182,7 +182,7 @@ void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, con
 			x = 1;
 			y = y + 8 * size;
 		}
-		LCD_Char(x, y, color24, ground24, font, *string, size);
+		LCD_Char_Scale_1B(x, y, color24, ground24, font, *string, size);
 		x += 8 * size;
 		string++;
 	}
@@ -500,14 +500,14 @@ inline void SSD1963_Bright(uint8_t bright)
 	char array[255];
 		
 	sprintf(array, "0123456789");
-	LCD_String_Font(10, 2, BLACK, RED, segment_sixteen_64x96_num, /*"9876543210"*/ array);
+	LCD_String(10, 2, RED, BLUE, segment_sixteen_64x96_num, /*"9876543210"*/ array);
 		
 //	sprintf(array, "0123456789");
 //	const uint8_t string_1 [] = "012345";
-	LCD_String(10, 300, BLUE, BLACK, sinclair_8x8, array/*"1234567890: TEST"*/, 7);
+	LCD_String_Scale_1B(10, 300, GREEN, BLACK, old_8x16, array/*"1234567890: TEST"*/, 3);
 		
 	sprintf(array, "0123456789 : Just Font TEST!");
-	LCD_String_Font(400, 2, BLUE, RED, ubuntu_24x32_bold, array);
+	LCD_String(400, 2, BLUE, RED, ubuntu_24x32_bold, array);
 		
 //	LCD_String(50, 100, GREEN, RED, *tiny_8x8, "Calibration", 3, 8, 8);	
 //	LCD_Line(LCD_PIXEL_WIDTH -10-50, 10+25, LCD_PIXEL_WIDTH -10-50+50, 10+25, WHITE, 1);

@@ -25,7 +25,7 @@ extern const unsigned char myke_8x9[];
 extern const unsigned char default_8x12[];
 
 /* 8x16 */
-extern const unsigned char retro_8x16[];
+extern const unsigned char old_8x16[];
 
 /* 16x16 */
 extern const unsigned char default_16x16[];
@@ -48,7 +48,7 @@ extern const unsigned char arial_16x24_round[];
 extern const unsigned char ocr_16x24[];
 
 /* 16x32 */
-extern const unsigned char retro_16x32[];
+extern const unsigned char old_16x32[];
 
 /* 24x32 */
 extern const unsigned char inconsola_24x32[];
@@ -141,9 +141,9 @@ void SSD1963_Bright(uint8_t bright);
 void SSD1963_Test(void);
 
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
-void LCD_String_Font(uint16_t x0, uint16_t y0, uint32_t ground24, uint32_t color, const unsigned char *font, char *s);
-void LCD_Char(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *font, uint8_t ascii, uint8_t size);
-void LCD_String(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground, const unsigned char *font, char *string, uint8_t size);
+void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, const unsigned char *font, char *s);
+void LCD_Char_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size);
+void LCD_String_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size);
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size);
 void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
 void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);

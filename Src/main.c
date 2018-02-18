@@ -147,11 +147,16 @@ int main(void)
 		touchX = getX();	
 		touchY = getY();
 		LCD_Pixel(touchX, touchY, WHITE);
-		LCD_Rectangle_Fill(touchX, touchY, 3, 3, WHITE);
+//		LCD_Rectangle_Fill(touchX, touchY, 3, 3, WHITE);		
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 
 		touchX = 0;
 		touchY = 0;
 		touchIRQ = 0;
+		}
+		else
+		{
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
 		}
 		
 	if (millis / 1000 % 2 == 0) HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
@@ -387,7 +392,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);

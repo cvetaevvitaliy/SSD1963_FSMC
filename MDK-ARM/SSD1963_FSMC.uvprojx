@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>1</uC99>
+            <uC99>0</uC99>
             <useXO>0</useXO>
             <v6Lang>6</v6Lang>
             <v6LangP>4</v6LangP>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;                       ../Drivers/STM32F4xx_HAL_Driver/Inc;                       ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;                       ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;                       ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;                        ../Drivers/STM32F4xx_HAL_Driver/Inc;                        ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;                        ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;                        ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -647,16 +647,6 @@
               <FilePath>..\Src\font_ocr_16x24.c</FilePath>
             </File>
             <File>
-              <FileName>font_retro_8x16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\font_retro_8x16.c</FilePath>
-            </File>
-            <File>
-              <FileName>font_retro_16x32.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\font_retro_16x32.c</FilePath>
-            </File>
-            <File>
               <FileName>font_barcode_rm4scc_16x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\font_barcode_rm4scc_16x16.c</FilePath>
@@ -785,6 +775,16 @@
               <FileName>font_ubuntu_24x32_bold.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\font_ubuntu_24x32_bold.c</FilePath>
+            </File>
+            <File>
+              <FileName>font_old_8x16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_old_8x16.c</FilePath>
+            </File>
+            <File>
+              <FileName>font_old_16x32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\font_old_16x32.c</FilePath>
             </File>
           </Files>
         </Group>

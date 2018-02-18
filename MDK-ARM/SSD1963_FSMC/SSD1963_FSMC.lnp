@@ -49,8 +49,6 @@
 "ssd1963_fsmc\font_myke_8x9.o"
 "ssd1963_fsmc\font_nadianne_16x16.o"
 "ssd1963_fsmc\font_ocr_16x24.o"
-"ssd1963_fsmc\font_retro_8x16.o"
-"ssd1963_fsmc\font_retro_16x32.o"
 "ssd1963_fsmc\font_barcode_rm4scc_16x16.o"
 "ssd1963_fsmc\font_segment_eighteen_32x52.o"
 "ssd1963_fsmc\font_segment_seven_32x50_num.o"
@@ -77,6 +75,8 @@
 "ssd1963_fsmc\font_tiny_8x8.o"
 "ssd1963_fsmc\font_ubuntu_24x32.o"
 "ssd1963_fsmc\font_ubuntu_24x32_bold.o"
+"ssd1963_fsmc\font_old_8x16.o"
+"ssd1963_fsmc\font_old_16x32.o"
 --library_type=microlib --strict --scatter "SSD1963_FSMC\SSD1963_FSMC.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
