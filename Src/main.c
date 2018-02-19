@@ -126,6 +126,7 @@ int main(void)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_TIM_Base_Start_IT(&htim1);
 
+	SSD1289_Init();
 	SSD1963_Init(90);
 	XPT2046_Init();
 

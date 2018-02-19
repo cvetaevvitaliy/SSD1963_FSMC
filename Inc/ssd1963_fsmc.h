@@ -86,19 +86,16 @@ extern const unsigned char symbols_16x32_1[];
 extern const unsigned char symbols_16x32_2[];
 extern const unsigned char symbols_32x32[];
 
-#define LCD_PIXEL_WIDTH  800
-#define LCD_PIXEL_HEIGHT 480
+#define CMD *(uint16_t *)0x60000000
+#define DAT *(uint16_t *)0x60020000
 
 #define MIRROR_V 0
 #define MIRROR_H 0
 
-#define LCD_RST_SET       HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-#define LCD_RST_RESET     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+#define LCD_RST_SET   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+#define LCD_RST_RESET HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 											
 #define LSHIFT 0
-
-#define CMD_ADR (*(uint16_t *)0x60000000)
-#define DAT_ADR (*(uint16_t *)0x60020000) 
 
 #define LCD_WIDTH       480
 #define LCD_HEIGHT      800
@@ -126,15 +123,6 @@ uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 #define MAROON 	0x800000 /* 128,   0,   0 */
 #define OLIVE 	0x808000 /* 128, 128,   0 */
 #define LIME 		0xBFFF00 /* 191, 255,   0 */
-
-typedef struct {
-	__IO uint16_t REG;
-	__IO uint16_t RAM;
-
-} LCD_CONTROLLER_TypeDef;
-
-#define LCD_BASE ((uint32_t)0x6001FFFE)
-#define LCD 		 ((LCD_CONTROLLER_TypeDef *) LCD_BASE)
 
 void SSD1963_Init(uint8_t bright);
 void SSD1963_Bright(uint8_t bright);
