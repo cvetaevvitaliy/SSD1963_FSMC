@@ -97,8 +97,8 @@ extern const unsigned char symbols_32x32[];
 											
 #define LSHIFT 0
 
-#define LCD_WIDTH       480
 #define LCD_HEIGHT      800
+#define LCD_WIDTH       480
 
 uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 
@@ -137,7 +137,7 @@ void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint
 void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);
 void LCD_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24);
 void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24);
-void LCD_Triangle( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint32_t color24);
+void LCD_Triangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint32_t color24);
 void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint32_t color24);
 
 #define LCD_RESET			 		  0x0001
