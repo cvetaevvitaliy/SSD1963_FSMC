@@ -3,11 +3,11 @@
 <title>Static Call Graph - [SSD1963_FSMC\SSD1963_FSMC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image SSD1963_FSMC\SSD1963_FSMC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 21 01:23:54 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Mar 05 00:17:59 2018
 <BR><P>
-<H3>Maximum Stack Usage =        464 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        536 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; SSD1963_Test &rArr; LCD_String_Scale_1B &rArr; LCD_Char_Scale_1B &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+main &rArr; SSD1963_Test &rArr; LCD_Rect_Round_Fill &rArr; LCD_Fill_Circle_Helper &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 <P>
 <H3>
 Mutually Recursive functions
@@ -869,76 +869,67 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[a8]"></a>LCD_Char_Scale_1B</STRONG> (Thumb, 150 bytes, Stack size 56 bytes, ssd1963_fsmc.o(i.LCD_Char_Scale_1B))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = LCD_Char_Scale_1B &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = LCD_Char_Scale_1B &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String_Scale_1B
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
 <P><STRONG><a name="[aa]"></a>LCD_Circle</STRONG> (Thumb, 336 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Circle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_Circle &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_Circle &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
 <P><STRONG><a name="[ab]"></a>LCD_Circle_Helper</STRONG> (Thumb, 282 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_Circle_Helper))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_Circle_Helper &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_Circle_Helper &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round
 </UL>
 
 <P><STRONG><a name="[ac]"></a>LCD_Fill_Circle_Helper</STRONG> (Thumb, 218 bytes, Stack size 56 bytes, ssd1963_fsmc.o(i.LCD_Fill_Circle_Helper))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = LCD_Fill_Circle_Helper &rArr; LCD_VLine &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = LCD_Fill_Circle_Helper &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_V
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect_Fill
-</UL>
-
-<P><STRONG><a name="[ae]"></a>LCD_HLine</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_HLine))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_HLine &rArr; LCD_Position
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round_Fill
 </UL>
 
-<P><STRONG><a name="[b2]"></a>LCD_Line</STRONG> (Thumb, 146 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_Line))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_Line &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<P><STRONG><a name="[ae]"></a>LCD_Line</STRONG> (Thumb, 146 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_Line))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Triangle
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_V
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_H
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
-<P><STRONG><a name="[b4]"></a>LCD_Rectangle</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Rectangle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = LCD_Rectangle &rArr; LCD_VLine &rArr; LCD_Position
+<P><STRONG><a name="[b3]"></a>LCD_Rect</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Rect))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = LCD_Rect &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_HLine
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_V
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_H
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
-<P><STRONG><a name="[a9]"></a>LCD_Rectangle_Fill</STRONG> (Thumb, 72 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Rectangle_Fill))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_Rectangle_Fill &rArr; LCD_Position
+<P><STRONG><a name="[a9]"></a>LCD_Rect_Fill</STRONG> (Thumb, 72 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Rect_Fill))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect_Fill
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round_Fill
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Circle_Helper
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Circle
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Char_Scale_1B
@@ -946,21 +937,21 @@ Global Symbols
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b5]"></a>LCD_Round_Rect</STRONG> (Thumb, 226 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Round_Rect))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = LCD_Round_Rect &rArr; LCD_Circle_Helper &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<P><STRONG><a name="[b5]"></a>LCD_Rect_Round</STRONG> (Thumb, 226 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Rect_Round))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = LCD_Rect_Round &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_HLine
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Circle_Helper
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Circle_Helper
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_V
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line_H
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
-<P><STRONG><a name="[b6]"></a>LCD_Round_Rect_Fill</STRONG> (Thumb, 108 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Round_Rect_Fill))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = LCD_Round_Rect_Fill &rArr; LCD_Fill_Circle_Helper &rArr; LCD_VLine &rArr; LCD_Position
+<P><STRONG><a name="[b6]"></a>LCD_Rect_Round_Fill</STRONG> (Thumb, 108 bytes, Stack size 40 bytes, ssd1963_fsmc.o(i.LCD_Rect_Round_Fill))
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = LCD_Rect_Round_Fill &rArr; LCD_Fill_Circle_Helper &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Fill_Circle_Helper
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
@@ -968,15 +959,15 @@ Global Symbols
 <P><STRONG><a name="[b7]"></a>LCD_String</STRONG> (Thumb, 472 bytes, Stack size 88 bytes, ssd1963_fsmc.o(i.LCD_String))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = LCD_String &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 </UL>
 
 <P><STRONG><a name="[b8]"></a>LCD_String_Scale_1B</STRONG> (Thumb, 80 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_String_Scale_1B))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = LCD_String_Scale_1B &rArr; LCD_Char_Scale_1B &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = LCD_String_Scale_1B &rArr; LCD_Char_Scale_1B &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Char_Scale_1B
 </UL>
@@ -984,23 +975,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b9]"></a>LCD_Triangle</STRONG> (Thumb, 72 bytes, Stack size 48 bytes, ssd1963_fsmc.o(i.LCD_Triangle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = LCD_Triangle &rArr; LCD_Line &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = LCD_Triangle &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
-</UL>
-
-<P><STRONG><a name="[ad]"></a>LCD_VLine</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_VLine))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_VLine &rArr; LCD_Position
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;H24_RGB565_Reversed
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Fill_Circle_Helper
 </UL>
 
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.MemManage_Handler))
@@ -1030,8 +1009,8 @@ Global Symbols
 <P><STRONG><a name="[c5]"></a>SSD1963_Bright</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, ssd1963_fsmc.o(i.SSD1963_Bright))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SSD1963_Bright
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
 </UL>
@@ -1041,26 +1020,26 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Bright
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[c7]"></a>SSD1963_Test</STRONG> (Thumb, 484 bytes, Stack size 280 bytes, ssd1963_fsmc.o(i.SSD1963_Test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 440<LI>Call Chain = SSD1963_Test &rArr; LCD_String_Scale_1B &rArr; LCD_Char_Scale_1B &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 512<LI>Call Chain = SSD1963_Test &rArr; LCD_Rect_Round_Fill &rArr; LCD_Fill_Circle_Helper &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Triangle
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Triangle
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String_Scale_1B
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect_Fill
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Round_Rect
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round_Fill
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Circle
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Char_Scale_1B
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1173,7 +1152,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 234 bytes, Stack size 24 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 464<LI>Call Chain = main &rArr; SSD1963_Test &rArr; LCD_String_Scale_1B &rArr; LCD_Char_Scale_1B &rArr; LCD_Rectangle_Fill &rArr; LCD_Position
+<BR><BR>[Stack]<UL><LI>Max Depth = 536<LI>Call Chain = main &rArr; SSD1963_Test &rArr; LCD_Rect_Round_Fill &rArr; LCD_Fill_Circle_Helper &rArr; LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -1188,14 +1167,14 @@ Global Symbols
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C1_Init
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_FSMC_Init
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getY
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getX
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XPT2046_Init
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Test
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL><P>
@@ -1362,41 +1341,54 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b0]"></a>H24_RGB565_Reversed</STRONG> (Thumb, 62 bytes, Stack size 20 bytes, ssd1963_fsmc.o(i.H24_RGB565_Reversed))
+<P><STRONG><a name="[b4]"></a>H24_RGB565_Reversed</STRONG> (Thumb, 62 bytes, Stack size 20 bytes, ssd1963_fsmc.o(i.H24_RGB565_Reversed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = H24_RGB565_Reversed
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_HLine
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 
-<P><STRONG><a name="[af]"></a>LCD_Position</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, ssd1963_fsmc.o(i.LCD_Position))
+<P><STRONG><a name="[af]"></a>LCD_Line_H</STRONG> (Thumb, 42 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Line_H))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = LCD_Line_H &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect
+</UL>
+
+<P><STRONG><a name="[ad]"></a>LCD_Line_V</STRONG> (Thumb, 42 bytes, Stack size 32 bytes, ssd1963_fsmc.o(i.LCD_Line_V))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = LCD_Line_V &rArr; LCD_Line &rArr; LCD_Rect_Fill &rArr; LCD_Position
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Line
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Round
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Fill_Circle_Helper
+</UL>
+
+<P><STRONG><a name="[b0]"></a>LCD_Position</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, ssd1963_fsmc.o(i.LCD_Position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_Position
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Dat
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Send_Cmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_HLine
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 
-<P><STRONG><a name="[b3]"></a>LCD_Send_Cmd</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ssd1963_fsmc.o(i.LCD_Send_Cmd))
+<P><STRONG><a name="[b1]"></a>LCD_Send_Cmd</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ssd1963_fsmc.o(i.LCD_Send_Cmd))
 <BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Bright
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
 </UL>
 
-<P><STRONG><a name="[b1]"></a>LCD_Send_Dat</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, ssd1963_fsmc.o(i.LCD_Send_Dat))
+<P><STRONG><a name="[b2]"></a>LCD_Send_Dat</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, ssd1963_fsmc.o(i.LCD_Send_Dat))
 <BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Bright
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_VLine
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_String
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_HLine
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Position
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1963_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rectangle_Fill
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rect_Fill
 </UL>
 
 <P><STRONG><a name="[cf]"></a>getRaw</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, xpt2046.o(i.getRaw))

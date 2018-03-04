@@ -132,11 +132,11 @@ void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
 void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, const unsigned char *font, char *s);
 void LCD_Char_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size);
 void LCD_String_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size);
-void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size);
-void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
-void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);
-void LCD_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24);
-void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24);
+void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t size, uint32_t color24);
+void LCD_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
+void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);
+void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24);
+void LCD_Rect_Round_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24);
 void LCD_Triangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint32_t color24);
 void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint32_t color24);
 

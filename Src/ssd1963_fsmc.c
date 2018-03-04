@@ -154,11 +154,11 @@ void LCD_Char_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground
 		{
 			if ((*(font + fontinfo + height * (ascii - startchar) + i) >> (7 - f)) & 0x01)
 			{
-				LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, color24);
+				LCD_Rect_Fill(x + f * size, y + i * size, size, size, color24);
 			}
 			else
 			{
-				LCD_Rectangle_Fill(x + f * size, y + i * size, size, size, ground24);
+				LCD_Rect_Fill(x + f * size, y + i * size, size, size, ground24);
 			}
 		}
 	}
@@ -179,7 +179,7 @@ void LCD_String_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t grou
 	}
 }
 
-void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color24, uint8_t size)
+void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t size, uint32_t color24)
 {
 	int deltaX = abs(x2 - x1);
 	int deltaY = abs(y2 - y1);
@@ -190,7 +190,7 @@ void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color
 
 	for (;;)
 	{
-		LCD_Rectangle_Fill(x1, y1, size, size, color24);
+		LCD_Rect_Fill(x1, y1, size, size, color24);
 
 		if (x1 == x2 && y1 == y2)
 			break;
@@ -211,31 +211,25 @@ void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint32_t color
 	}
 }
 
-void LCD_HLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
+static inline void LCD_Line_H(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
 {
-	uint16_t i = 0;
-	LCD_Position(y, x, y + size - 1, x + length - 1);
-	for (i = 0; i < (length*size); i++)
-	LCD_Send_Dat(H24_RGB565_Reversed(color24));
+	LCD_Line(x, y, x + length - size, y, size, color24);
 }
 
-void LCD_VLine(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
+static inline void LCD_Line_V(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
 {
-	uint16_t i = 0;
-	LCD_Position(y, x, y + length - 1, x + size - 1);
-	for (i = 0; i < (length*size); i++)
-	LCD_Send_Dat(H24_RGB565_Reversed(color24));
+	LCD_Line(x, y, x, y + length - size, size, color24);
 }
 
-void LCD_Rectangle(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24)
+void LCD_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24)
 {
-	LCD_HLine(x, y, length, size, color24);
-	LCD_HLine(x, y + width, length, size, color24);
-	LCD_VLine(x, y, width, size, color24);
-	LCD_VLine(x + length - size, y, width, size, color24);
+	LCD_Line_H(x, y, length, size, color24);
+	LCD_Line_H(x, y + width, length, size, color24);
+	LCD_Line_V(x, y, width, size, color24);
+	LCD_Line_V(x + length - size, y, width, size, color24);
 }
 
-void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24)
+void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24)
 {
 	uint32_t i = 0;
 
@@ -248,9 +242,9 @@ void LCD_Rectangle_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width,
 
 void LCD_Triangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint32_t color24)
 {
-	LCD_Line(x1, y1, x2, y2, color24, size);
-	LCD_Line(x2, y2, x3, y3, color24, size);
-	LCD_Line(x3, y3, x1, y1, color24, size);
+	LCD_Line(x1, y1, x2, y2, size, color24);
+	LCD_Line(x2, y2, x3, y3, size, color24);
+	LCD_Line(x3, y3, x1, y1, size, color24);
 }
 
 void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint32_t color24)
@@ -263,19 +257,19 @@ void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t si
 	{
 		if (fill == 1)
 		{
-		LCD_Rectangle_Fill(x - a_, y - b_, 2 * a_ + 1, 2 * b_ + 1, color24);
-		LCD_Rectangle_Fill(x - b_, y - a_, 2 * b_ + 1, 2 * a_ + 1, color24);
+		LCD_Rect_Fill(x - a_, y - b_, 2 * a_ + 1, 2 * b_ + 1, color24);
+		LCD_Rect_Fill(x - b_, y - a_, 2 * b_ + 1, 2 * a_ + 1, color24);
 		}
 		else
 		{
-		LCD_Rectangle_Fill(a_ + x, b_ + y, size, size, color24);
-		LCD_Rectangle_Fill(b_ + x, a_ + y, size, size, color24);
-		LCD_Rectangle_Fill(x - a_, b_ + y, size, size, color24);
-		LCD_Rectangle_Fill(x - b_, a_ + y, size, size, color24);
-		LCD_Rectangle_Fill(b_ + x, y - a_, size, size, color24);
-		LCD_Rectangle_Fill(a_ + x, y - b_, size, size, color24);
-		LCD_Rectangle_Fill(x - a_, y - b_, size, size, color24);
-		LCD_Rectangle_Fill(x - b_, y - a_, size, size, color24);
+		LCD_Rect_Fill(a_ + x, b_ + y, size, size, color24);
+		LCD_Rect_Fill(b_ + x, a_ + y, size, size, color24);
+		LCD_Rect_Fill(x - a_, b_ + y, size, size, color24);
+		LCD_Rect_Fill(x - b_, a_ + y, size, size, color24);
+		LCD_Rect_Fill(b_ + x, y - a_, size, size, color24);
+		LCD_Rect_Fill(a_ + x, y - b_, size, size, color24);
+		LCD_Rect_Fill(x - a_, y - b_, size, size, color24);
+		LCD_Rect_Fill(x - b_, y - a_, size, size, color24);
 		}
 		if (P < 0)
 		{
@@ -309,30 +303,30 @@ void LCD_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, ui
 		ddF_x += 2;
 		f += ddF_x;
 		if (cornername & 0x4) {
-			LCD_Rectangle_Fill(x0 + x, y0 + y, size, size, color24);
-			LCD_Rectangle_Fill(x0 + y, y0 + x, size, size, color24);
+			LCD_Rect_Fill(x0 + x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 + y, y0 + x, size, size, color24);
 		}
 		if (cornername & 0x2) {
-			LCD_Rectangle_Fill(x0 + x, y0 - y, size, size, color24);
-			LCD_Rectangle_Fill(x0 + y, y0 - x, size, size, color24);
+			LCD_Rect_Fill(x0 + x, y0 - y, size, size, color24);
+			LCD_Rect_Fill(x0 + y, y0 - x, size, size, color24);
 		}
 		if (cornername & 0x8) {
-			LCD_Rectangle_Fill(x0 - y, y0 + x, size, size, color24);
-			LCD_Rectangle_Fill(x0 - x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 - y, y0 + x, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 + y, size, size, color24);
 		}
 		if (cornername & 0x1) {
-			LCD_Rectangle_Fill(x0 - y, y0 - x, size, size, color24);
-			LCD_Rectangle_Fill(x0 - x, y0 - y, size, size, color24);
+			LCD_Rect_Fill(x0 - y, y0 - x, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 - y, size, size, color24);
 		}
 	}
 }
 
-void LCD_Round_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24)
+void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24)
 {
-	LCD_HLine(x + r, y, length - 2 * r, size, color24);
-	LCD_HLine(x + r, y + width - 1, length - 2 * r, size, color24);
-	LCD_VLine(x, y + r, width - 2 * r, size, color24);
-	LCD_VLine(x + length - 1, y + r, width - 2 * r, size, color24);
+	LCD_Line_H(x + r, y, length - 2 * r, size, color24);
+	LCD_Line_H(x + r, y + width - 1, length - 2 * r, size, color24);
+	LCD_Line_V(x, y + r, width - 2 * r, size, color24);
+	LCD_Line_V(x + length - 1, y + r, width - 2 * r, size, color24);
 
 	LCD_Circle_Helper(x + r, y + r, r, 1, size, color24);
 	LCD_Circle_Helper(x + length - r - 1, y + r, r, 2, size, color24);
@@ -359,19 +353,19 @@ void LCD_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornernam
 		f += ddF_x;
 
 		if (cornername & 0x1) {
-			LCD_VLine(x0 + x, y0 - y, 2 * y + 1 + delta, 1, color24);
-			LCD_VLine(x0 + y, y0 - x, 2 * x + 1 + delta, 1, color24);
+			LCD_Line_V(x0 + x, y0 - y, 2 * y + 1 + delta, 1, color24);
+			LCD_Line_V(x0 + y, y0 - x, 2 * x + 1 + delta, 1, color24);
 		}
 		if (cornername & 0x2) {
-			LCD_VLine(x0 - x, y0 - y, 2 * y + 1 + delta, 1, color24);
-			LCD_VLine(x0 - y, y0 - x, 2 * x + 1 + delta, 1, color24);
+			LCD_Line_V(x0 - x, y0 - y, 2 * y + 1 + delta, 1, color24);
+			LCD_Line_V(x0 - y, y0 - x, 2 * x + 1 + delta, 1, color24);
 		}
 	}
 }
 
-void LCD_Round_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24)
+void LCD_Rect_Round_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24)
 {
-	LCD_Rectangle_Fill(x + r, y, length - 2 * r, width, color24);
+	LCD_Rect_Fill(x + r, y, length - 2 * r, width, color24);
 	LCD_Fill_Circle_Helper(x + length - r - 1, y + r, r, 1, width - 2 * r - 1, color24);
 	LCD_Fill_Circle_Helper(x + r, y + r, r, 2, width - 2 * r - 1, color24);
 }
@@ -478,8 +472,8 @@ inline void SSD1963_Bright(uint8_t bright)
 	
 	void SSD1963_Test(void)
 {
-	LCD_Rectangle_Fill(0, 0, 800, 480, MAGENTA);
-	LCD_Rectangle_Fill(1, 1, 798, 478, BLACK);
+	LCD_Rect_Fill(0, 0, 800, 480, MAGENTA);
+	LCD_Rect_Fill(1, 1, 798, 478, BLACK);
 		
 	char array[255];
 		
@@ -498,16 +492,16 @@ inline void SSD1963_Bright(uint8_t bright)
 	
 	LCD_String_Scale_1B(3, 120, BLUE, BLACK, tiny_8x8, "SCALE x3", 3);	
 	
-	LCD_Rectangle(260, 60, 50, 30, 2, GREEN);
-	LCD_Line(25, 50, 100, 150, MAGENTA, 2);
+	LCD_Rect(260, 60, 50, 30, 2, GREEN);
+	LCD_Line(25, 50, 100, 150, 2, MAGENTA);
 	LCD_Triangle(50, 50, 50, 100, 150, 150, 2, BLUE);
 	LCD_Circle(100, 100, 50, 0, 1, YELLOW);
 	LCD_Circle(150, 150, 50, 1, 1, YELLOW);
-	LCD_Round_Rect(235, 100, 80, 50, 10, 2, WHITE);
-	LCD_Round_Rect_Fill(235, 180, 80, 50, 10, WHITE);
+	LCD_Rect_Round(235, 100, 80, 50, 10, 2, WHITE);
+	LCD_Rect_Round_Fill(235, 180, 80, 50, 10, WHITE);
 
 	LCD_String(220, 60, BLUE, BLACK, default_8x12, "Font default_8x12");
 
-	LCD_Line(LCD_WIDTH -10-50, 10+25, LCD_WIDTH -10-50+50, 10+25, WHITE, 1);
-	LCD_Line(LCD_WIDTH -10-25, 10, 		LCD_WIDTH -10-25, 	 10+50, WHITE, 1);	
+	LCD_Line(LCD_WIDTH -10-50, 10+25, LCD_WIDTH -10-50+50, 10+25, 1, WHITE);
+	LCD_Line(LCD_WIDTH -10-25, 10, 		LCD_WIDTH -10-25, 	 10+50, 1, WHITE);	
 }
