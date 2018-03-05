@@ -1,5 +1,5 @@
-#ifndef _SSD1289_H_
-#define _SSD1289_H_
+#ifndef _SSD1963_FSMS_H_
+#define _SSD1963_FSMS_H_
 
 #ifdef __cplusplus
  extern "C" {
@@ -124,9 +124,9 @@ uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 #define OLIVE 	0x808000 /* 128, 128,   0 */
 #define LIME 		0xBFFF00 /* 191, 255,   0 */
 
-void SSD1963_Init(uint8_t bright);
-void SSD1963_Bright(uint8_t bright);
-void SSD1963_Test(void);
+void LCD_Init(uint8_t bright);
+void LCD_Bright(uint8_t bright);
+void LCD_Test(void);
 
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
 void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, const unsigned char *font, char *s);
@@ -176,4 +176,4 @@ void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t si
 }
 #endif
 
-#endif /* _SSD1289_H_ */
+#endif /* _SSD1963_FSMS_H_ */

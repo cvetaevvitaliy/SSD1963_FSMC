@@ -126,13 +126,13 @@ int main(void)
 	HAL_TIM_Base_Start(&htim1);
 	HAL_TIM_Base_Start_IT(&htim1);
 
-	SSD1963_Init(90);
+	LCD_Init(90);
 	XPT2046_Init();
 
 	uint8_t uartTransmit[] = "UART OK\r\n";
 	HAL_UART_Transmit(&huart1, uartTransmit, sizeof(uartTransmit), 100);
 
-	SSD1963_Test();
+	LCD_Test();
   /* USER CODE END 2 */
 
   /* Infinite loop */

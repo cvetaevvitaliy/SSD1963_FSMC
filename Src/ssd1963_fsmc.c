@@ -23,7 +23,7 @@ static inline uint16_t H24_RGB565_Reversed(uint32_t color24)
 
 static inline void LCD_Send_Cmd(uint16_t cmd)
 {
-	CMD= cmd;
+	CMD = cmd;
 }
 
 static inline void LCD_Send_Dat(uint16_t dat)
@@ -31,36 +31,24 @@ static inline void LCD_Send_Dat(uint16_t dat)
 	DAT = dat;
 }
 
-static inline void LCD_Set_X(uint16_t start_x, uint16_t end_x)
+static inline void LCD_Window(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
 	LCD_Send_Cmd(LCD_COLUMN_ADDR);
-	LCD_Send_Dat(start_x >> 8);
-	LCD_Send_Dat(start_x & 0x00FF);
-
-	LCD_Send_Dat(end_x >> 8);
-	LCD_Send_Dat(end_x & 0x00FF);
-}
-
-static inline void LCD_Set_Y(uint16_t start_y, uint16_t end_y)
-{
+	LCD_Send_Dat(y1 >> 8);
+	LCD_Send_Dat(y1 & 0x00FF);
+	LCD_Send_Dat(y2 >> 8);
+	LCD_Send_Dat(y2 & 0x00FF);
 	LCD_Send_Cmd(LCD_PAGE_ADDR);
-	LCD_Send_Dat(start_y >> 8);
-	LCD_Send_Dat(start_y & 0x00FF);
-
-	LCD_Send_Dat(end_y >> 8);
-	LCD_Send_Dat(end_y & 0x00FF);
-}
-
-static inline void LCD_Position(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
-{
-	LCD_Set_X(y1, y2);
-	LCD_Set_Y(x1, x2);
+	LCD_Send_Dat(x1 >> 8);
+	LCD_Send_Dat(x1 & 0x00FF);
+	LCD_Send_Dat(x2 >> 8);
+	LCD_Send_Dat(x2 & 0x00FF);
 	LCD_Send_Cmd(LCD_GRAM);
 }
 
 void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24)
 {
-	LCD_Position(xsta, ysta, xsta, ysta);
+	LCD_Window(xsta, ysta, xsta, ysta);
 	LCD_Send_Dat(H24_RGB565(color24));
 }
 
@@ -108,7 +96,7 @@ void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, c
 		q = en1;
 
 		if ((y0 + en1) > LCD_HEIGHT) { y0 = y2; x0++; }
-		LCD_Position(x0, y0, x0 + (height - 1), (y0) + (en1 - 1));
+		LCD_Window(x0, y0, x0 + (height - 1), (y0) + (en1 - 1));
 		y0 = y0 + en1;
 
 		for (x = i; x < k; x++)
@@ -211,29 +199,19 @@ void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t size, 
 	}
 }
 
-static inline void LCD_Line_H(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
+void LCD_Rect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t size, uint32_t color24)
 {
-	LCD_Line(x, y, x + length - size, y, size, color24);
-}
-
-static inline void LCD_Line_V(uint16_t x, uint16_t y, uint16_t length, uint16_t size, uint32_t color24)
-{
-	LCD_Line(x, y, x, y + length - size, size, color24);
-}
-
-void LCD_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24)
-{
-	LCD_Line_H(x, y, length, size, color24);
-	LCD_Line_H(x, y + width, length, size, color24);
-	LCD_Line_V(x, y, width, size, color24);
-	LCD_Line_V(x + length - size, y, width, size, color24);
+	LCD_Line(x, y, x + w, y, size, color24);
+	LCD_Line(x, y + h, x + w, y + h, size, color24);
+	LCD_Line(x, y, x, y + h, size, color24);
+	LCD_Line(x + w, y, x + w, y + h, size, color24);
 }
 
 void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24)
 {
 	uint32_t i = 0;
 
-	LCD_Position(y, x, y + width - 1, x + length - 1);
+	LCD_Window(y, x, y + width - 1, x + length - 1);
 	for (i = 0; i < length * width; i++)
 	{
 		LCD_Send_Dat(H24_RGB565_Reversed(color24));
@@ -323,10 +301,10 @@ void LCD_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, ui
 
 void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24)
 {
-	LCD_Line_H(x + r, y, length - 2 * r, size, color24);
-	LCD_Line_H(x + r, y + width - 1, length - 2 * r, size, color24);
-	LCD_Line_V(x, y + r, width - 2 * r, size, color24);
-	LCD_Line_V(x + length - 1, y + r, width - 2 * r, size, color24);
+	LCD_Line(x + r, y, x + length + size - r, y, size, color24);
+	LCD_Line(x + r, y + width - 1, x + length + size - r, y + width - 1, size, color24);
+	LCD_Line(x, y + r, x, y + width - size - r, size, color24);
+	LCD_Line(x + length - 1, y + r, x + length - 1, y + width - size - r, size, color24);
 
 	LCD_Circle_Helper(x + r, y + r, r, 1, size, color24);
 	LCD_Circle_Helper(x + length - r - 1, y + r, r, 2, size, color24);
@@ -334,7 +312,7 @@ void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uin
 	LCD_Circle_Helper(x + r, y + width - r - 1, r, 8, size, color24);
 }
 
-void LCD_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, int16_t delta, uint32_t color24)
+void LCD_Circle_Fill_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername, int16_t delta, uint32_t color24)
 {
 	int16_t f = 1 - r;
 	int16_t ddF_x = 1;
@@ -353,12 +331,12 @@ void LCD_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornernam
 		f += ddF_x;
 
 		if (cornername & 0x1) {
-			LCD_Line_V(x0 + x, y0 - y, 2 * y + 1 + delta, 1, color24);
-			LCD_Line_V(x0 + y, y0 - x, 2 * x + 1 + delta, 1, color24);
+			LCD_Line(x0 + x, y0 - y, x0 + x, y0 - y + 2 * y + delta, 1, color24);
+			LCD_Line(x0 + y, y0 - x, x0 + y, y0 - x + 2 * x + delta, 1, color24);
 		}
 		if (cornername & 0x2) {
-			LCD_Line_V(x0 - x, y0 - y, 2 * y + 1 + delta, 1, color24);
-			LCD_Line_V(x0 - y, y0 - x, 2 * x + 1 + delta, 1, color24);
+			LCD_Line(x0 - x, y0 - y, x0 - x, y0 - y + 2 * y + delta, 1, color24);
+			LCD_Line(x0 - y, y0 - x, x0 - y, y0 - x + 2 * x + delta, 1, color24);
 		}
 	}
 }
@@ -366,11 +344,11 @@ void LCD_Fill_Circle_Helper(int16_t x0, int16_t y0, int16_t r, uint8_t cornernam
 void LCD_Rect_Round_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24)
 {
 	LCD_Rect_Fill(x + r, y, length - 2 * r, width, color24);
-	LCD_Fill_Circle_Helper(x + length - r - 1, y + r, r, 1, width - 2 * r - 1, color24);
-	LCD_Fill_Circle_Helper(x + r, y + r, r, 2, width - 2 * r - 1, color24);
+	LCD_Circle_Fill_Helper(x + length - r - 1, y + r, r, 1, width - 2 * r - 1, color24);
+	LCD_Circle_Fill_Helper(x + r, y + r, r, 2, width - 2 * r - 1, color24);
 }
 
-void SSD1963_Init(uint8_t bright)
+void LCD_Init(uint8_t bright)
 {
 	//1. Power up the system platform and assert the RESET# signal (‘L’ state) for a minimum of 100us to reset the controller. 
 	//		LCD_RST_SET
@@ -459,10 +437,10 @@ void SSD1963_Init(uint8_t bright)
 	LCD_Send_Dat(0x03);     // 16 bit interface (565)
 							//10. Turn on the display 						
 	LCD_Send_Cmd(LCD_DISPLAY_ON);     // display on 
-	SSD1963_Bright(bright);
+	LCD_Bright(bright);
 }
 
-inline void SSD1963_Bright(uint8_t bright)
+inline void LCD_Bright(uint8_t bright)
 {
 	LCD_Send_Cmd(0xBE);  // PWM configuration 
 	LCD_Send_Dat(0x08);     // set PWM signal frequency to 170Hz when PLL frequency is 100MHz 
@@ -470,7 +448,7 @@ inline void SSD1963_Bright(uint8_t bright)
 	LCD_Send_Dat(0x01);
 }
 	
-	void SSD1963_Test(void)
+	void LCD_Test(void)
 {
 	LCD_Rect_Fill(0, 0, 800, 480, MAGENTA);
 	LCD_Rect_Fill(1, 1, 798, 478, BLACK);
