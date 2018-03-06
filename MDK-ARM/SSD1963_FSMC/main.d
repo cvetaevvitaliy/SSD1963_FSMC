@@ -41,6 +41,8 @@ ssd1963_fsmc\main.o: ../Inc/ssd1963_fsmc.h
 ssd1963_fsmc\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ssd1963_fsmc\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ssd1963_fsmc\main.o: ../Inc/xpt2046.h
+ssd1963_fsmc\main.o: ../Inc/fonts/Dmd8x7Clock.h
+ssd1963_fsmc\main.o: ../Inc/fonts/Dmd13x20Clock.h
 ssd1963_fsmc\main.o: ../Inc/fonts/FreeMono9pt7b.h
 ssd1963_fsmc\main.o: ../Inc/fonts/FreeMono12pt7b.h
 ssd1963_fsmc\main.o: ../Inc/fonts/FreeMono18pt7b.h

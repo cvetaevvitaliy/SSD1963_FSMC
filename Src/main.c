@@ -43,6 +43,8 @@
 #include "ssd1963_fsmc.h"
 #include "xpt2046.h"
 
+#include "fonts/Dmd8x7Clock.h"
+#include "fonts/Dmd13x20Clock.h"
 #include "fonts/FreeMono9pt7b.h"
 #include "fonts/FreeMono12pt7b.h"
 #include "fonts/FreeMono18pt7b.h"
@@ -210,20 +212,20 @@ int main(void)
 	HAL_Delay(250);
 	LCD_Rect_Fill(0, 0, 160, 128, BLUE);
 	LCD_Rect_Fill(1, 1, 158, 126, BLACK);
-	LCD_String(5, 40, "This is\n just a Test\nST7735\n", Thumb, 1, YELLOW);
+	LCD_Font(5, 40, "This is\n just a Test\nST7735\n", Thumb, 1, YELLOW);
 	LCD_Line(23, 20, 137, 20, 1, MAGENTA);
 	LCD_Line(23, 21, 137, 21, 1, BLUE);
 	LCD_Line(23, 21, 137, 21, 1, BLUE);
-	LCD_String(41, 10, "SSD1289 DRIVER", Org, 1, MAGENTA);
-	LCD_String(45, 35, "STM 32 HAL", SerifBold9, 1, RED);
+	LCD_Font(41, 10, "SSD1289 DRIVER", Org, 1, MAGENTA);
+	LCD_Font(45, 35, "STM 32 HAL", SerifBold9, 1, RED);
 	LCD_Circle(40, 90, 30, 0, 1, RED);
 	LCD_Circle(45, 90, 20, 1, 1, BLUE);
 	LCD_Triangle(5, 5, 5, 20, 25, 25, 2, BLUE);
 	LCD_Rect(60, 45, 30, 20, 2, GREEN);
 	LCD_Rect_Round(80, 70, 60, 25, 10, 3, WHITE);
 	LCD_Rect_Round_Fill(80, 100, 60, 25, 10, WHITE);
-	LCD_String(0, 200, "1234567890", SevenSegNum, 1, RED);
-	
+	LCD_Font(0, 200, "1234567890", SevenSegNum, 1, RED);
+	LCD_Font(10, 220, "1234567890 TEST FONT", Clock8x7, 1, RED);
   /* USER CODE END 2 */
 
   /* Infinite loop */

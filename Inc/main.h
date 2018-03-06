@@ -57,6 +57,8 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
+#define Clock8x7			&Dmd8x7Clock
+#define Clock13x20			&Dmd13x20Clock
 #define Mono9							&FreeMono9pt7b
 #define Mono12						&FreeMono12pt7b
 #define Mono18						&FreeMono18pt7b
