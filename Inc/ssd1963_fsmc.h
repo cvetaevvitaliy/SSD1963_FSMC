@@ -13,79 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* 8x8 */
-extern const unsigned char tiny_8x8[];
-extern const unsigned char sinclair_8x8[];
-extern const unsigned char sinclair_8x8_inverted[];
-
-/* 8x9 */
-extern const unsigned char myke_8x9[];
-
-/* 8x12 */
-extern const unsigned char default_8x12[];
-
-/* 8x16 */
-extern const unsigned char old_8x16[];
-
-/* 16x16 */
-extern const unsigned char default_16x16[];
-extern const unsigned char arial_16x16_bold[];
-extern const unsigned char arial_16x16_italic[];
-extern const unsigned char arial_16x16_normal[];
-extern const unsigned char franklingothic_16x16[];
-extern const unsigned char hallfetica_16x16[];
-extern const unsigned char nadianne_16x16[];
-extern const unsigned char sinclair_16x16[];
-extern const unsigned char sinclair_16x16_inverted[];
-extern const unsigned char swiss_16x16[];
-
-/* 16x22 */
-extern const unsigned char matrix_16x22[];
-extern const unsigned char matrix_16x22_slash[];
-
-/* 16x24 */
-extern const unsigned char arial_16x24_round[];
-extern const unsigned char ocr_16x24[];
-
-/* 16x32 */
-extern const unsigned char old_16x32[];
-
-/* 24x32 */
-extern const unsigned char inconsola_24x32[];
-extern const unsigned char ubuntu_24x32[];
-extern const unsigned char ubuntu_24x32_bold[];
-
-/* NUMERIC */
-extern const unsigned char arial_32x50_num[];
-extern const unsigned char calibri_32x48_bold_num[];
-extern const unsigned char matrix_24x29_num[];
-extern const unsigned char matrix_32x50_num[];
-extern const unsigned char segment_seven_32x50_num[];
-extern const unsigned char segment_seven_64x100_num[];
-extern const unsigned char segment_seven_96x144_num[];
-extern const unsigned char segment_sixteen_48x72_num[];
-extern const unsigned char segment_sixteen_64x96_num[];
-extern const unsigned char segment_sixteen_96x144_num[];
-extern const unsigned char segment_sixteen_128x192_num[];
-
-/* SEGMENTED */
-extern const unsigned char segment_eighteen_32x52[];
-extern const unsigned char segment_sixteen_16x24[];
-extern const unsigned char segment_sixteen_24x36[];
-extern const unsigned char segment_sixteen_32x48[];
-extern const unsigned char segment_sixteen_32x50[];
-extern const unsigned char segment_sixteen_40x60[];
-
-/* SYMBOLS */
-extern const unsigned char battery_24x48[];
-extern const unsigned char barcode_rm4scc_16x16[];
-extern const unsigned char barcode_post_40x20_num[];
-extern const unsigned char dingbats1_32x24[];
-extern const unsigned char symbols_16x16[];
-extern const unsigned char symbols_16x32_1[];
-extern const unsigned char symbols_16x32_2[];
-extern const unsigned char symbols_32x32[];
-
 #define CMD *(uint16_t *)0x60000000
 #define DAT *(uint16_t *)0x60020000
 
@@ -99,8 +26,6 @@ extern const unsigned char symbols_32x32[];
 
 #define LCD_HEIGHT      800
 #define LCD_WIDTH       480
-
-uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 
 #define BLACK 	0x000000 /*   0,   0,   0 */
 #define WHITE 	0xFFFFFF /* 255, 255, 255 */
@@ -124,21 +49,34 @@ uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
 #define OLIVE 	0x808000 /* 128, 128,   0 */
 #define LIME 		0xBFFF00 /* 191, 255,   0 */
 
-void LCD_Init(uint8_t bright);
-void LCD_Bright(uint8_t bright);
-void LCD_Test(void);
+typedef struct { // Data stored PER GLYPH
+	uint16_t bitmapOffset;     // Pointer into GFXfont->bitmap
+	uint8_t  width, height;    // Bitmap dimensions in pixels
+	uint8_t  xAdvance;         // Distance to advance cursor (x axis)
+	int8_t   xOffset, yOffset; // Dist from cursor position to UL corner
+} GFXglyph;
 
-void LCD_Pixel(uint16_t ysta, uint16_t xsta, uint32_t color24);
-void LCD_String(uint16_t x0, uint16_t y0, uint32_t color24, uint32_t ground24, const unsigned char *font, char *s);
-void LCD_Char_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, uint8_t ascii, uint8_t size);
-void LCD_String_Scale_1B(uint16_t x, uint16_t y, uint32_t color24, uint32_t ground24, const unsigned char *font, char *string, uint8_t size);
+typedef struct { // Data stored for FONT AS A WHOLE:
+	uint8_t  *bitmap;      // Glyph bitmaps, concatenated
+	GFXglyph *glyph;       // Glyph array
+	uint8_t   first, last; // ASCII extents
+	uint8_t   yAdvance;    // Newline distance (y axis)
+} GFXfont;
+
+uint16_t RGB(uint8_t r, uint8_t g, uint8_t b);
+
+void LCD_Init(void);
+void LCD_Bright(uint8_t bright);
+	
+void LCD_Pixel(uint16_t x, uint16_t y, uint32_t color24);
+void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint32_t color24);
 void LCD_Line(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint8_t size, uint32_t color24);
-void LCD_Rect(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint8_t size, uint32_t color24);
-void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint32_t color24);
-void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24);
-void LCD_Rect_Round_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24);
+void LCD_Rect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t size, uint32_t color24);
 void LCD_Triangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint8_t size, uint32_t color24);
 void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint32_t color24);
+void LCD_Rect_Round(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint8_t size, uint32_t color24);
+void LCD_Rect_Round_Fill(uint16_t x, uint16_t y, uint16_t length, uint16_t width, uint16_t r, uint32_t color24);
+void LCD_String(uint16_t x, uint16_t y, char *text, const GFXfont *p_font, uint8_t size, uint32_t color24);
 
 #define LCD_RESET			 		  0x0001
 #define LCD_SLEEP_OUT		  	0x0011
