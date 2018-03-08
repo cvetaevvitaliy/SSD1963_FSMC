@@ -224,6 +224,8 @@ int main(void)
 	LCD_Rect(60, 45, 30, 20, 2, GREEN);
 	LCD_Rect_Round(80, 70, 60, 25, 10, 3, WHITE);
 	LCD_Rect_Round_Fill(80, 100, 60, 25, 10, WHITE);
+	LCD_Ellipse(60, 100, 30, 20, 0, 2, YELLOW);
+	LCD_Ellipse(125, 60, 25, 15, 1, 1, YELLOW);
 	LCD_Font(0, 200, "1234567890", SevenSegNum, 1, RED);
 	LCD_Font(10, 220, "1234567890 TEST FONT", Clock8x7, 1, RED);
   /* USER CODE END 2 */

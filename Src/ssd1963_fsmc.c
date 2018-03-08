@@ -1,11 +1,11 @@
 #include "ssd1963_fsmc.h"
 
-uint16_t RGB(uint8_t r, uint8_t g, uint8_t b)
+inline uint16_t RGB(uint8_t r, uint8_t g, uint8_t b)
 {
 	return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
-static inline uint16_t H24_RGB565(uint8_t reverse, uint32_t color24)
+inline static uint16_t H24_RGB565(uint8_t reverse, uint32_t color24)
 {
 	uint8_t b = (color24 >> 16) & 0xFF;
 	uint8_t g = (color24 >> 8) & 0xFF;
@@ -14,29 +14,29 @@ static inline uint16_t H24_RGB565(uint8_t reverse, uint32_t color24)
 	else return ((r / 8) << 11) | ((g / 4) << 5) | (b / 8);
 }
 
-static inline void LCD_Send_Cmd(uint16_t cmd)
+inline static void LCD_Send_Cmd(uint16_t cmd)
 {
 	CMD = cmd;
 }
 
-static inline void LCD_Send_Dat(uint16_t dat)
+inline static void LCD_Send_Dat(uint16_t dat)
 {
 	DAT = dat;
 }
 
-//static inline void LCD_Send_Reg(uint16_t cmd, uint16_t dat)
+//inline static void LCD_Send_Reg(uint16_t cmd, uint16_t dat)
 //{	
 //	CMD = cmd;	
 //	DAT = dat;
 //}
 
-//uint16_t LCD_Read_Data()
+//inline static uint16_t LCD_Read_Data()
 //{
 //	uint16_t data = DAT;
 //	return data;	
 //}
 
-//uint16_t LCD_Read_Reg(uint16_t reg_addr)
+//inline static uint16_t LCD_Read_Reg(uint16_t reg_addr)
 //{
 //	volatile uint16_t data = 0;
 //	LCD_Send_Cmd(reg_addr);
@@ -44,7 +44,7 @@ static inline void LCD_Send_Dat(uint16_t dat)
 //	return data;
 //}
 
-static inline void LCD_Window(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+inline static void LCD_Window(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
 	LCD_Send_Cmd(LCD_COLUMN_ADDR);
 	LCD_Send_Dat(y1 >> 8);
@@ -112,6 +112,70 @@ void LCD_Rect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t size, uint
 	LCD_Line(x, y + h, x + w, y + h, size, color24);
 	LCD_Line(x, y, x, y + h, size, color24);
 	LCD_Line(x + w, y, x + w, y + h, size, color24);
+}
+
+void LCD_Ellipse(int16_t x0, int16_t y0, int16_t rx, int16_t ry, uint8_t fill, uint8_t size, uint32_t color24)
+{
+	int16_t x, y;
+	int32_t rx2 = rx * rx;
+	int32_t ry2 = ry * ry;
+	int32_t fx2 = 4 * rx2;
+	int32_t fy2 = 4 * ry2;
+	int32_t s;
+	if (fill)
+	{
+		for (x = 0, y = ry, s = 2 * ry2 + rx2 * (1 - 2 * ry); ry2 * x <= rx2 * y; x++)
+		{
+			LCD_Line(x0 - x, y0 - y, x0 + x + 1 - size, y0 - y, size, color24);
+			LCD_Line(x0 - x, y0 + y, x0 + x + 1 - size, y0 + y, size, color24);
+			if (s >= 0)
+			{
+				s += fx2 * (1 - y);
+				y--;
+			}
+			s += ry2 * ((4 * x) + 6);
+		}
+		for (x = rx, y = 0, s = 2 * rx2 + ry2 * (1-2 * rx); rx2 * y <= ry2 * x; y++)
+		{
+			LCD_Line(x0 - x, y0 - y, x0 + x + 1 - size, y0 - y, size, color24);
+			LCD_Line(x0 - x, y0 + y, x0 + x + 1 - size, y0 + y, size, color24);
+			if (s >= 0)
+			{
+				s += fy2 * (1 - x);
+				x--;
+			}
+			s += rx2 * ((4 * y) + 6);
+		}
+	}
+	else
+	{
+		for (x = 0, y = ry, s = 2 * ry2 + rx2 * (1 - 2 * ry); ry2 * x <= rx2 * y; x++)
+		{
+			LCD_Rect_Fill(x0 + x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 + x, y0 - y, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 - y, size, size, color24);
+			if (s >= 0)
+			{
+				s += fx2 * (1 - y);
+				y--;
+			}
+			s += ry2 * ((4 * x) + 6);
+		}
+		for (x = rx, y = 0, s = 2 * rx2 + ry2 * (1 - 2 * rx); rx2 * y <= ry2 * x; y++)
+		{
+			LCD_Rect_Fill(x0 + x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 + y, size, size, color24);
+			LCD_Rect_Fill(x0 + x, y0 - y, size, size, color24);
+			LCD_Rect_Fill(x0 - x, y0 - y, size, size, color24);
+			if (s >= 0)
+			{
+				s += fy2 * (1 - x);
+				x--;
+			}
+			s += rx2 * ((4 * y) + 6);
+		}
+	}
 }
 
 void LCD_Circle(uint16_t x, uint16_t y, uint8_t radius, uint8_t fill, uint8_t size, uint32_t color24)
